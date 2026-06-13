@@ -146,11 +146,7 @@ const byType = (ty) => BANK.filter((q) => q.type === ty);
    ===================================================================== */
 function init() {
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-    const hadController = !!navigator.serviceWorker.controller;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      // 새 버전 서비스워커가 제어를 넘겨받으면 한 번만 자동 새로고침 → 항상 최신 앱
-      if (hadController && !window.__nqReloaded) { window.__nqReloaded = true; location.reload(); }
-    });
+    // 새 버전 적용은 서비스워커(activate 시 창 자동 새로고침)가 담당
     navigator.serviceWorker.register('sw.js').then((reg) => { swReg = reg; }).catch(() => {});
   }
   LANG = ls(K.lang, 'ko');

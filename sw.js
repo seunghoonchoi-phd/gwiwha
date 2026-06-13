@@ -1,8 +1,8 @@
-/* 서비스워커 — 항상 최신 + 오프라인 지원
-   - network-first: 인터넷이 되면 항상 최신 파일을 받고(앱·문제 모두), 캐시에도 저장.
-   - 오프라인이면 마지막으로 저장된 캐시로 동작.
-   - 캐시 버전(CACHE)을 올리면 옛 캐시가 정리되고 새 서비스워커가 즉시 적용됩니다. */
-const CACHE = 'gwiwha-v3';
+/* 서비스워커 — 항상 최신 + 오프라인 + 새 버전 자동 적용
+   - network-first: 인터넷이 되면 항상 최신 파일(앱·문제)을 받고 캐시에도 저장. 오프라인이면 캐시.
+   - 새 버전이 설치되면(업데이트) 열려 있는 창을 자동으로 새로고침해 즉시 최신으로 교체.
+   - 앱을 새로 배포할 때 CACHE 숫자만 올리면 모든 기기가 다음 접속 때 자동 갱신됩니다. */
+const CACHE = 'gwiwha-v4';
 const CORE = [
   './',
   './index.html',
@@ -16,18 +16,26 @@ const CORE = [
   './apple-touch-icon.png',
 ];
 
+let isUpdate = false;
+
 self.addEventListener('install', (e) => {
+  isUpdate = !!self.registration.active; // 기존 워커가 있으면 '업데이트'(최초 설치 아님)
   e.waitUntil(
     caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)));
+    await self.clients.claim();
+    // 업데이트인 경우에만 열린 창을 새로고침(최초 설치 땐 새로고침 안 함)
+    if (isUpdate) {
+      const clients = await self.clients.matchAll({ type: 'window' });
+      for (const c of clients) { try { c.navigate(c.url); } catch (err) {} }
+    }
+  })());
 });
 
 self.addEventListener('fetch', (e) => {
@@ -38,7 +46,6 @@ self.addEventListener('fetch', (e) => {
 
   const isQuestions = url.pathname.endsWith('questions.json');
 
-  // 네트워크 우선: 항상 최신을 받아오고 캐시 갱신. 실패(오프라인) 시 캐시로.
   e.respondWith(
     fetch(req)
       .then((res) => {
