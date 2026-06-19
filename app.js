@@ -65,6 +65,7 @@ const I18N = {
     'result.estLevel': '예상 배정 단계: {0}',
     'result.levelDisclaimer': '※ 이 점수는 실제 배정 점수가 아니라 <b>객관식 실력 기준 예상치</b>입니다. 실제 사전평가는 객관식(75점)+작문(2문)+구술(25점)=100점이며, 작문·구술은 사람이 채점합니다. 또한 <b>구술이 3점 미만이면 0단계</b>로 배정됩니다. 정확한 단계는 시험 당일 점수로 정해집니다.',
     'track.nat': '🇰🇷 귀화 종합평가', 'track.perm': '🏡 영주 종합평가', 'track.pre': '📊 사회통합 사전평가',
+    'track.note': '🔁 귀화용·영주용 종합평가는 <b>시험 구조·출제 범위가 같아</b> 같은 문제로 연습합니다.',
     'review.unanswered': '선택 안 함', 'review.emptyWrite': '작성한 답안이 없습니다.', 'review.emptyOral': '메모한 내용이 없습니다.',
     'stats.total': '총 푼 문제', 'stats.acc': '전체 정답률', 'stats.noHistory': '아직 모의고사 기록이 없습니다.',
     'wrong.empty': '틀린 문제가 없습니다. 잘하고 있어요! 👏', 'writing.empty': '해당 유형의 문제가 없습니다.',
@@ -111,6 +112,7 @@ const I18N = {
     'result.estLevel': '预计分配阶段：{0}',
     'result.levelDisclaimer': '※ 此分数并非实际分配分数，而是 <b>按选择题水平的预估值</b>。实际事前评价为 选择题(75分)+写作(2题)+口试(25分)=100分，写作·口试由人工评分。另外 <b>口试不足3分将分配到0阶段</b>。准确阶段以考试当天分数为准。',
     'track.nat': '🇰🇷 归化综合评价', 'track.perm': '🏡 永居综合评价', 'track.pre': '📊 社会统合事前评价',
+    'track.note': '🔁 归化用·永居用综合评价的<b>考试结构和出题范围相同</b>，用同一套题练习。',
     'review.unanswered': '未作答', 'review.emptyWrite': '没有作答内容。', 'review.emptyOral': '没有记录内容。',
     'stats.total': '已做题数', 'stats.acc': '总正确率', 'stats.noHistory': '还没有模拟考试记录。',
     'wrong.empty': '没有错题，做得很好！👏', 'writing.empty': '没有该类型的题目。',
@@ -315,6 +317,13 @@ function applyExamUi() {
   if (mockSub) mockSub.textContent = tx(exam().mockSub);
   const prSub = document.querySelector('[data-go="practice"] .menu-card__sub');
   if (prSub) prSub.textContent = tx(exam().practiceSub);
+  // 귀화·영주는 같은 종합평가 문제를 공유 → 오해 방지 공지
+  const note = $('trackNote');
+  if (note) {
+    const shared = poolOf(activeExam) === 'nat';
+    note.classList.toggle('hidden', !shared);
+    if (shared) note.innerHTML = t('track.note');
+  }
 }
 function setExam(key) {
   if (key === activeExam || !EXAMS[key]) return;
