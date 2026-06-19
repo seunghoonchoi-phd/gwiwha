@@ -64,7 +64,7 @@ const I18N = {
     'result.pass': '합격선(60점) 통과 🎉', 'result.fail': '합격선(60점)까지 조금 더!', 'result.practice': '연습 모드 결과입니다.',
     'result.estLevel': '예상 배정 단계: {0}',
     'result.levelDisclaimer': '※ 이 점수는 실제 배정 점수가 아니라 <b>객관식 실력 기준 예상치</b>입니다. 실제 사전평가는 객관식(75점)+작문(2문)+구술(25점)=100점이며, 작문·구술은 사람이 채점합니다. 또한 <b>구술이 3점 미만이면 0단계</b>로 배정됩니다. 정확한 단계는 시험 당일 점수로 정해집니다.',
-    'track.nat': '🇰🇷 귀화 종합평가', 'track.pre': '📊 사회통합 사전평가',
+    'track.nat': '🇰🇷 귀화 종합평가', 'track.perm': '🏡 영주 종합평가', 'track.pre': '📊 사회통합 사전평가',
     'review.unanswered': '선택 안 함', 'review.emptyWrite': '작성한 답안이 없습니다.', 'review.emptyOral': '메모한 내용이 없습니다.',
     'stats.total': '총 푼 문제', 'stats.acc': '전체 정답률', 'stats.noHistory': '아직 모의고사 기록이 없습니다.',
     'wrong.empty': '틀린 문제가 없습니다. 잘하고 있어요! 👏', 'writing.empty': '해당 유형의 문제가 없습니다.',
@@ -110,7 +110,7 @@ const I18N = {
     'result.pass': '已达合格线（60分）🎉', 'result.fail': '距合格线（60分）还差一点！', 'result.practice': '这是练习模式的结果。',
     'result.estLevel': '预计分配阶段：{0}',
     'result.levelDisclaimer': '※ 此分数并非实际分配分数，而是 <b>按选择题水平的预估值</b>。实际事前评价为 选择题(75分)+写作(2题)+口试(25分)=100分，写作·口试由人工评分。另外 <b>口试不足3分将分配到0阶段</b>。准确阶段以考试当天分数为准。',
-    'track.nat': '🇰🇷 归化综合评价', 'track.pre': '📊 社会统合事前评价',
+    'track.nat': '🇰🇷 归化综合评价', 'track.perm': '🏡 永居综合评价', 'track.pre': '📊 社会统合事前评价',
     'review.unanswered': '未作答', 'review.emptyWrite': '没有作答内容。', 'review.emptyOral': '没有记录内容。',
     'stats.total': '已做题数', 'stats.acc': '总正确率', 'stats.noHistory': '还没有模拟考试记录。',
     'wrong.empty': '没有错题，做得很好！👏', 'writing.empty': '没有该类型的题目。',
@@ -183,6 +183,33 @@ const EXAMS = {
       ],
     },
   },
+  perm: {
+    badge: { ko: '영주 종합평가', zh: '永居综合评价' },
+    coverOrg: { ko: '사회통합프로그램 (KIIP)', zh: '社会统合项目 (KIIP)' },
+    coverTitle: { ko: '영주용 종합평가', zh: '永居用综合评价' },
+    coverSub: { ko: '필기시험 모의고사', zh: '笔试模拟考试' },
+    mockSub: { ko: '실제 시험처럼 풀기 (객관식+작문+구술)', zh: '像真实考试一样作答（选择+写作+口试）' },
+    practiceSub: { ko: '8개 영역별로 풀기', zh: '按8个领域练习' },
+    noPrefix: 'KIPRAT',
+    mock: { mc: 36, writing: 4, oral: 5, time: 60 * 60, ladder: false },
+    grading: 'passfail',
+    notices: {
+      ko: [
+        '영주용 종합평가는 <b>객관식 36문항(65점) + 작문형(10점) + 구술(25점) = 100점</b>, <b>60점 이상이면 합격</b>입니다. (귀화용과 출제 범위·구조가 동일해 같은 문제로 연습합니다.)',
+        '이 모의고사는 <b>필기(객관식+작문)를 60분 안에</b> 풀고, 이어서 <b>구술 문항</b>까지 연습합니다.',
+        '객관식은 ①②③④ 중 하나를 고르고, 작문은 <b>200자 이내</b>로 작성합니다.',
+        '객관식만 자동 채점되며, 작문·구술은 모범답안·도움말로 스스로 점검합니다.',
+        '응시 자격: 사회통합프로그램 <b>5단계 기본과정 수료</b>(또는 사전평가로 5단계 배정). 영주용은 <b>지필(PBT)로만</b> 시행됩니다.',
+      ],
+      zh: [
+        '永居用综合评价为 <b>选择题36题(65分) + 写作(10分) + 口试(25分) = 100分</b>，<b>60分以上合格</b>。（与归化用的出题范围·结构相同，用同一套题练习。）',
+        '本模拟考试 <b>笔试(选择题+写作)在60分钟内</b>完成，随后继续练习<b>口试题</b>。',
+        '选择题从①②③④中选一个，写作在<b>200字以内</b>完成。',
+        '仅选择题自动评分；写作·口试以参考答案·提示自我检查。',
+        '应试资格：修完社会统合项目 <b>第5阶段基本课程</b>（或经事前评价分配到第5阶段）。永居用仅以 <b>纸笔(PBT)</b> 形式进行。',
+      ],
+    },
+  },
   pre: {
     badge: { ko: '사회통합 사전평가', zh: '社会统合事前评价' },
     coverOrg: { ko: '사회통합프로그램 (KIIP)', zh: '社会统合项目 (KIIP)' },
@@ -213,7 +240,7 @@ const EXAMS = {
 };
 function exam() { return EXAMS[activeExam]; }
 /* 시험별로 분리 저장할 키(종합평가=기존 키 그대로, 사전평가=__pre 접미사) */
-function ekey(base) { return activeExam === 'pre' ? base + '__pre' : base; }
+function ekey(base) { return activeExam === 'nat' ? base : base + '__' + activeExam; }
 
 /* ---------- 상태 ---------- */
 let BANK = [];
@@ -232,7 +259,9 @@ function save(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); 
 function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function toast(msg, ms = 2200) { const t0 = $('toast'); t0.textContent = msg; t0.classList.remove('hidden'); clearTimeout(toast._t); toast._t = setTimeout(() => t0.classList.add('hidden'), ms); }
 function fmtDate(iso) { if (!iso) return t('noSync'); const d = new Date(iso); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; }
-const examBank = () => BANK.filter((q) => examOf(q) === activeExam);
+/* 영주용(perm)은 귀화용(nat)과 같은 '종합평가' 문제 풀을 사용 */
+const poolOf = (ex) => (ex === 'pre' ? 'pre' : 'nat');
+const examBank = () => BANK.filter((q) => examOf(q) === poolOf(activeExam));
 const mcOnly = () => examBank().filter((q) => q.type === 'mc');
 const byType = (ty) => examBank().filter((q) => q.type === ty);
 
