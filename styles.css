@@ -318,7 +318,7 @@ body.exam-mode .question-box .zh { color: #6b7280; font-family: -apple-system, "
 }
 .app-credit .cred-name { display: block; font-size: .8rem; font-weight: 600; color: #8f96a3; letter-spacing: .01em; }
 .app-credit .cred-title { font-weight: 500; color: #abb1bc; }
-.app-credit .cred-mission { display: block; margin-top: 4px; font-size: .73rem; font-style: italic; color: #b0b6c1; }
+.app-credit .cred-mission { display: block; margin-top: 9px; font-size: .735rem; font-style: italic; color: #7b86c4; }
 .app-credit .cred-links { display: block; margin-top: 9px; font-size: .715rem; }
 .app-credit .cred-links a { color: #a2a9b5; text-decoration: none; transition: color .12s ease; }
 .app-credit .cred-links a:hover { color: var(--blue); }
