@@ -308,18 +308,20 @@ body.exam-mode .question-box .zh { color: #6b7280; font-family: -apple-system, "
 /* ===== 시험 트랙 전환(홈 상단) ===== */
 .track-seg { margin-bottom: 14px; }
 .track-seg .seg__btn { font-size: .76rem; padding: 9px 4px; line-height: 1.2; white-space: normal; text-align: center; }
-/* ===== 홈 하단 제작자 크레딧(학습 비방해, 홈에서만) ===== */
+/* ===== 홈 하단 제작자 크레딧(학습 비방해, 홈에서만 — 차분·연한 톤) ===== */
 .app-credit {
-  margin: 26px 4px max(env(safe-area-inset-bottom), 18px);
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+  margin: 32px 8px max(env(safe-area-inset-bottom), 22px);
+  padding-top: 18px;
+  border-top: 1px solid #e9edf3;
   text-align: center;
-  line-height: 1.7;
+  line-height: 1.65;
 }
-.app-credit__by { display: block; font-size: .66rem; letter-spacing: .06em; color: var(--gray); opacity: .8; text-transform: uppercase; }
-.app-credit b { display: block; color: var(--ink); font-weight: 700; font-size: .86rem; margin-top: 1px; }
-.app-credit a { display: inline-block; margin-top: 2px; color: var(--blue); text-decoration: none; font-weight: 600; font-size: .8rem; }
-.app-credit a:hover { text-decoration: underline; }
+.app-credit .cred-name { display: block; font-size: .79rem; font-weight: 600; color: #99a0ad; letter-spacing: .01em; }
+.app-credit .cred-mission { display: block; margin-top: 4px; font-size: .73rem; font-style: italic; color: #b0b6c1; }
+.app-credit .cred-links { display: block; margin-top: 9px; font-size: .715rem; }
+.app-credit .cred-links a { color: #a2a9b5; text-decoration: none; transition: color .12s ease; }
+.app-credit .cred-links a:hover { color: var(--blue); }
+.app-credit .cred-sep { margin: 0 8px; color: #d6dae2; }
 
 /* ===== 사전평가 결과: 예상 배정 단계 ===== */
 .score-card__pass.level { color: var(--blue-dark); }
