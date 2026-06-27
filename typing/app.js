@@ -8,7 +8,9 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
   var LANG_NAME = { ko: '한국어', zh: '中文', vi: 'Tiếng Việt', th: 'ภาษาไทย' };
+  var LANG_FLAG = { ko: '🇰🇷', zh: '🇨🇳', vi: '🇻🇳', th: '🇹🇭' };
   var LANG_ORDER = ['ko', 'zh', 'vi', 'th'];
+  var LINE_BUDGET = 28; // 장문 줄바꿈 기준(글자 수)
 
   // ===== I18N (ko / zh / vi / th) =====
   var I18N = {
@@ -241,6 +243,7 @@
       s.target = item.text;
       s.tokens = HG.textToKeystrokes(item.text);
       s.chars = HG.sanitize(item.text).split('');
+      s.lines = wrapLines(s.chars);
       s.pos = 0;
       s.total = s.tokens.length;
     }
@@ -249,6 +252,22 @@
 
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
   function buildDrill(set) { return set.slice().concat(shuffle(set)).concat(shuffle(set)); }
+
+  // 단어(공백) 단위로 줄 분할 → 각 줄 = [start,end) 글자 인덱스(끝의 공백 제외)
+  function wrapLines(chars) {
+    var lines = [], n = chars.length, i = 0;
+    var lineStart = -1, lineEnd = -1, lineLen = 0;
+    while (i < n) {
+      var j = i; while (j < n && chars[j] !== ' ') j++; // [i,j) = 한 단어
+      var wlen = j - i;
+      if (lineStart < 0) { lineStart = i; lineEnd = j; lineLen = wlen; }
+      else if (lineLen + 1 + wlen <= LINE_BUDGET) { lineEnd = j; lineLen += 1 + wlen; }
+      else { lines.push({ start: lineStart, end: lineEnd }); lineStart = i; lineEnd = j; lineLen = wlen; }
+      i = (j < n) ? j + 1 : j; // 공백 건너뜀(줄바꿈)
+    }
+    if (lineStart >= 0) lines.push({ start: lineStart, end: lineEnd });
+    return lines.length ? lines : [{ start: 0, end: n }];
+  }
 
   // ===== 화면 전환 =====
   function show(view) { $$('.view').forEach(function (v) { v.classList.add('hidden'); }); $('#view-' + view).classList.remove('hidden'); window.scrollTo(0, 0); }
@@ -419,22 +438,30 @@
   }
 
   function renderText(box) {
-    var chars = state.chars, toks = state.tokens, pos = state.pos;
+    var chars = state.chars, toks = state.tokens, pos = state.pos, lines = state.lines;
     var currentCi = pos < toks.length ? toks[pos].ci : chars.length;
-    var html = '<div class="txt-target">';
-    for (var c = 0; c < chars.length; c++) {
-      var ch = chars[c];
-      var st = c < currentCi ? 'done' : c === currentCi ? 'current' : 'pending';
-      if (ch === ' ') {
-        html += (c === currentCi) ? '<span class="ch current sp"> </span>' : ' ';
-      } else {
-        html += '<span class="ch ' + st + '">' + esc(ch) + '</span>';
+    var typedToks = toks.slice(0, pos);
+    var html = '<div class="txt-lines">';
+    for (var li = 0; li < lines.length; li++) {
+      var ln = lines[li];
+      // 원문 줄
+      var tHtml = '';
+      for (var c = ln.start; c < ln.end; c++) {
+        var ch = chars[c];
+        var st = c < currentCi ? 'done' : c === currentCi ? 'current' : 'pending';
+        if (ch === ' ') tHtml += (c === currentCi) ? '<span class="ch current sp"> </span>' : '<span class="ch sp"> </span>';
+        else tHtml += '<span class="ch ' + st + '">' + esc(ch) + '</span>';
       }
+      // 입력 줄(이 줄에 속한, 이미 친 토큰만 조합)
+      var lineToks = typedToks.filter(function (tk) { return tk.ci >= ln.start && tk.ci < ln.end; });
+      var typed = HG.compose(lineToks);
+      var isCurrentLine = currentCi >= ln.start && currentCi <= ln.end;
+      html += '<div class="tline' + (isCurrentLine ? ' is-current' : '') + '">' +
+        '<div class="tline-target">' + tHtml + '</div>' +
+        '<div class="tline-echo">' + esc(typed) + (isCurrentLine ? '<span class="caret"></span>' : '') + '</div>' +
+        '</div>';
     }
     html += '</div>';
-    var typed = HG.compose(toks.slice(0, pos));
-    html += '<div class="txt-echo"><span class="txt-echo__label">' + esc(t('echo.label')) + '</span>' +
-      esc(typed) + '<span class="caret"></span></div>';
     box.innerHTML = html;
   }
 
@@ -546,6 +573,21 @@
     $('#langBtn').textContent = '🌐 ' + LANG_NAME[lang];
   }
 
+  // 언어 선택 picker (귀화앱 방식)
+  function buildPicker() {
+    var box = $('#langOpts'); box.innerHTML = '';
+    LANG_ORDER.forEach(function (l) {
+      var b = document.createElement('button');
+      b.className = 'lang-opt' + (l === lang ? ' is-active' : '');
+      b.type = 'button';
+      b.innerHTML = '<span class="lang-opt__flag">' + LANG_FLAG[l] + '</span><span class="lang-opt__name">' + esc(LANG_NAME[l]) + '</span>';
+      b.addEventListener('click', function () { closePicker(); setLang(l); });
+      box.appendChild(b);
+    });
+  }
+  function openPicker() { buildPicker(); $('#langPicker').classList.remove('hidden'); }
+  function closePicker() { $('#langPicker').classList.add('hidden'); }
+
   // ===== 딥링크 (#모드/번호) =====
   function routeFromHash() {
     var m = (location.hash || '').replace(/^#/, '').split('/');
@@ -557,10 +599,8 @@
   // ===== 이벤트 =====
   function bind() {
     $('#homeBtn').addEventListener('click', goHome);
-    $('#langBtn').addEventListener('click', function () {
-      var i = LANG_ORDER.indexOf(lang);
-      setLang(LANG_ORDER[(i + 1) % LANG_ORDER.length]);
-    });
+    $('#langBtn').addEventListener('click', openPicker);
+    $('#langPicker').addEventListener('click', function (e) { if (e.target === this) closePicker(); });
     $$('.mode-card').forEach(function (c) { c.addEventListener('click', function () { goList(c.dataset.mode); }); });
     $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.go === 'home') goHome(); }); });
     $('#pracBack').addEventListener('click', function () { stopTimer(); goList(state.mode); });
