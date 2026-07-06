@@ -15,9 +15,9 @@
   // ===== I18N (ko / zh / vi / th) =====
   var I18N = {
     ko: {
-      'app.title': '한글 타자 연습', 'app.toQuiz': '📚 귀화앱',
+      'app.title': '한글 타자 연습', 'app.toQuiz': '귀화앱',
       'home.lead': '한글 자판이 손에 익을 때까지, 한 단계씩 천천히 연습해요.',
-      'home.imeTip': '💡 컴퓨터 입력기를 한글로 바꾸지 않아도 됩니다. 화면이 알려주는 키를 그대로 누르세요.',
+      'home.imeTip': '컴퓨터 입력기를 한글로 바꾸지 않아도 됩니다. 화면이 알려주는 키를 그대로 누르세요.',
       'home.hint': '개인용 연습 도구 · 점수는 이 기기에만 저장됩니다.',
       'mode.position.t': '자리 연습', 'mode.position.s': 'ㅎ ㅁ ㅂ ㅕ — 자판 위치와 손가락 익히기',
       'mode.syllable.t': '낱글자 연습', 'mode.syllable.s': '자음+모음을 모아 한 글자씩 완성',
@@ -26,7 +26,7 @@
       'common.home': '홈', 'common.list': '목록', 'common.retry': '다시', 'common.next': '다음 →',
       'stat.time': '시간', 'stat.speed': '타수', 'stat.acc': '정확도', 'stat.miss': '오타',
       'next.this': '이 자리', 'next.char': '다음', 'next.space': '스페이스', 'next.enter': '엔터',
-      'next.shift': 'Shift 함께', 'done.title': '잘했어요! 완성 🎉', 'done.best': '최고 기록 경신! ⭐',
+      'next.shift': 'Shift 함께', 'done.title': '잘했어요! 완성', 'done.best': '최고 기록 경신!',
       'done.speed': '타/분', 'done.acc': '정확도', 'done.time': '걸린 시간',
       'done.nextHint': 'Enter 로 다음', 'done.listHint': 'Enter 로 목록',
       'list.position': '단계를 골라 시작하세요. 처음에는 ‘기본 자리’부터.',
@@ -36,12 +36,36 @@
       'sec.sec': '초', 'best.label': '최고', 'topic.label': '주제', 'echo.label': '내가 친 것',
       'mode.word.t': '낱말 연습', 'mode.word.s': '비슷한 낱말을 빠르게 구별하며 치기',
       'list.word': '비슷하게 생긴 낱말을 빠르게 알아보고 정확히 치는 연습이에요.',
-      'sound.on': '🔊 소리 켜짐', 'sound.off': '🔇 소리 듣기'
+      'sound.on': '소리 켜짐', 'sound.off': '소리 듣기',
+      // A1 정확도 게이트
+      'gate.msg': '정확도 95% 이상일 때 기록으로 인정됩니다.',
+      // A2 성장
+      'delta.label': '지난 판 대비', 'delta.speed': '타수', 'delta.acc': '정확도',
+      'mini.week': '이번 주', 'mini.games': '판', 'mini.avgspeed': '평균 타수', 'mini.acc': '정확도',
+      // A3 약한 키
+      'weak.title': '자주 틀리는 키', 'weak.drill': '약한 키 보충 연습',
+      'weak.pracTitle': '약한 키 보충', 'weak.none': '이번 판은 다 잘 쳤어요!',
+      // A4 온보딩
+      'ob.eyebrow': '시작하기 전에', 'ob.title': '30초만 읽어 주세요',
+      'ob.s1': '<b>왼손은 자음, 오른손은 모음</b>이에요. 자판을 안 외워도 화면이 알려줍니다.',
+      'ob.s2': '한 글자는 자모의 조합이에요. 예를 들어 ',
+      'ob.s2b': ' 는 ', 'ob.s2c': ' 를 차례로 누르면 완성돼요.',
+      'ob.s3': '<b>화면이 알려주는 키</b>를 그대로 누르면 됩니다. 천천히 시작해요.',
+      'ob.start': '시작하기',
+      // A5 홈 배지
+      'badge.best': '최고', 'badge.empty': '아직 연습 안 함',
+      // A6 실전 쓰기
+      'list.freewrite': '실전 쓰기', 'list.follow': '따라 치기',
+      'fw.badge': '실전', 'fw.ph': '여기에 자유롭게 답안을 쓰세요.',
+      'fw.showModel': '완료 · 모범답안 보기', 'fw.modelLabel': '모범답안 (스스로 비교해 보세요)',
+      'fw.selfQ': '스스로 평가하면?', 'fw.good': '잘함', 'fw.ok': '보통', 'fw.poor': '부족',
+      'fw.done': '수고했어요! 스스로 대조해 보세요.', 'fw.guide': '작성 도움말', 'fw.chars': '글자',
+      'sec.min': '분'
     },
     zh: {
-      'app.title': '韩文打字练习', 'app.toQuiz': '📚 入籍App',
+      'app.title': '韩文打字练习', 'app.toQuiz': '入籍App',
       'home.lead': '在熟悉韩文键盘之前，一步一步慢慢练习。',
-      'home.imeTip': '💡 不需要把电脑输入法切换成韩文。直接按屏幕提示的键即可。',
+      'home.imeTip': '不需要把电脑输入法切换成韩文。直接按屏幕提示的键即可。',
       'home.hint': '个人练习工具 · 成绩仅保存在本设备。',
       'mode.position.t': '指位练习', 'mode.position.s': 'ㅎ ㅁ ㅂ ㅕ — 熟悉键位与手指',
       'mode.syllable.t': '单字练习', 'mode.syllable.s': '辅音+元音，一个字一个字组合',
@@ -50,7 +74,7 @@
       'common.home': '主页', 'common.list': '列表', 'common.retry': '重来', 'common.next': '下一个 →',
       'stat.time': '时间', 'stat.speed': '速度', 'stat.acc': '准确率', 'stat.miss': '错字',
       'next.this': '此键', 'next.char': '下一个', 'next.space': '空格', 'next.enter': '回车',
-      'next.shift': '同时按 Shift', 'done.title': '做得好！完成 🎉', 'done.best': '刷新最佳成绩！⭐',
+      'next.shift': '同时按 Shift', 'done.title': '做得好！完成', 'done.best': '刷新最佳成绩！',
       'done.speed': '键/分', 'done.acc': '准确率', 'done.time': '用时',
       'done.nextHint': '按 Enter 继续', 'done.listHint': '按 Enter 回列表',
       'list.position': '选择一个阶段开始。第一次请从“基本键位”开始。',
@@ -60,12 +84,30 @@
       'sec.sec': '秒', 'best.label': '最佳', 'topic.label': '主题', 'echo.label': '我打的',
       'mode.word.t': '单词练习', 'mode.word.s': '快速辨别相似的词并打出',
       'list.word': '快速识别外形相似的词并准确打出。',
-      'sound.on': '🔊 声音开', 'sound.off': '🔇 听发音'
+      'sound.on': '声音开', 'sound.off': '听发音',
+      'gate.msg': '准确率达到95%以上才会记为成绩。',
+      'delta.label': '与上一局相比', 'delta.speed': '速度', 'delta.acc': '准确率',
+      'mini.week': '本周', 'mini.games': '局', 'mini.avgspeed': '平均速度', 'mini.acc': '准确率',
+      'weak.title': '经常打错的键', 'weak.drill': '薄弱键补充练习',
+      'weak.pracTitle': '薄弱键补充', 'weak.none': '这一局都打得很好！',
+      'ob.eyebrow': '开始之前', 'ob.title': '请花30秒读一下',
+      'ob.s1': '<b>左手是辅音，右手是元音</b>。不用背键位，屏幕会提示你。',
+      'ob.s2': '一个字是字母的组合。比如 ',
+      'ob.s2b': ' 就是按顺序按 ', 'ob.s2c': ' 就能组成。',
+      'ob.s3': '照着<b>屏幕提示的键</b>按就行。慢慢开始吧。',
+      'ob.start': '开始',
+      'badge.best': '最佳', 'badge.empty': '还没练习',
+      'list.freewrite': '实战书写', 'list.follow': '跟着打',
+      'fw.badge': '实战', 'fw.ph': '请在这里自由书写你的答案。',
+      'fw.showModel': '完成 · 查看范文', 'fw.modelLabel': '范文（请自行对照）',
+      'fw.selfQ': '自我评价？', 'fw.good': '很好', 'fw.ok': '一般', 'fw.poor': '不足',
+      'fw.done': '辛苦了！请自行对照。', 'fw.guide': '写作提示', 'fw.chars': '字',
+      'sec.min': '分'
     },
     vi: {
-      'app.title': 'Luyện gõ tiếng Hàn', 'app.toQuiz': '📚 App nhập tịch',
+      'app.title': 'Luyện gõ tiếng Hàn', 'app.toQuiz': 'App nhập tịch',
       'home.lead': 'Luyện từng bước cho đến khi quen bàn phím tiếng Hàn.',
-      'home.imeTip': '💡 Không cần chuyển bộ gõ máy tính sang tiếng Hàn. Chỉ cần bấm đúng phím màn hình chỉ.',
+      'home.imeTip': 'Không cần chuyển bộ gõ máy tính sang tiếng Hàn. Chỉ cần bấm đúng phím màn hình chỉ.',
       'home.hint': 'Công cụ luyện tập cá nhân · Điểm chỉ lưu trên thiết bị này.',
       'mode.position.t': 'Luyện vị trí phím', 'mode.position.s': 'ㅎ ㅁ ㅂ ㅕ — làm quen vị trí phím và ngón tay',
       'mode.syllable.t': 'Luyện từng chữ', 'mode.syllable.s': 'Ghép phụ âm + nguyên âm thành từng chữ',
@@ -74,7 +116,7 @@
       'common.home': 'Trang chủ', 'common.list': 'Danh sách', 'common.retry': 'Làm lại', 'common.next': 'Tiếp →',
       'stat.time': 'Thời gian', 'stat.speed': 'Tốc độ', 'stat.acc': 'Chính xác', 'stat.miss': 'Lỗi',
       'next.this': 'Phím này', 'next.char': 'Tiếp', 'next.space': 'Phím cách', 'next.enter': 'Enter',
-      'next.shift': 'Bấm kèm Shift', 'done.title': 'Giỏi lắm! Hoàn thành 🎉', 'done.best': 'Phá kỷ lục! ⭐',
+      'next.shift': 'Bấm kèm Shift', 'done.title': 'Giỏi lắm! Hoàn thành', 'done.best': 'Phá kỷ lục!',
       'done.speed': 'phím/phút', 'done.acc': 'Chính xác', 'done.time': 'Thời gian',
       'done.nextHint': 'Nhấn Enter để tiếp', 'done.listHint': 'Nhấn Enter về danh sách',
       'list.position': 'Chọn một bước để bắt đầu. Lần đầu hãy bắt đầu từ “phím cơ bản”.',
@@ -84,12 +126,30 @@
       'sec.sec': ' giây', 'best.label': 'Tốt nhất', 'topic.label': 'Chủ đề', 'echo.label': 'Tôi đã gõ',
       'mode.word.t': 'Luyện từ', 'mode.word.s': 'Phân biệt nhanh các từ giống nhau và gõ',
       'list.word': 'Nhận diện nhanh các từ trông giống nhau và gõ chính xác.',
-      'sound.on': '🔊 Bật âm', 'sound.off': '🔇 Nghe âm'
+      'sound.on': 'Bật âm', 'sound.off': 'Nghe âm',
+      'gate.msg': 'Chỉ ghi nhận kỷ lục khi độ chính xác từ 95% trở lên.',
+      'delta.label': 'So với lần trước', 'delta.speed': 'Tốc độ', 'delta.acc': 'Chính xác',
+      'mini.week': 'Tuần này', 'mini.games': 'lượt', 'mini.avgspeed': 'Tốc độ TB', 'mini.acc': 'Chính xác',
+      'weak.title': 'Phím hay gõ sai', 'weak.drill': 'Luyện bù phím yếu',
+      'weak.pracTitle': 'Luyện bù phím yếu', 'weak.none': 'Lượt này bạn gõ đúng hết rồi!',
+      'ob.eyebrow': 'Trước khi bắt đầu', 'ob.title': 'Đọc trong 30 giây nhé',
+      'ob.s1': '<b>Tay trái là phụ âm, tay phải là nguyên âm</b>. Không cần thuộc phím, màn hình sẽ chỉ.',
+      'ob.s2': 'Một chữ là sự ghép các chữ cái. Ví dụ ',
+      'ob.s2b': ' là bấm lần lượt ', 'ob.s2c': ' sẽ thành.',
+      'ob.s3': 'Cứ bấm đúng <b>phím màn hình chỉ</b> là được. Bắt đầu từ từ thôi.',
+      'ob.start': 'Bắt đầu',
+      'badge.best': 'Tốt nhất', 'badge.empty': 'Chưa luyện',
+      'list.freewrite': 'Viết thực chiến', 'list.follow': 'Gõ theo',
+      'fw.badge': 'Thực chiến', 'fw.ph': 'Hãy tự do viết bài của bạn ở đây.',
+      'fw.showModel': 'Xong · Xem bài mẫu', 'fw.modelLabel': 'Bài mẫu (hãy tự đối chiếu)',
+      'fw.selfQ': 'Tự đánh giá?', 'fw.good': 'Tốt', 'fw.ok': 'Bình thường', 'fw.poor': 'Chưa đạt',
+      'fw.done': 'Làm tốt lắm! Hãy tự đối chiếu.', 'fw.guide': 'Gợi ý viết', 'fw.chars': 'chữ',
+      'sec.min': ' phút'
     },
     th: {
-      'app.title': 'ฝึกพิมพ์ภาษาเกาหลี', 'app.toQuiz': '📚 แอปแปลงสัญชาติ',
+      'app.title': 'ฝึกพิมพ์ภาษาเกาหลี', 'app.toQuiz': 'แอปแปลงสัญชาติ',
       'home.lead': 'ฝึกทีละขั้นจนกว่าจะคุ้นกับแป้นพิมพ์ภาษาเกาหลี',
-      'home.imeTip': '💡 ไม่ต้องเปลี่ยนตัวพิมพ์ในเครื่องเป็นภาษาเกาหลี แค่กดปุ่มตามที่หน้าจอบอก',
+      'home.imeTip': 'ไม่ต้องเปลี่ยนตัวพิมพ์ในเครื่องเป็นภาษาเกาหลี แค่กดปุ่มตามที่หน้าจอบอก',
       'home.hint': 'เครื่องมือฝึกส่วนตัว · คะแนนบันทึกเฉพาะในเครื่องนี้',
       'mode.position.t': 'ฝึกตำแหน่งแป้น', 'mode.position.s': 'ㅎ ㅁ ㅂ ㅕ — คุ้นเคยกับตำแหน่งแป้นและนิ้ว',
       'mode.syllable.t': 'ฝึกตัวอักษร', 'mode.syllable.s': 'รวมพยัญชนะ+สระให้เป็นตัวอักษรทีละตัว',
@@ -98,7 +158,7 @@
       'common.home': 'หน้าหลัก', 'common.list': 'รายการ', 'common.retry': 'เริ่มใหม่', 'common.next': 'ถัดไป →',
       'stat.time': 'เวลา', 'stat.speed': 'ความเร็ว', 'stat.acc': 'ความแม่นยำ', 'stat.miss': 'พิมพ์ผิด',
       'next.this': 'ปุ่มนี้', 'next.char': 'ถัดไป', 'next.space': 'เว้นวรรค', 'next.enter': 'Enter',
-      'next.shift': 'กด Shift ด้วย', 'done.title': 'เยี่ยมมาก! เสร็จแล้ว 🎉', 'done.best': 'ทำลายสถิติ! ⭐',
+      'next.shift': 'กด Shift ด้วย', 'done.title': 'เยี่ยมมาก! เสร็จแล้ว', 'done.best': 'ทำลายสถิติ!',
       'done.speed': 'ปุ่ม/นาที', 'done.acc': 'ความแม่นยำ', 'done.time': 'เวลาที่ใช้',
       'done.nextHint': 'กด Enter เพื่อไปต่อ', 'done.listHint': 'กด Enter กลับรายการ',
       'list.position': 'เลือกขั้นเพื่อเริ่ม ครั้งแรกเริ่มจาก “แป้นพื้นฐาน”',
@@ -108,7 +168,25 @@
       'sec.sec': ' วิ', 'best.label': 'ดีที่สุด', 'topic.label': 'หัวข้อ', 'echo.label': 'ที่ฉันพิมพ์',
       'mode.word.t': 'ฝึกคำศัพท์', 'mode.word.s': 'แยกแยะคำที่คล้ายกันอย่างรวดเร็วแล้วพิมพ์',
       'list.word': 'ฝึกจำคำที่หน้าตาคล้ายกันอย่างรวดเร็วและพิมพ์ให้ถูก',
-      'sound.on': '🔊 เปิดเสียง', 'sound.off': '🔇 ฟังเสียง'
+      'sound.on': 'เปิดเสียง', 'sound.off': 'ฟังเสียง',
+      'gate.msg': 'จะบันทึกเป็นสถิติเมื่อความแม่นยำ 95% ขึ้นไป',
+      'delta.label': 'เทียบกับรอบก่อน', 'delta.speed': 'ความเร็ว', 'delta.acc': 'ความแม่นยำ',
+      'mini.week': 'สัปดาห์นี้', 'mini.games': 'รอบ', 'mini.avgspeed': 'ความเร็วเฉลี่ย', 'mini.acc': 'ความแม่นยำ',
+      'weak.title': 'ปุ่มที่พิมพ์ผิดบ่อย', 'weak.drill': 'ฝึกเสริมปุ่มที่อ่อน',
+      'weak.pracTitle': 'ฝึกเสริมปุ่มที่อ่อน', 'weak.none': 'รอบนี้พิมพ์ถูกหมดเลย!',
+      'ob.eyebrow': 'ก่อนเริ่ม', 'ob.title': 'อ่านสัก 30 วินาทีนะ',
+      'ob.s1': '<b>มือซ้ายคือพยัญชนะ มือขวาคือสระ</b> ไม่ต้องจำแป้น หน้าจอจะบอกเอง',
+      'ob.s2': 'หนึ่งตัวอักษรคือการผสมพยัญชนะสระ เช่น ',
+      'ob.s2b': ' คือกดตามลำดับ ', 'ob.s2c': ' ก็จะได้',
+      'ob.s3': 'แค่กด<b>ปุ่มที่หน้าจอบอก</b>ก็พอ ค่อย ๆ เริ่มนะ',
+      'ob.start': 'เริ่มเลย',
+      'badge.best': 'ดีที่สุด', 'badge.empty': 'ยังไม่ฝึก',
+      'list.freewrite': 'เขียนจริง', 'list.follow': 'พิมพ์ตาม',
+      'fw.badge': 'เขียนจริง', 'fw.ph': 'เขียนคำตอบของคุณได้อย่างอิสระที่นี่',
+      'fw.showModel': 'เสร็จ · ดูตัวอย่าง', 'fw.modelLabel': 'เรียงความตัวอย่าง (ลองเทียบด้วยตัวเอง)',
+      'fw.selfQ': 'ประเมินตัวเอง?', 'fw.good': 'ดี', 'fw.ok': 'พอใช้', 'fw.poor': 'ยังไม่พอ',
+      'fw.done': 'เก่งมาก! ลองเทียบด้วยตัวเองนะ', 'fw.guide': 'คำแนะนำการเขียน', 'fw.chars': 'ตัว',
+      'sec.min': ' นาที'
     }
   };
   function readInheritedLang() {
@@ -160,6 +238,7 @@
   }
   function cleanPrompt(q) { return (q || '').replace(/<br\s*\/?>/gi, ' / '); }
   function transOf(d) { return { zh: d.model_zh || '', vi: d.model_vi || '', th: d.model_th || '' }; }
+  function guideOf(d) { return { ko: d.guide || '', zh: d.guide_zh || '', vi: d.guide_vi || '', th: d.guide_th || '' }; }
 
   var DATA = window.TYPING_WRITING || [];
   var NAT = DATA.filter(function (d) { return (d.exam || 'nat') === 'nat'; });
@@ -171,7 +250,7 @@
     }).filter(function (x) { return x.text; }));
 
   var LONG_ITEMS = NAT.map(function (d) {
-    return { text: (d.model || '').trim(), trans: transOf(d), topic: topicOf(d.q), kind: 'text', id: d.id };
+    return { text: (d.model || '').trim(), trans: transOf(d), topic: topicOf(d.q), guide: guideOf(d), kind: 'text', id: d.id };
   }).filter(function (x) { return x.text; });
 
   var MODES = {
@@ -282,7 +361,7 @@
   }
   function updateSoundToggle() {
     var b = $('#soundToggle'); if (!b) return;
-    b.textContent = soundOn ? t('sound.on') : t('sound.off');
+    b.innerHTML = iconSvg(soundOn ? 'sound' : 'mute', 'sound-toggle__ico') + '<span>' + esc(soundOn ? t('sound.on') : t('sound.off')) + '</span>';
     b.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
   }
   function toggleSound() {
@@ -295,7 +374,7 @@
   function newState(mode, idx) {
     var cfg = MODES[mode];
     var item = cfg.items[idx];
-    var s = { mode: mode, kind: cfg.kind, idx: idx, item: item, correct: 0, errors: 0, startTime: 0, running: false, finished: false };
+    var s = { mode: mode, kind: cfg.kind, idx: idx, item: item, correct: 0, errors: 0, startTime: 0, running: false, finished: false, weakSession: {} };
     if (cfg.kind === 'position') {
       s.seq = buildDrill(item.set);
       s.posIdx = 0;
@@ -365,7 +444,42 @@
   // ===== 화면 전환 =====
   function show(view) { $$('.view').forEach(function (v) { v.classList.add('hidden'); }); $('#view-' + view).classList.remove('hidden'); window.scrollTo(0, 0); }
 
-  function goHome() { stopTimer(); show('home'); }
+  function goHome() { stopTimer(); renderHome(); show('home'); }
+
+  // A5: 홈 mode-card에 최고 기록 배지 / 미연습 표시
+  // A2: 홈 상단 미니 요약 스트립
+  function renderHome() {
+    // 각 mode의 대표 최고기록(그 mode에서 가장 높은 속도의 rec)
+    Object.keys(MODES).forEach(function (mode) {
+      var el = $('.mode-card[data-mode="' + mode + '"] [data-badge="' + mode + '"]');
+      if (!el) return;
+      var n = MODES[mode].items.length, bestSpeed = 0, bestAcc = null;
+      for (var i = 0; i < n; i++) {
+        var r = getBestRec(mode, i);
+        if (r && r.speed > bestSpeed) { bestSpeed = r.speed; bestAcc = r.acc; }
+      }
+      if (bestSpeed > 0) {
+        el.className = 'mode-card__badge';
+        el.textContent = t('badge.best') + ' ' + bestSpeed + (bestAcc != null ? ' · ' + bestAcc + '%' : '');
+      } else {
+        el.className = 'mode-card__badge mode-card__badge--empty';
+        el.textContent = t('badge.empty');
+      }
+      el.classList.remove('hidden');
+    });
+    // 미니 스트립
+    var strip = $('#miniStrip');
+    var wk = weekSummary();
+    if (wk) {
+      strip.innerHTML =
+        '<div class="mini-strip__item"><span class="mini-strip__label">' + t('mini.week') + '</span><span class="mini-strip__num">' + wk.games + '<span>' + t('mini.games') + '</span></span></div>' +
+        '<div class="mini-strip__item"><span class="mini-strip__label">' + t('mini.avgspeed') + '</span><span class="mini-strip__num">' + wk.avgSpeed + '</span></div>' +
+        (wk.avgAcc != null ? '<div class="mini-strip__item"><span class="mini-strip__label">' + t('mini.acc') + '</span><span class="mini-strip__num">' + wk.avgAcc + '<span>%</span></span></div>' : '');
+      strip.classList.remove('hidden');
+    } else {
+      strip.classList.add('hidden');
+    }
+  }
 
   function goList(mode) {
     var cfg = MODES[mode];
@@ -373,14 +487,33 @@
     $('#listDesc').textContent = t(cfg.desc);
     var box = $('#listItems'); box.innerHTML = '';
     cfg.items.forEach(function (item, i) {
-      var b = document.createElement('button');
-      b.className = 'select-item';
       var title, sub = '';
       if (cfg.kind === 'position') { title = L(item.title); sub = item.set.join(' '); }
       else if (mode === 'syllable' || mode === 'word') { title = L(item.title); sub = item.text; }
       else if (mode === 'long') { title = item.topic; sub = (lang === 'ko') ? item.text : ((item.trans && item.trans[lang]) || item.text); }
       else { title = item.text; sub = (lang === 'ko') ? '' : ((item.trans && item.trans[lang]) || ''); }
       var best = getBest(mode, i);
+
+      if (mode === 'long') {
+        // A6: 장문은 '따라 치기' + '실전 쓰기' 두 진입
+        var wrap = document.createElement('div');
+        wrap.className = 'long-item';
+        wrap.innerHTML =
+          '<div class="long-item__head"><span class="select-item__title">' + esc(title) + '</span>' +
+          (best ? '<span class="select-item__best">' + t('best.label') + ' ' + best + '</span>' : '') + '</div>' +
+          (sub ? '<div class="select-item__sub long-item__sub">' + esc(clip(sub, 90)) + '</div>' : '') +
+          '<div class="long-item__acts">' +
+          '<button class="btn btn--ghost btn--sm long-item__btn" data-act="follow">' + esc(t('list.follow')) + '</button>' +
+          '<button class="btn btn--primary btn--sm long-item__btn" data-act="freewrite">' + esc(t('list.freewrite')) + '</button>' +
+          '</div>';
+        wrap.querySelector('[data-act="follow"]').addEventListener('click', function () { startPractice(mode, i); });
+        wrap.querySelector('[data-act="freewrite"]').addEventListener('click', function () { startFreewrite(i); });
+        box.appendChild(wrap);
+        return;
+      }
+
+      var b = document.createElement('button');
+      b.className = 'select-item';
       b.innerHTML = '<span class="select-item__main"><span class="select-item__title">' + esc(title) + '</span>' +
         (sub ? '<span class="select-item__sub">' + esc(clip(sub, 70)) + '</span>' : '') + '</span>' +
         (best ? '<span class="select-item__best">' + t('best.label') + ' ' + best + '</span>' : '');
@@ -397,29 +530,180 @@
     var cfg = MODES[mode];
     var perItemTitle = (mode === 'position' || mode === 'syllable' || mode === 'word');
     $('#pracTitle').textContent = (perItemTitle && state.item.title) ? L(state.item.title) : L(cfg.title);
-    // 발음 듣기 토글: 글자 단위 연습(자리·낱글자)에서만 — 문장·장문엔 불필요
-    var soundModes = (mode === 'position' || mode === 'syllable');
+    // 발음 듣기 토글: 글자 단위 연습(자리·낱글자) + 낱말·단문·장문(음절 완성 시 읽기, A7)
+    var soundModes = (state.kind === 'text' || mode === 'position');
     var stog = $('#soundToggle');
     if (stog) { stog.classList.toggle('hidden', !soundModes); updateSoundToggle(); }
+    // 화면 요소 복구(실전 쓰기에서 돌아온 경우)
+    $('#targetBox').classList.remove('hidden');
+    $('#nextKey').classList.remove('hidden');
+    $('#fwBox').classList.add('hidden');
+    $('.kbd-wrap').classList.remove('hidden');
+    // 장문 따라치기 뷰포트 핏 클래스
+    $('#view-practice').classList.toggle('is-long', mode === 'long');
     var meta = $('#pracMeta');
     var tr = state.item.trans && state.item.trans[lang];
     if (state.kind === 'text' && (state.item.topic || (tr && lang !== 'ko'))) {
-      var html = '';
-      if (state.item.topic) html += '<div class="prac-meta__topic">' + (mode === 'long' ? (t('topic.label') + ': ') : '') + esc(state.item.topic) + '</div>';
-      if (tr && lang !== 'ko') html += '<div class="prac-meta__trans">' + esc(tr) + '</div>';
-      meta.innerHTML = html; meta.classList.remove('hidden');
-    } else { meta.classList.add('hidden'); }
+      if (mode === 'long') {
+        // 장문 뷰포트 픽스: 주제 1줄 요약 + 펼치기(details)로 압축
+        var body = '';
+        if (tr && lang !== 'ko') body += '<div class="prac-meta__trans">' + esc(tr) + '</div>';
+        meta.className = 'prac-meta prac-meta--fold';
+        meta.innerHTML =
+          '<details' + (body ? '' : ' open') + '><summary>' +
+          '<span class="prac-meta__sumtopic">' + esc((t('topic.label') + ': ') + (state.item.topic || '')) + '</span>' +
+          '<svg class="prac-meta__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>' +
+          '</summary>' + (body ? '<div class="prac-meta__body">' + body + '</div>' : '') + '</details>';
+        meta.classList.remove('hidden');
+      } else {
+        meta.className = 'prac-meta';
+        var html = '';
+        if (state.item.topic) html += '<div class="prac-meta__topic">' + esc(state.item.topic) + '</div>';
+        if (tr && lang !== 'ko') html += '<div class="prac-meta__trans">' + esc(tr) + '</div>';
+        meta.innerHTML = html; meta.classList.remove('hidden');
+      }
+    } else { meta.className = 'prac-meta'; meta.classList.add('hidden'); }
     $('#pracDone').classList.add('hidden');
     show('practice');
     render();
     updateStats();
   }
 
+  // ===== A6: 실전 쓰기(자유 타이핑) =====
+  function startFreewrite(idx) {
+    var item = LONG_ITEMS[idx];
+    if (!item) return;
+    state = {
+      mode: 'long', kind: 'free', idx: idx, item: item,
+      free: [], // 입력 토큰 배열(오토마타)
+      correct: 0, errors: 0, startTime: 0, running: false, finished: false,
+      weakSession: {}
+    };
+    $('#pracTitle').textContent = item.topic || t('mode.long.t');
+    var stog = $('#soundToggle'); if (stog) stog.classList.add('hidden');
+    // 주제 + 작성 도움말(가이드)을 prac-meta에 표시(펼침 없이 전부 보임 — 실전은 안내가 화면의 목적)
+    var meta = $('#pracMeta');
+    var guide = item.guide && (item.guide[lang] || item.guide.ko);
+    var trans = item.trans && item.trans[lang];
+    var html = '<div class="prac-meta__topic">' + t('topic.label') + ': ' + esc(item.topic || '') + '</div>';
+    if (guide) html += '<div class="prac-meta__trans"><b>' + esc(t('fw.guide')) + ':</b> ' + esc(guide) + '</div>';
+    else if (trans && lang !== 'ko') html += '<div class="prac-meta__trans">' + esc(trans) + '</div>';
+    meta.className = 'prac-meta';
+    meta.innerHTML = html; meta.classList.remove('hidden');
+    // 화면 요소 토글: target-box 숨김 · fwBox 보임 · nextkey 숨김
+    $('#targetBox').classList.add('hidden');
+    $('#nextKey').classList.add('hidden');
+    $('#fwBox').classList.remove('hidden');
+    $('.kbd-wrap').classList.remove('hidden');
+    $('#pracDone').classList.add('hidden');
+    // 장문 뷰포트 핏 클래스는 실전에선 불필요(키보드+입력창만) — 유지해도 무방하나 제거
+    $('#view-practice').classList.remove('is-long');
+    show('practice');
+    renderFree();
+    updateFreeStats();
+  }
+
+  function renderFree() {
+    var echo = $('#fwEcho');
+    var str = HG.compose(state.free || []);
+    echo.innerHTML = esc(str) + '<span class="caret"></span>';
+    echo.setAttribute('data-ph', t('fw.ph'));
+    if (!str) echo.innerHTML = '<span class="caret"></span>';
+    // 게이지: 완성 글자수 / 200
+    var count = HG.sanitize(str).replace(/\s/g, '').length;
+    $('#fwCount').textContent = count;
+    var pct = Math.min(100, Math.round(count / 200 * 100));
+    var fill = $('#fwGauge');
+    fill.style.width = pct + '%';
+    fill.classList.toggle('is-full', count >= 200);
+  }
+
+  function handleFreeInput(code, shift) {
+    if (!state || state.finished) return false;
+    startTimerIfNeeded();
+    var produced = producedToken(code, shift);
+    if (!produced) return false;
+    state.free.push(produced);
+    state.correct++; // 자유 입력: 타수 측정만(오답 판정 없음)
+    flashKey(code, 'pressed');
+    if (soundOn) { /* 실전 쓰기는 조용히 — 토글 숨김 */ }
+    renderFree(); updateFreeStats();
+    return true;
+  }
+
+  function freeBackspace() {
+    if (!state || state.finished) return;
+    if (state.free && state.free.length) { state.free.pop(); state.correct = Math.max(0, state.correct - 1); }
+    renderFree(); updateFreeStats();
+  }
+
+  function updateFreeStats() {
+    var elapsed = state.startTime ? (Date.now() - state.startTime) / 1000 : 0;
+    var str = HG.compose(state.free || []);
+    var count = HG.sanitize(str).replace(/\s/g, '').length;
+    $('#statTime').textContent = Math.floor(elapsed) + t('sec.sec');
+    $('#statSpeed').textContent = elapsed >= 0.5 ? Math.round(state.correct / (elapsed / 60)) : 0;
+    $('#statAcc').textContent = count; // 정확도 칸은 글자수로 대체 표기
+    $('#statMiss').textContent = '–';
+    var pf = $('#pracProgress'); if (pf) pf.style.width = Math.min(100, Math.round(count / 200 * 100)) + '%';
+  }
+
+  function finishFreewrite(selfRating) {
+    stopTimer();
+    state.finished = true;
+    var elapsed = (Date.now() - state.startTime) / 1000;
+    var str = HG.compose(state.free || []);
+    var count = HG.sanitize(str).replace(/\s/g, '').length;
+    var speed = elapsed >= 0.5 ? Math.round(state.correct / (elapsed / 60)) : 0;
+    // A6: 로그에 mode:'freewrite'로 기록(오타 판정 없음 → a 생략, e 없음)
+    pushLog({ m: 'freewrite', i: state.idx, s: speed, a: null, e: 0, d: new Date().toISOString(), c: count, self: selfRating || null });
+    var item = state.item;
+    var model = item.text;
+    var d = $('#pracDone');
+    d.innerHTML =
+      '<div class="prac-done__title">' + t('fw.done') + '</div>' +
+      '<div class="prac-done__stats">' +
+      '<div class="prac-done__stat"><b>' + count + '</b><span>' + t('fw.badge') + ' · ' + t('fw.chars') + '</span></div>' +
+      '<div class="prac-done__stat"><b>' + speed + '</b><span>' + t('done.speed') + '</span></div>' +
+      '<div class="prac-done__stat"><b>' + Math.floor(elapsed) + t('sec.sec') + '</b><span>' + t('done.time') + '</span></div>' +
+      '</div>' +
+      '<div class="fw-model"><span class="fw-model__label">' + t('fw.modelLabel') + '</span>' +
+      '<div class="fw-model__text">' + esc(model) + '</div></div>' +
+      '<div class="fw-self"><div class="fw-self__q">' + t('fw.selfQ') + '</div>' +
+      '<div class="fw-self__opts">' +
+      '<button class="fw-self__opt" data-self="good">' + t('fw.good') + '</button>' +
+      '<button class="fw-self__opt" data-self="ok">' + t('fw.ok') + '</button>' +
+      '<button class="fw-self__opt" data-self="poor">' + t('fw.poor') + '</button>' +
+      '</div></div>' +
+      '<div class="prac-done__actions">' +
+      '<button class="btn btn--ghost" id="doneRetry">↻ ' + t('common.retry') + '</button>' +
+      '<button class="btn btn--primary" id="doneNext">' + t('common.list') + '</button>' +
+      '</div>';
+    d.classList.remove('hidden');
+    $$('.fw-self__opt', d).forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        $$('.fw-self__opt', d).forEach(function (o) { o.classList.remove('is-sel'); });
+        opt.classList.add('is-sel');
+        // 자가확인 값을 방금 로그의 마지막 freewrite 항목에 반영
+        updateLastSelf(opt.getAttribute('data-self'));
+      });
+    });
+    $('#doneRetry').addEventListener('click', function () { startFreewrite(state.idx); });
+    $('#doneNext').addEventListener('click', function () { goList('long'); });
+    d.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function updateLastSelf(val) {
+    var arr = logStore();
+    for (var i = arr.length - 1; i >= 0; i--) { if (arr[i].m === 'freewrite') { arr[i].self = val; break; } }
+    try { localStorage.setItem('typing_log_v1', JSON.stringify(arr)); } catch (e) {}
+  }
+
   function stopTimer() { if (timerId) { clearInterval(timerId); timerId = null; } if (state) state.running = false; }
   function startTimerIfNeeded() {
     if (state.running || state.finished) return;
     state.running = true; state.startTime = Date.now();
-    timerId = setInterval(function () { updateStats(); }, 200);
+    timerId = setInterval(function () { if (state && state.kind === 'free') updateFreeStats(); else updateStats(); }, 200);
   }
 
   // ===== 입력 처리 =====
@@ -467,6 +751,7 @@
         if (progressCount() >= state.total) finish();
       } else {
         state.errors++; flashKey(code, 'miss');
+        recordWeak(exp.jamo);
         var ek = exp.key; if (ek && keyEls[ek.code]) { keyEls[ek.code].classList.add('miss'); setTimeout(function (e) { e.classList.remove('miss'); }, 300, keyEls[ek.code]); }
         updateStats();
       }
@@ -480,11 +765,48 @@
     state.typed.push(produced);
     state.pos++;
     if (matched) { state.correct++; flashKey(code, 'pressed'); }
-    else { state.errors++; flashKey(code, 'miss'); }
-    if (soundOn && state.mode === 'syllable' && produced.type === 'jamo') speakJamo(produced.jamo);
+    else { state.errors++; flashKey(code, 'miss'); if (exp.type === 'jamo') recordWeak(exp.jamo); }
+    // A7: 텍스트 모드 전반에서 음절 완성 시 TTS(자모 발음 재사용). 단, syllable은 자모 단위 발음 유지.
+    if (soundOn && produced.type === 'jamo') {
+      if (state.mode === 'syllable') speakJamo(produced.jamo);
+      else speakOnSyllableComplete();
+    }
     render(); updateStats();
     if (state.pos >= state.total) finish();
     return true;
+  }
+
+  // 오타 시 '정답이었어야 할 자모'를 세션+전역에 누적 (A3)
+  function recordWeak(jamo) {
+    if (!jamo || !HG.isCons(jamo) && !HG.isVowel(jamo)) return;
+    if (state && state.weakSession) state.weakSession[jamo] = (state.weakSession[jamo] || 0) + 1;
+    addWeak(jamo);
+  }
+
+  // A7: 새로 '완성된' 음절 하나가 늘어나는 순간에만 그 직전 음절을 읽어 줌 (낱말·단문·장문)
+  // 판정: 조합 결과에서 '완성형 음절(가-힣) 중 마지막이 아닌 것'의 개수(=확정된 음절 수)가 늘면,
+  // 방금 확정된 음절을 재생. (마지막 음절은 아직 자모가 더 붙을 수 있으므로 제외)
+  function speakOnSyllableComplete() {
+    if (!('speechSynthesis' in window) || !soundOn) return;
+    var composed = HG.compose(state.typed || []);
+    // 확정 음절 = 마지막 글자를 제외한 부분에서 완성형 음절만 셈
+    var head = composed.slice(0, -1);
+    var settled = (head.match(/[가-힣]/g) || []);
+    var prevN = state._settledN || 0;
+    if (settled.length > prevN) {
+      var syl = settled[settled.length - 1];
+      state._settledN = settled.length;
+      try {
+        window.speechSynthesis.cancel();
+        if (!koVoice) pickKoVoice();
+        var u = new SpeechSynthesisUtterance(syl);
+        u.lang = 'ko-KR'; u.rate = 0.85; u.pitch = 1.0;
+        if (koVoice) u.voice = koVoice;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    } else {
+      state._settledN = settled.length;
+    }
   }
 
   function progressCount() { return state.kind === 'position' ? state.posIdx : state.pos; }
@@ -492,7 +814,12 @@
   function backspace() {
     if (!state || state.finished) return;
     if (state.kind === 'position') { if (state.posIdx > 0) state.posIdx--; }
-    else { if (state.pos > 0) { state.pos--; state.typed.pop(); } }
+    else {
+      if (state.pos > 0) { state.pos--; state.typed.pop(); }
+      // TTS 확정 음절 카운트 재동기화(백스페이스로 되돌린 만큼)
+      var head = HG.compose(state.typed || []).slice(0, -1);
+      state._settledN = (head.match(/[가-힣]/g) || []).length;
+    }
     render(); updateStats();
   }
 
@@ -502,7 +829,15 @@
   }
 
   function onVirtualKey(code) {
-    if (state && state.finished) { if (code === 'Enter') goNext(); return; }
+    if (state && state.finished) { if (code === 'Enter' && state.kind !== 'free') goNext(); return; }
+    // 실전 쓰기: 자유 입력(오토마타). 가상 키보드는 shift 상태를 알 수 없으므로 base 자모.
+    if (state && state.kind === 'free') {
+      if (code === 'Backspace') { freeBackspace(); return; }
+      if (code === 'ShiftLeft' || code === 'ShiftRight' || code === 'CapsLock' || code === 'Tab') return;
+      if (code === 'Enter') { handleFreeInput('Enter', false); return; }
+      handleFreeInput(code, false);
+      return;
+    }
     var exp = currentExpected();
     var shift = (exp && exp.key && exp.key.code === code) ? !!exp.key.shift : false;
     if (code === 'Backspace') { backspace(); return; }
@@ -515,9 +850,19 @@
     if ($('#view-practice').classList.contains('hidden')) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     var code = e.code;
-    // 완료 후 Enter = 다음
+    // 완료 후 Enter = 다음(실전 쓰기 완료 화면은 Enter 라우팅 제외 — 자가확인 버튼 사용)
     if (state && state.finished) {
-      if (code === 'Enter') { e.preventDefault(); goNext(); }
+      if (code === 'Enter' && state.kind !== 'free') { e.preventDefault(); goNext(); }
+      return;
+    }
+    // 실전 쓰기: 자유 입력
+    if (state && state.kind === 'free') {
+      if (code === 'Backspace') { e.preventDefault(); freeBackspace(); return; }
+      if (code === 'Enter') { e.preventDefault(); handleFreeInput('Enter', e.shiftKey); return; }
+      var freeKey = HG.DUBEOL[code] || PUNCT[code] || code === 'Space';
+      if (!freeKey) return;
+      e.preventDefault();
+      handleFreeInput(code, e.shiftKey);
       return;
     }
     if (code === 'Backspace') { e.preventDefault(); backspace(); return; }
@@ -657,36 +1002,190 @@
     var speed = elapsed >= 0.5 ? Math.min(9999, Math.round(state.correct / (elapsed / 60))) : 0;
     var attempts = state.correct + state.errors;
     var acc = attempts > 0 ? Math.round(state.correct / attempts * 100) : 100;
+
+    // A2: 세션 로그 append (보충 드릴 등 임시 판은 저장 안 함)
+    var savable = !state.ephemeral;
+    if (savable) {
+      pushLog({ m: state.mode, i: state.idx, s: speed, a: acc, e: state.errors, d: new Date().toISOString() });
+    }
+
+    // A1: 최고기록 = 속도 경신 && 정확도 95% 이상. 임시 판은 저장 안 함.
     var prevBest = getBest(state.mode, state.idx);
-    var isBest = speed > prevBest;
-    if (isBest) setBest(state.mode, state.idx, speed);
+    var speedBeat = speed > prevBest;
+    var accPass = acc >= 95;
+    var isBest = savable && speedBeat && accPass;
+    if (isBest) setBest(state.mode, state.idx, speed, acc);
+
+    // A2: 지난 판 대비(같은 mode 직전 기록) — 방금 push한 것 제외한 직전
+    var prevLog = savable ? secondLastLogForMode(state.mode) : lastLogForMode(state.mode);
+    var deltaHtml = '';
+    if (prevLog) {
+      var dSpeed = speed - (prevLog.s || 0);
+      var dAcc = acc - (prevLog.a != null ? prevLog.a : acc);
+      deltaHtml = '<div class="prac-done__delta">' + t('delta.label') + ': ' +
+        t('delta.speed') + ' <b class="' + (dSpeed < 0 ? 'neg' : '') + '">' + (dSpeed >= 0 ? '+' : '') + dSpeed + '</b> · ' +
+        t('delta.acc') + ' <b class="' + (dAcc < 0 ? 'neg' : '') + '">' + (dAcc >= 0 ? '+' : '') + dAcc + '%p</b></div>';
+    }
+
+    // A3: 약한 키(이번 판에서 틀린 자모 상위 5)
+    var weak = sessionWeak(5);
+    var weakHtml = '';
+    if (weak.length) {
+      var chips = weak.map(function (w) {
+        return '<span class="weak-chip">' + esc(w.jamo) + '<small>' + w.count + '</small></span>';
+      }).join('');
+      weakHtml = '<div class="prac-done__weak">' +
+        '<div class="prac-done__weak-label">' + iconSvg('target', 'prac-done__weak-ico') + t('weak.title') + '</div>' +
+        '<div class="prac-done__weak-keys">' + chips + '</div>' +
+        '<button class="btn btn--ghost btn--sm" id="doneWeakDrill">' + t('weak.drill') + '</button>' +
+        '</div>';
+    }
+
     var d = $('#pracDone');
     var hasNext = state.idx + 1 < MODES[state.mode].items.length;
     d.innerHTML =
       '<div class="prac-done__title">' + t('done.title') + '</div>' +
-      (isBest ? '<div class="prac-done__best">' + t('done.best') + '</div>' : '') +
+      (isBest ? '<div class="prac-done__best">' + iconSvg('star', 'prac-done__best-ico') + t('done.best') + '</div>' : '') +
+      (savable && speedBeat && !accPass ? '<div class="prac-done__gate">' + t('gate.msg') + '</div>' : '') +
+      deltaHtml +
       '<div class="prac-done__stats">' +
       '<div class="prac-done__stat"><b>' + speed + '</b><span>' + t('done.speed') + '</span></div>' +
       '<div class="prac-done__stat"><b>' + acc + '%</b><span>' + t('done.acc') + '</span></div>' +
       '<div class="prac-done__stat"><b>' + Math.floor(elapsed) + t('sec.sec') + '</b><span>' + t('done.time') + '</span></div>' +
-      '</div><div class="prac-done__actions">' +
+      '</div>' + weakHtml +
+      '<div class="prac-done__actions">' +
       '<button class="btn btn--ghost" id="doneRetry">↻ ' + t('common.retry') + '</button>' +
       '<button class="btn btn--primary" id="doneNext">' + (hasNext ? t('common.next') : t('common.list')) + '</button>' +
       '</div><div class="prac-done__hint">⏎ ' + (hasNext ? t('done.nextHint') : t('done.listHint')) + '</div>';
     d.classList.remove('hidden');
     $('#doneRetry').addEventListener('click', function () { startPractice(state.mode, state.idx); });
-    $('#doneNext').addEventListener('click', goNext);
+    $('#doneNext').addEventListener('click', function () {
+      if (state.ephemeral) { goList(state.baseMode || state.mode); return; }
+      goNext();
+    });
+    var wd = $('#doneWeakDrill'); if (wd) wd.addEventListener('click', startWeakDrill);
     d.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  // 같은 mode에서 방금 push한 것을 제외한 직전 기록
+  function secondLastLogForMode(mode) {
+    var arr = logStore(), seen = 0;
+    for (var i = arr.length - 1; i >= 0; i--) {
+      if (arr[i].m === mode) { seen++; if (seen === 2) return arr[i]; }
+    }
+    return null;
+  }
+
+  // A3: 약한 키 보충 드릴 — topWeak 자모들로 임시 position 판 즉석 실행(저장 안 함)
+  function startWeakDrill() {
+    var weak = sessionWeak(5);
+    if (!weak.length) weak = topWeak(5);
+    if (!weak.length) return;
+    var set = weak.map(function (w) { return w.jamo; });
+    var seq = buildDrill(set);
+    var base = state ? (state.baseMode || state.mode) : 'position';
+    state = {
+      mode: 'position', kind: 'position', idx: 0,
+      item: { title: { ko: t('weak.pracTitle'), zh: t('weak.pracTitle'), vi: t('weak.pracTitle'), th: t('weak.pracTitle') }, set: set },
+      correct: 0, errors: 0, startTime: 0, running: false, finished: false,
+      weakSession: {}, seq: seq, posIdx: 0, total: seq.length,
+      ephemeral: true, baseMode: base
+    };
+    $('#pracTitle').textContent = t('weak.pracTitle');
+    var stog = $('#soundToggle'); if (stog) { stog.classList.remove('hidden'); updateSoundToggle(); }
+    $('#pracMeta').classList.add('hidden');
+    $('#fwBox').classList.add('hidden');
+    $('#targetBox').classList.remove('hidden');
+    $('#nextKey').classList.remove('hidden');
+    $('.kbd-wrap').classList.remove('hidden');
+    $('#view-practice').classList.remove('is-long');
+    $('#pracDone').classList.add('hidden');
+    show('practice');
+    render(); updateStats();
+  }
+
   // ===== 저장 =====
+  // A1: typing_best_v1 값은 {speed,acc,date} 객체. 옛 스키마(숫자)는 읽을 때 {speed:그값}으로 간주(하위호환).
   function bestStore() { try { return JSON.parse(localStorage.getItem('typing_best_v1') || '{}'); } catch (e) { return {}; } }
-  function getBest(mode, idx) { return Math.min(9999, bestStore()[mode + ':' + idx] || 0); }
-  function setBest(mode, idx, v) { var s = bestStore(); s[mode + ':' + idx] = v; localStorage.setItem('typing_best_v1', JSON.stringify(s)); }
+  function bestRec(mode, idx) {
+    var v = bestStore()[mode + ':' + idx];
+    if (v == null) return null;
+    if (typeof v === 'number') return { speed: v, acc: null, date: null }; // 옛 숫자값 하위호환
+    return v;
+  }
+  function getBest(mode, idx) { var r = bestRec(mode, idx); return r ? Math.min(9999, r.speed || 0) : 0; }
+  function getBestRec(mode, idx) { return bestRec(mode, idx); }
+  function setBest(mode, idx, speed, acc) {
+    var s = bestStore();
+    s[mode + ':' + idx] = { speed: speed, acc: acc, date: new Date().toISOString() };
+    try { localStorage.setItem('typing_best_v1', JSON.stringify(s)); } catch (e) {}
+  }
+
+  // A2: 세션 로그 — 판 완료마다 append, 최대 300 FIFO
+  function logStore() { try { return JSON.parse(localStorage.getItem('typing_log_v1') || '[]'); } catch (e) { return []; } }
+  function pushLog(entry) {
+    var arr = logStore();
+    arr.push(entry);
+    if (arr.length > 300) arr = arr.slice(arr.length - 300);
+    try { localStorage.setItem('typing_log_v1', JSON.stringify(arr)); } catch (e) {}
+  }
+  // 같은 mode의 직전 기록(방금 넣은 것 제외한 마지막) 반환
+  function lastLogForMode(mode) {
+    var arr = logStore();
+    for (var i = arr.length - 1; i >= 0; i--) { if (arr[i].m === mode) return arr[i]; }
+    return null;
+  }
+  // 이번 주(최근 7일) 요약: {games, avgSpeed, avgAcc}
+  function weekSummary() {
+    var arr = logStore(), now = Date.now(), wk = 7 * 24 * 3600 * 1000;
+    var g = 0, sp = 0, ac = 0, acN = 0;
+    for (var i = 0; i < arr.length; i++) {
+      var e = arr[i], td = Date.parse(e.d || '');
+      if (isNaN(td) || (now - td) > wk) continue;
+      g++; sp += (e.s || 0);
+      if (e.a != null) { ac += e.a; acN++; }
+    }
+    if (!g) return null;
+    return { games: g, avgSpeed: Math.round(sp / g), avgAcc: acN ? Math.round(ac / acN) : null };
+  }
+
+  // A3: 약한 키(오타 시 정답이었어야 할 자모별 누적) {jamo:count}
+  function weakStore() { try { return JSON.parse(localStorage.getItem('typing_weakkeys_v1') || '{}'); } catch (e) { return {}; } }
+  function addWeak(jamo) {
+    if (!jamo) return;
+    var s = weakStore(); s[jamo] = (s[jamo] || 0) + 1;
+    try { localStorage.setItem('typing_weakkeys_v1', JSON.stringify(s)); } catch (e) {}
+  }
+  // 상위 N개 약한 자모 [{jamo,count}]
+  function topWeak(n) {
+    var s = weakStore(), arr = [];
+    for (var k in s) if (s.hasOwnProperty(k)) arr.push({ jamo: k, count: s[k] });
+    arr.sort(function (a, b) { return b.count - a.count; });
+    return arr.slice(0, n || 5);
+  }
+  // 이번 판에서 틀린 자모(세션 한정) — 완료 카드 표시용
+  function sessionWeak(n) {
+    if (!state || !state.weakSession) return [];
+    var s = state.weakSession, arr = [];
+    for (var k in s) if (s.hasOwnProperty(k)) arr.push({ jamo: k, count: s[k] });
+    arr.sort(function (a, b) { return b.count - a.count; });
+    return arr.slice(0, n || 5);
+  }
 
   // ===== 유틸 =====
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function clip(s, n) { s = String(s); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+
+  // 인라인 SVG 아이콘 세트(단색 stroke) — 이모지 대체
+  var ICONS = {
+    star: '<path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8Z"/>',
+    target: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6" fill="currentColor" stroke="none"/>',
+    sound: '<path d="M4 9v6h4l5 4V5L8 9Z"/><path d="M16 8.5a5 5 0 0 1 0 7"/>',
+    mute: '<path d="M4 9v6h4l5 4V5L8 9Z"/><path d="M16 9.5l4 5M20 9.5l-4 5"/>'
+  };
+  function iconSvg(name, cls) {
+    return '<svg class="' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[name] || '') + '</svg>';
+  }
 
   // ===== 언어 =====
   function setLang(l) {
@@ -695,15 +1194,21 @@
     localStorage.setItem('typing_lang', l);
     try { localStorage.setItem('nq_lang', JSON.stringify(l)); } catch (e) {} // 귀화앱과 동기화
     applyI18n();
-    if (!$('#view-list').classList.contains('hidden')) goList(state.mode);
-    else if (!$('#view-practice').classList.contains('hidden')) startPractice(state.mode, state.idx);
+    if (!$('#view-list').classList.contains('hidden')) goList(state.baseMode || state.mode);
+    else if (!$('#view-practice').classList.contains('hidden')) {
+      if (state.kind === 'free') startFreewrite(state.idx);
+      else if (state.ephemeral) { /* 보충 드릴은 언어 바꿔도 그대로 두기 위해 라벨만 갱신 */ $('#pracTitle').textContent = t('weak.pracTitle'); }
+      else startPractice(state.mode, state.idx);
+    }
   }
 
   function applyI18n() {
     document.documentElement.lang = lang;
     $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
-    $('#langBtn').textContent = '🌐 ' + LANG_NAME[lang];
+    var lbn = $('#langBtnName'); if (lbn) lbn.textContent = LANG_NAME[lang];
     updateSoundToggle();
+    // 홈이 보이는 상태면 배지·요약도 갱신
+    if ($('#view-home') && !$('#view-home').classList.contains('hidden')) renderHome();
   }
 
   // 언어 선택 picker (귀화앱 방식)
@@ -721,6 +1226,32 @@
   function openPicker() { buildPicker(); $('#langPicker').classList.remove('hidden'); }
   function closePicker() { $('#langPicker').classList.add('hidden'); }
 
+  // ===== A4: 첫 실행 온보딩(1장) =====
+  function onboardSeen() { try { return localStorage.getItem('typing_onboard_v1') === '1'; } catch (e) { return false; } }
+  function markOnboardSeen() { try { localStorage.setItem('typing_onboard_v1', '1'); } catch (e) {} }
+  function renderOnboardCard() {
+    var c = $('#onboardCard');
+    c.innerHTML =
+      '<div class="onboard__eyebrow">' + esc(t('ob.eyebrow')) + '</div>' +
+      '<h2 class="onboard__title">' + esc(t('ob.title')) + '</h2>' +
+      '<div class="onboard__step"><span class="onboard__num">1</span><div class="onboard__txt">' + t('ob.s1') + '</div></div>' +
+      '<div class="onboard__step"><span class="onboard__num">2</span><div class="onboard__txt">' +
+      esc(t('ob.s2')) + '“가”' + esc(t('ob.s2b')) + '“ㄱ, ㅏ”' + esc(t('ob.s2c')) +
+      '<br><span class="onboard__demo">가 <span class="eq">=</span> ㄱ <span class="plus">+</span> ㅏ</span>' +
+      '</div></div>' +
+      '<div class="onboard__step"><span class="onboard__num">3</span><div class="onboard__txt">' + t('ob.s3') + '</div></div>' +
+      '<button class="btn btn--primary onboard__btn" id="onboardStart">' + esc(t('ob.start')) + '</button>';
+    $('#onboardStart').addEventListener('click', function () {
+      markOnboardSeen();
+      $('#onboard').classList.add('hidden');
+    });
+  }
+  function maybeShowOnboarding() {
+    if (onboardSeen()) return;
+    renderOnboardCard();
+    $('#onboard').classList.remove('hidden');
+  }
+
   // ===== 딥링크 (#모드/번호) =====
   function routeFromHash() {
     var m = (location.hash || '').replace(/^#/, '').split('/');
@@ -736,8 +1267,9 @@
     $('#langPicker').addEventListener('click', function (e) { if (e.target === this) closePicker(); });
     $$('.mode-card').forEach(function (c) { c.addEventListener('click', function () { goList(c.dataset.mode); }); });
     $$('[data-go]').forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.go === 'home') goHome(); }); });
-    $('#pracBack').addEventListener('click', function () { stopTimer(); goList(state.mode); });
+    $('#pracBack').addEventListener('click', function () { stopTimer(); goList(state.baseMode || state.mode); });
     var stog = $('#soundToggle'); if (stog) stog.addEventListener('click', toggleSound);
+    var fwb = $('#fwDone'); if (fwb) fwb.addEventListener('click', function () { if (state && state.kind === 'free' && !state.finished) finishFreewrite(null); });
   }
 
   // ===== 초기화 =====
@@ -745,8 +1277,10 @@
     buildKeyboard();
     applyI18n();
     bind();
+    renderHome();
     show('home');
-    if (location.hash) routeFromHash();
+    var routed = location.hash ? routeFromHash() : false;
+    if (!routed) maybeShowOnboarding(); // 딥링크 진입 시엔 온보딩 생략
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

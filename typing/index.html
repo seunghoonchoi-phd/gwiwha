@@ -9,7 +9,7 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#0D1B4C" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -20,10 +20,18 @@
 </head>
 <body>
   <header class="appbar">
-    <button id="homeBtn" class="appbar__home" aria-label="홈">🏠</button>
+    <button id="homeBtn" class="appbar__home" aria-label="홈" title="홈">
+      <svg class="appbar__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>
+    </button>
     <h1 class="appbar__title" data-i18n="app.title">한글 타자 연습</h1>
-    <a class="appbar__back" href="../" data-i18n="app.toQuiz" title="귀화시험 앱으로">📚 귀화앱</a>
-    <button id="langBtn" class="appbar__lang" title="언어 / 语言 / Ngôn ngữ / ภาษา">🌐</button>
+    <a class="appbar__back" href="../" title="귀화시험 앱으로">
+      <svg class="appbar__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M13 4h5.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H13Z"/></svg>
+      <span data-i18n="app.toQuiz">귀화앱</span>
+    </a>
+    <button id="langBtn" class="appbar__lang" title="언어 / 语言 / Ngôn ngữ / ภาษา" aria-label="언어 선택">
+      <svg class="appbar__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg>
+      <span class="appbar__lang-name" id="langBtnName">한국어</span>
+    </button>
   </header>
 
   <!-- 언어 선택 -->
@@ -34,38 +42,61 @@
     </div>
   </div>
 
+  <!-- 첫 실행 온보딩 (1장) -->
+  <div id="onboard" class="onboard hidden" role="dialog" aria-modal="true" aria-label="시작 안내">
+    <div class="onboard__card" id="onboardCard"></div>
+  </div>
+
   <main id="app">
 
     <!-- 홈: 모드 선택 -->
     <section id="view-home" class="view">
       <p class="lead" data-i18n="home.lead">한글 자판이 손에 익을 때까지, 한 단계씩 천천히 연습해요.</p>
-      <p class="lead-sub" data-i18n="home.imeTip">💡 컴퓨터 입력기를 한글로 바꾸지 않아도 됩니다. 화면이 알려주는 키를 그대로 누르세요.</p>
+
+      <!-- 미니 요약 스트립 (기록 있을 때만) -->
+      <div id="miniStrip" class="mini-strip hidden"></div>
+
+      <p class="lead-sub">
+        <svg class="lead-sub__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3Z"/></svg>
+        <span data-i18n="home.imeTip">컴퓨터 입력기를 한글로 바꾸지 않아도 됩니다. 화면이 알려주는 키를 그대로 누르세요.</span>
+      </p>
 
       <div class="mode-grid">
         <button class="mode-card" data-mode="position">
-          <span class="mode-card__icon">⌨️</span>
+          <span class="mode-card__icon">
+            <svg class="mode-card__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><path d="M6 9.5h.01M9 9.5h.01M12 9.5h.01M15 9.5h.01M18 9.5h.01M6.5 13.5h11"/></svg>
+          </span>
           <span class="mode-card__title" data-i18n="mode.position.t">자리 연습</span>
           <span class="mode-card__sub" data-i18n="mode.position.s">ㅎ ㅁ ㅂ ㅕ — 자판 위치와 손가락 익히기</span>
+          <span class="mode-card__badge hidden" data-badge="position"></span>
         </button>
         <button class="mode-card" data-mode="syllable">
-          <span class="mode-card__icon">가</span>
+          <span class="mode-card__icon"><span class="mode-card__ico-text">가</span></span>
           <span class="mode-card__title" data-i18n="mode.syllable.t">낱글자 연습</span>
           <span class="mode-card__sub" data-i18n="mode.syllable.s">자음+모음을 모아 한 글자씩 완성</span>
+          <span class="mode-card__badge hidden" data-badge="syllable"></span>
         </button>
         <button class="mode-card" data-mode="word">
-          <span class="mode-card__icon">낱</span>
+          <span class="mode-card__icon"><span class="mode-card__ico-text">낱</span></span>
           <span class="mode-card__title" data-i18n="mode.word.t">낱말 연습</span>
           <span class="mode-card__sub" data-i18n="mode.word.s">비슷한 낱말을 빠르게 구별하며 치기</span>
+          <span class="mode-card__badge hidden" data-badge="word"></span>
         </button>
         <button class="mode-card" data-mode="short">
-          <span class="mode-card__icon">📄</span>
+          <span class="mode-card__icon">
+            <svg class="mode-card__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>
+          </span>
           <span class="mode-card__title" data-i18n="mode.short.t">단문 연습</span>
           <span class="mode-card__sub" data-i18n="mode.short.s">짧은 문장 따라 치기</span>
+          <span class="mode-card__badge hidden" data-badge="short"></span>
         </button>
         <button class="mode-card mode-card--primary" data-mode="long">
-          <span class="mode-card__icon">✍️</span>
+          <span class="mode-card__icon">
+            <svg class="mode-card__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M14.5 4.5 18 8 8 18l-4 1 1-4Z"/><path d="M12.5 6.5 16 10"/></svg>
+          </span>
           <span class="mode-card__title" data-i18n="mode.long.t">귀화 작문 연습</span>
           <span class="mode-card__sub" data-i18n="mode.long.s">작문 모범답안(200자) 따라 치기</span>
+          <span class="mode-card__badge hidden" data-badge="long"></span>
         </button>
       </div>
 
@@ -103,6 +134,16 @@
 
       <!-- 타깃 표시 -->
       <div id="targetBox" class="target-box"></div>
+
+      <!-- 실전 쓰기(자유 타이핑) 입력 영역 -->
+      <div id="fwBox" class="fw-box hidden">
+        <div id="fwEcho" class="fw-echo" aria-live="polite"></div>
+        <div class="fw-gauge-wrap">
+          <div class="fw-gauge"><div id="fwGauge" class="fw-gauge__fill"></div></div>
+          <span class="fw-count"><b id="fwCount">0</b> / 200</span>
+          <button id="fwDone" class="btn btn--primary btn--sm" type="button" data-i18n="fw.showModel">완료 · 모범답안 보기</button>
+        </div>
+      </div>
 
       <!-- 다음 키 안내 -->
       <div class="nextkey" id="nextKey"></div>
