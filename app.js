@@ -12,6 +12,7 @@ const K = {
   bank: 'nq_bank', meta: 'nq_meta', wrong: 'nq_wrong',
   stats: 'nq_stats', history: 'nq_history', drafts: 'nq_drafts', lang: 'nq_lang',
   mockSave: 'nq_mocksave', practiceSave: 'nq_practicesave', exam: 'nq_exam',
+  examdate: 'nq_examdate',
 };
 
 /* ---------- 최소 내장 예비 문제 (네트워크/캐시 모두 없을 때만) ---------- */
@@ -46,7 +47,7 @@ const I18N = {
     'home.writing.t': '작문·구술 연습', 'home.writing.s': '주제별 말하기·쓰기',
     'home.typing.t': '타자 연습', 'home.typing.s': '작문 모범답안 따라 치기',
     'home.wrong.t': '오답 노트', 'home.stats.t': '학습 통계', 'home.stats.s': '정답률·기록 보기',
-    'practice.title': '영역별 연습', 'practice.desc': '한 문제씩 풀고 바로 정답·해설을 확인합니다.', 'practice.all': '🎲 전체 무작위',
+    'practice.title': '영역별 연습', 'practice.desc': '한 문제씩 풀고 바로 정답·해설을 확인합니다.', 'practice.all': '전체 무작위',
     'exam.org': '사회통합프로그램 (KIIP)', 'exam.title': '귀화용 종합평가', 'exam.subtitle': '필기시험 모의고사',
     'exam.name': '성 명', 'exam.namePh': '이름 입력', 'exam.no': '수험번호', 'exam.noticeTitle': '유의사항',
     'exam.n1': '귀화용 종합평가는 <b>객관식 36문항(65점) + 작문형(10점) + 구술(25점) = 100점</b>, <b>60점 이상이면 합격</b>입니다.',
@@ -56,7 +57,7 @@ const I18N = {
     'exam.n5': '실제 시험의 구술은 별도 10분 세션입니다. 사회통합프로그램 5단계 수료 + 합격 시 <b>귀화 면접심사 면제</b>가 가능합니다.',
     'common.cancel': '취소', 'common.home': '홈으로', 'exam.start': '시험 시작',
     'quiz.prev': '← 이전', 'quiz.next': '다음 →', 'quiz.result': '결과 보기', 'quiz.submit': '제출하고 채점',
-    'writing.title': '작문·구술 연습', 'seg.writing': '✍️ 작문', 'seg.oral': '🗣️ 구술',
+    'writing.title': '작문·구술 연습', 'seg.writing': '작문', 'seg.oral': '구술',
     'result.title': '채점 결과', 'result.unit': '점', 'result.reviewHead': '문제 다시보기', 'result.retryWrong': '틀린 문제만 다시 풀기',
     'wrong.title': '오답 노트', 'wrong.desc': '틀렸던 문제들이 모입니다. 맞히면 목록에서 사라집니다.', 'wrong.start': '오답 문제 풀기', 'wrong.clear': '오답노트 비우기',
     'stats.title': '학습 통계', 'stats.recentHead': '최근 모의고사 기록', 'stats.reset': '통계 초기화', 'writeCount.suffix': ' / 200자',
@@ -75,7 +76,7 @@ const I18N = {
     'result.pass': '합격선(60점) 통과 🎉', 'result.fail': '합격선(60점)까지 조금 더!', 'result.practice': '연습 모드 결과입니다.',
     'result.estLevel': '예상 배정 단계: {0}',
     'result.levelDisclaimer': '※ 이 점수는 실제 배정 점수가 아니라 <b>객관식 실력 기준 예상치</b>입니다. 실제 사전평가는 객관식(75점)+작문(2문)+구술(25점)=100점이며, 작문·구술은 사람이 채점합니다. 또한 <b>구술이 3점 미만이면 0단계</b>로 배정됩니다. 정확한 단계는 시험 당일 점수로 정해집니다.',
-    'track.nat': '🇰🇷 귀화 종합평가', 'track.perm': '🏡 영주 종합평가', 'track.pre': '📊 사회통합 사전평가',
+    'track.nat': '귀화 종합평가', 'track.perm': '영주 종합평가', 'track.pre': '사회통합 사전평가',
     'review.unanswered': '선택 안 함', 'review.emptyWrite': '작성한 답안이 없습니다.', 'review.emptyOral': '메모한 내용이 없습니다.',
     'stats.total': '총 푼 문제', 'stats.acc': '전체 정답률', 'stats.noHistory': '아직 모의고사 기록이 없습니다.',
     'wrong.empty': '틀린 문제가 없습니다. 잘하고 있어요! 👏', 'writing.empty': '해당 유형의 문제가 없습니다.',
@@ -87,6 +88,27 @@ const I18N = {
     'confirm.submit': '제출하고 채점할까요?', 'confirm.clearWrong': '오답노트를 모두 비울까요?', 'confirm.resetStats': '학습 통계와 기록을 모두 초기화할까요?',
     'toast.clearedWrong': '오답노트를 비웠습니다.', 'toast.resetStats': '초기화했습니다.', 'toast.noQ': '풀 수 있는 문제가 없습니다. 동기화를 먼저 해주세요.', 'toast.timeUp': '시간 종료! 자동 채점합니다.',
     'count.char': '{0}자',
+    /* A2 오답노트 숙련 원장 */
+    'wrong.desc2': '틀린 문제가 모입니다. <b>두 번 연속</b> 맞히면 목록에서 졸업합니다.',
+    'wrong.miss': '{0}회 틀림', 'wrong.almost': '한 번 더 맞히면 졸업',
+    /* A3 시험일 카운트다운 */
+    'examdate.title': '시험일 설정', 'examdate.set': '설정', 'examdate.clear': '지우기',
+    'examdate.dday': 'D-{0}', 'examdate.today': 'D-DAY',
+    'examdate.pace': '하루 권장: 문항 {0}개', 'examdate.left': '남은 문항 {0}개',
+    'examdate.past': '시험일이 지났습니다 — 새 시험일을 설정하세요',
+    'examdate.hint': '시험 날짜를 정하면 하루 권장 학습량을 알려드립니다.',
+    /* A4 결과 점수 분리 */
+    'result.mcScore': '객관식', 'result.mcOf': '{0} / 65점',
+    'result.estTotal': '자가채점 포함 추정 총점', 'result.estOf': '{0} / 100',
+    'result.ungradedN': '미채점 {0}개 — 채점하면 총점이 나옵니다',
+    'result.mcOnly': '객관식만으로 {0} / 65',
+    /* A5 통계 → 연습 */
+    'stats.practiceCat': '이 영역만 연습', 'practice.weak': '약점 우선', 'practice.weakSub': '틀린 영역을 더 자주',
+    /* A6 구술 가리고 말하기 */
+    'oral.recite': '모범답안을 가린 채로 소리 내어 답해 보세요.',
+    'oral.reveal': '모범답안 보기', 'oral.hideModel': '모범답안 숨기기',
+    'oral.selfHead': '스스로 평가', 'oral.good': '잘함', 'oral.mid': '보통', 'oral.poor': '부족',
+    'oral.saved': '기록했습니다.',
   },
   zh: {
     'app.title': '归化考试练习', 'app.sync': '同步',
@@ -95,7 +117,7 @@ const I18N = {
     'home.writing.t': '写作·口试练习', 'home.writing.s': '按主题说·写',
     'home.typing.t': '打字练习', 'home.typing.s': '跟着打作文范文',
     'home.wrong.t': '错题本', 'home.stats.t': '学习统计', 'home.stats.s': '查看正确率·记录',
-    'practice.title': '分领域练习', 'practice.desc': '逐题作答，立即查看答案与解析。', 'practice.all': '🎲 全部随机',
+    'practice.title': '分领域练习', 'practice.desc': '逐题作答，立即查看答案与解析。', 'practice.all': '全部随机',
     'exam.org': '社会统合项目 (KIIP)', 'exam.title': '归化用综合评价', 'exam.subtitle': '笔试模拟考试',
     'exam.name': '姓 名', 'exam.namePh': '输入姓名', 'exam.no': '准考证号', 'exam.noticeTitle': '注意事项',
     'exam.n1': '归化用综合评价为 <b>选择题36题(65分) + 写作(10分) + 口试(25分) = 100分</b>，<b>60分以上合格</b>。',
@@ -105,7 +127,7 @@ const I18N = {
     'exam.n5': '真实考试的口试为单独的10分钟环节。修完社会统合项目第5阶段并合格时，<b>可免除归化面试</b>。',
     'common.cancel': '取消', 'common.home': '返回主页', 'exam.start': '开始考试',
     'quiz.prev': '← 上一题', 'quiz.next': '下一题 →', 'quiz.result': '查看结果', 'quiz.submit': '提交并评分',
-    'writing.title': '写作·口试练习', 'seg.writing': '✍️ 写作', 'seg.oral': '🗣️ 口试',
+    'writing.title': '写作·口试练习', 'seg.writing': '写作', 'seg.oral': '口试',
     'result.title': '评分结果', 'result.unit': '分', 'result.reviewHead': '重新查看题目', 'result.retryWrong': '只重做错题',
     'wrong.title': '错题本', 'wrong.desc': '答错的题会汇集在这里，答对后将从列表中消失。', 'wrong.start': '做错题', 'wrong.clear': '清空错题本',
     'stats.title': '学习统计', 'stats.recentHead': '最近的模拟考试记录', 'stats.reset': '重置统计', 'writeCount.suffix': ' / 200字',
@@ -124,7 +146,7 @@ const I18N = {
     'result.pass': '已达合格线（60分）🎉', 'result.fail': '距合格线（60分）还差一点！', 'result.practice': '这是练习模式的结果。',
     'result.estLevel': '预计分配阶段：{0}',
     'result.levelDisclaimer': '※ 此分数并非实际分配分数，而是 <b>按选择题水平的预估值</b>。实际事前评价为 选择题(75分)+写作(2题)+口试(25分)=100分，写作·口试由人工评分。另外 <b>口试不足3分将分配到0阶段</b>。准确阶段以考试当天分数为准。',
-    'track.nat': '🇰🇷 归化综合评价', 'track.perm': '🏡 永居综合评价', 'track.pre': '📊 社会统合事前评价',
+    'track.nat': '归化综合评价', 'track.perm': '永居综合评价', 'track.pre': '社会统合事前评价',
     'review.unanswered': '未作答', 'review.emptyWrite': '没有作答内容。', 'review.emptyOral': '没有记录内容。',
     'stats.total': '已做题数', 'stats.acc': '总正确率', 'stats.noHistory': '还没有模拟考试记录。',
     'wrong.empty': '没有错题，做得很好！👏', 'writing.empty': '没有该类型的题目。',
@@ -136,11 +158,32 @@ const I18N = {
     'confirm.submit': '要提交并评分吗？', 'confirm.clearWrong': '要清空错题本吗？', 'confirm.resetStats': '要重置所有学习统计和记录吗？',
     'toast.clearedWrong': '已清空错题本。', 'toast.resetStats': '已重置。', 'toast.noQ': '没有可作答的题目。请先同步。', 'toast.timeUp': '时间到！自动评分。',
     'count.char': '{0}字',
+    /* A2 错题熟练度台账 */
+    'wrong.desc2': '答错的题会汇集在这里。<b>连续两次</b>答对就从列表毕业。',
+    'wrong.miss': '错{0}次', 'wrong.almost': '再答对一次就毕业',
+    /* A3 考试日倒计时 */
+    'examdate.title': '设置考试日', 'examdate.set': '设置', 'examdate.clear': '清除',
+    'examdate.dday': '倒数{0}天', 'examdate.today': '就是今天',
+    'examdate.pace': '每天建议：{0}题', 'examdate.left': '剩余{0}题',
+    'examdate.past': '考试日已过 — 请设置新的考试日',
+    'examdate.hint': '设定考试日期后，会告诉你每天建议做多少题。',
+    /* A4 成绩分开显示 */
+    'result.mcScore': '选择题', 'result.mcOf': '{0} / 65分',
+    'result.estTotal': '含自评的预估总分', 'result.estOf': '{0} / 100',
+    'result.ungradedN': '还有{0}题未评分 — 评分后才能算出总分',
+    'result.mcOnly': '仅选择题 {0} / 65',
+    /* A5 统计 → 练习 */
+    'stats.practiceCat': '只练这个领域', 'practice.weak': '弱项优先', 'practice.weakSub': '答错多的领域出得更频繁',
+    /* A6 口试遮住作答 */
+    'oral.recite': '请遮住范文，先出声作答一遍。',
+    'oral.reveal': '查看范文', 'oral.hideModel': '隐藏范文',
+    'oral.selfHead': '自我评价', 'oral.good': '答得好', 'oral.mid': '一般', 'oral.poor': '不足',
+    'oral.saved': '已记录。',
   },
 };
 /* === vi/th UI 번역 주입(빌드 외부 데이터) === */
-I18N.vi = {"app.title": "Luyện thi nhập tịch", "app.sync": "Đồng bộ", "home.mock.t": "Thi thử", "home.mock.s": "Làm bài như thi thật", "home.practice.t": "Luyện theo lĩnh vực", "home.practice.s": "Luyện theo 8 lĩnh vực", "home.writing.t": "Luyện viết · vấn đáp", "home.writing.s": "Nói · viết theo chủ đề", "home.typing.t": "Luyện gõ phím", "home.typing.s": "Gõ theo bài văn mẫu", "home.wrong.t": "Sổ câu sai", "home.stats.t": "Thống kê học tập", "home.stats.s": "Xem tỷ lệ đúng · lịch sử", "practice.title": "Luyện theo lĩnh vực", "practice.desc": "Làm từng câu rồi xem ngay đáp án · lời giải.", "practice.all": "🎲 Ngẫu nhiên toàn bộ", "exam.org": "Chương trình Hội nhập xã hội (KIIP)", "exam.title": "Đánh giá tổng hợp dùng cho nhập tịch", "exam.subtitle": "Thi thử phần thi viết", "exam.name": "Họ tên", "exam.namePh": "Nhập họ tên", "exam.no": "Số báo danh", "exam.noticeTitle": "Lưu ý", "exam.n1": "Đánh giá tổng hợp dùng cho nhập tịch gồm <b>trắc nghiệm 36 câu (65 điểm) + tự luận viết (10 điểm) + vấn đáp (25 điểm) = 100 điểm</b>, <b>đạt 60 điểm trở lên là đậu</b>.", "exam.n2": "Bài thi thử này làm <b>phần viết (trắc nghiệm + tự luận) trong 60 phút</b>, sau đó luyện tiếp <b>phần vấn đáp</b>.", "exam.n3": "Trắc nghiệm chọn một trong ①②③④, phần tự luận viết <b>trong 200 chữ</b>.", "exam.n4": "Chỉ trắc nghiệm được chấm tự động; phần viết · vấn đáp tự kiểm tra bằng đáp án mẫu · gợi ý.", "exam.n5": "Phần vấn đáp ở kỳ thi thật là một phiên riêng 10 phút. Khi hoàn thành giai đoạn 5 của Chương trình Hội nhập xã hội + thi đậu thì <b>có thể được miễn phỏng vấn nhập tịch</b>.", "common.cancel": "Hủy", "common.home": "Về trang chủ", "exam.start": "Bắt đầu thi", "quiz.prev": "← Câu trước", "quiz.next": "Câu sau →", "quiz.result": "Xem kết quả", "quiz.submit": "Nộp bài và chấm điểm", "writing.title": "Luyện viết · vấn đáp", "seg.writing": "✍️ Viết", "seg.oral": "🗣️ Vấn đáp", "result.title": "Kết quả chấm điểm", "result.unit": " điểm", "result.reviewHead": "Xem lại câu hỏi", "result.retryWrong": "Làm lại chỉ những câu sai", "wrong.title": "Sổ câu sai", "wrong.desc": "Những câu đã làm sai sẽ được gom lại đây. Làm đúng thì câu đó biến khỏi danh sách.", "wrong.start": "Làm câu sai", "wrong.clear": "Xóa sổ câu sai", "stats.title": "Thống kê học tập", "stats.recentHead": "Lịch sử thi thử gần đây", "stats.reset": "Đặt lại thống kê", "writeCount.suffix": " / 200 chữ", "sync.ready": "Đã sẵn sàng · tổng {0} câu (trắc nghiệm {1})", "sync.never": "Nhấn Đồng bộ để tải về câu hỏi mới nhất.", "sync.offline": "Ngoại tuyến — tiếp tục với {0} câu đã đồng bộ lần cuối", "sync.first": "Bạn chưa tải về câu hỏi nào. Hãy kết nối Internet rồi nhấn Đồng bộ.", "sync.synced": "Đã đồng bộ về câu hỏi mới nhất · tổng {0} câu", "toast.syncing": "Đang tải câu hỏi mới nhất…", "toast.syncDone": "Đồng bộ xong! Tổng {0} câu", "toast.offline": "Hãy kiểm tra kết nối Internet. Bạn có thể tiếp tục với câu hỏi đã lưu.", "toast.syncFail": "Không tải được câu hỏi.", "bankInfo": "Phiên bản bộ câu hỏi: {0} · trắc nghiệm {1} câu · đồng bộ lần cuối: {2}", "noSync": "Không có", "wrongCount": "{0} câu sai", "cat.count": "{0} câu", "banner.mc": "【Trắc nghiệm】  {0} / {1}", "banner.writing": "【Tự luận viết】  {0} / {1}  ·  trong 200 chữ", "banner.oral": "【Vấn đáp】  {0} / {1}  ·  nói thành tiếng", "fb.correct": "Chính xác! ✅", "fb.wrong": "Sai rồi ❌  Đáp án: {0}", "write.phWrite": "Viết câu trả lời của bạn ở đây (trong 200 chữ)", "write.phOral": "Hãy trả lời thành tiếng. (Bạn có thể ghi chú ý chính — tùy chọn)", "result.frac": "Đúng {1}/{0} câu trắc nghiệm", "result.fracMore": " · Phần viết · vấn đáp hãy tự kiểm tra ở bên dưới", "sg.head": "Tự chấm viết · vấn đáp", "sg.note": "Phần viết · vấn đáp là tự luận nên khó chấm tự động. Tự chấm khi đối chiếu bài mẫu sẽ được tính vào tổng điểm.", "sg.prompt": "↓ Tự chấm viết · vấn đáp để tính vào điểm", "sg.good": "Tốt", "sg.mid": "Trung bình", "sg.poor": "Chưa đạt", "sg.ungraded": "Chưa chấm", "bd.mc": "Trắc nghiệm", "bd.writing": "Viết", "bd.oral": "Vấn đáp", "bd.total": "Tổng", "result.pass": "Đã vượt mốc đậu (60 điểm) 🎉", "result.fail": "Cố thêm chút nữa để đạt mốc đậu (60 điểm)!", "result.practice": "Đây là kết quả ở chế độ luyện tập.", "result.estLevel": "Giai đoạn xếp lớp dự kiến: {0}", "result.levelDisclaimer": "※ Điểm này không phải điểm xếp lớp thực tế mà là <b>ước tính dựa trên năng lực trắc nghiệm</b>. Đánh giá đầu vào thực tế gồm trắc nghiệm (75 điểm) + viết (2 câu) + vấn đáp (25 điểm) = 100 điểm, phần viết · vấn đáp do người chấm. Ngoài ra, <b>nếu vấn đáp dưới 3 điểm thì xếp giai đoạn 0</b>. Giai đoạn chính xác được quyết định theo điểm trong ngày thi.", "track.nat": "🇰🇷 Đánh giá tổng hợp nhập tịch", "track.perm": "🏡 Đánh giá tổng hợp định cư", "track.pre": "📊 Đánh giá đầu vào Hội nhập xã hội", "review.unanswered": "Chưa chọn", "review.emptyWrite": "Không có câu trả lời nào được viết.", "review.emptyOral": "Không có nội dung ghi chú nào.", "stats.total": "Tổng số câu đã làm", "stats.acc": "Tỷ lệ đúng tổng thể", "stats.noHistory": "Chưa có lịch sử thi thử nào.", "wrong.empty": "Không có câu sai nào. Bạn đang làm rất tốt! 👏", "writing.empty": "Không có câu hỏi thuộc loại này.", "guide.show": "💡 Xem gợi ý", "guide.hide": "💡 Ẩn gợi ý", "writing.draftPh": "Thử viết câu trả lời ở đây (trong 200 chữ)", "model.show": "📝 Xem đáp án mẫu", "model.hide": "📝 Ẩn đáp án mẫu", "review.model": "Đáp án mẫu", "resume.banner": "📌 Tiếp tục bài thi thử đang dở ({0}/{1})", "exam.resume": "Làm tiếp ({0}/{1})", "confirm.discardMock": "Bản ghi bài thi thử đang dở sẽ bị mất. Bắt đầu lại từ đầu chứ?", "toast.resumed": "Làm tiếp.", "resume.practice": "📌 Làm tiếp — {0} ({1}/{2})", "practice.allLabel": "Toàn bộ", "confirm.submit": "Nộp bài và chấm điểm chứ?", "confirm.clearWrong": "Xóa toàn bộ sổ câu sai chứ?", "confirm.resetStats": "Đặt lại toàn bộ thống kê và lịch sử học tập chứ?", "toast.clearedWrong": "Đã xóa sổ câu sai.", "toast.resetStats": "Đã đặt lại.", "toast.noQ": "Không có câu hỏi nào để làm. Hãy đồng bộ trước.", "toast.timeUp": "Hết giờ! Tự động chấm điểm.", "count.char": "{0} chữ"};
-I18N.th = {"app.title": "ฝึกสอบแปลงสัญชาติ", "app.sync": "ซิงค์", "home.mock.t": "ทำข้อสอบจำลอง", "home.mock.s": "ทำเหมือนสอบจริง", "home.practice.t": "ฝึกแยกตามหมวด", "home.practice.s": "ฝึกตาม 8 หมวด", "home.writing.t": "ฝึกเขียน·พูด", "home.writing.s": "พูด·เขียนตามหัวข้อ", "home.typing.t": "ฝึกพิมพ์", "home.typing.s": "พิมพ์ตามเรียงความตัวอย่าง", "home.wrong.t": "สมุดข้อผิด", "home.stats.t": "สถิติการเรียน", "home.stats.s": "ดูอัตราถูก·ประวัติ", "practice.title": "ฝึกแยกตามหมวด", "practice.desc": "ทำทีละข้อแล้วดูเฉลย·คำอธิบายได้ทันที", "practice.all": "🎲 สุ่มทั้งหมด", "exam.org": "โครงการบูรณาการสังคม (KIIP)", "exam.title": "การประเมินรวมเพื่อแปลงสัญชาติ", "exam.subtitle": "ข้อสอบจำลองภาคข้อเขียน", "exam.name": "ชื่อ", "exam.namePh": "กรอกชื่อ", "exam.no": "เลขที่นั่งสอบ", "exam.noticeTitle": "ข้อควรทราบ", "exam.n1": "การประเมินรวมเพื่อแปลงสัญชาติคือ <b>ปรนัย 36 ข้อ (65 คะแนน) + เขียน (10 คะแนน) + พูด (25 คะแนน) = 100 คะแนน</b>, <b>ได้ 60 คะแนนขึ้นไปถือว่าผ่าน</b>", "exam.n2": "ข้อสอบจำลองนี้ให้ทำ <b>ภาคข้อเขียน (ปรนัย+เขียน) ภายใน 60 นาที</b> แล้วฝึก <b>ข้อสอบพูด</b> ต่อ", "exam.n3": "ปรนัยให้เลือกหนึ่งข้อจาก ①②③④ ส่วนการเขียนให้เขียน <b>ไม่เกิน 200 ตัวอักษร</b>", "exam.n4": "ตรวจคะแนนอัตโนมัติเฉพาะปรนัย ส่วนเขียน·พูดให้ตรวจสอบด้วยตนเองจากคำตอบตัวอย่าง·คำแนะนำ", "exam.n5": "การพูดในสอบจริงเป็นช่วงแยกต่างหาก 10 นาที เมื่อจบโครงการบูรณาการสังคมระดับ 5 + สอบผ่าน จะ <b>ได้รับการยกเว้นการสัมภาษณ์แปลงสัญชาติ</b>", "common.cancel": "ยกเลิก", "common.home": "กลับหน้าหลัก", "exam.start": "เริ่มสอบ", "quiz.prev": "← ก่อนหน้า", "quiz.next": "ถัดไป →", "quiz.result": "ดูผล", "quiz.submit": "ส่งและตรวจคะแนน", "writing.title": "ฝึกเขียน·พูด", "seg.writing": "✍️ เขียน", "seg.oral": "🗣️ พูด", "result.title": "ผลการตรวจคะแนน", "result.unit": "คะแนน", "result.reviewHead": "ดูข้อสอบอีกครั้ง", "result.retryWrong": "ทำเฉพาะข้อที่ผิดอีกครั้ง", "wrong.title": "สมุดข้อผิด", "wrong.desc": "ข้อที่ตอบผิดจะถูกรวบรวมไว้ที่นี่ เมื่อตอบถูกจะหายไปจากรายการ", "wrong.start": "ทำข้อที่ผิด", "wrong.clear": "ล้างสมุดข้อผิด", "stats.title": "สถิติการเรียน", "stats.recentHead": "ประวัติข้อสอบจำลองล่าสุด", "stats.reset": "รีเซ็ตสถิติ", "writeCount.suffix": " / 200 ตัวอักษร", "sync.ready": "พร้อมแล้ว · ทั้งหมด {0} ข้อ (ปรนัย {1})", "sync.never": "กดซิงค์เพื่อรับข้อสอบล่าสุด", "sync.offline": "ออฟไลน์ — ดำเนินการด้วย {0} ข้อจากการซิงค์ครั้งล่าสุด", "sync.first": "ยังไม่ได้รับข้อสอบ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วกดซิงค์", "sync.synced": "ซิงค์เป็นข้อสอบล่าสุดแล้ว · ทั้งหมด {0} ข้อ", "toast.syncing": "กำลังรับข้อสอบล่าสุด…", "toast.syncDone": "ซิงค์เสร็จแล้ว! ทั้งหมด {0} ข้อ", "toast.offline": "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต คุณสามารถทำต่อด้วยข้อสอบที่บันทึกไว้ได้", "toast.syncFail": "ไม่สามารถรับข้อสอบได้", "bankInfo": "เวอร์ชันคลังข้อสอบ: {0} · ปรนัย {1} ข้อ · ซิงค์ล่าสุด: {2}", "noSync": "ไม่มี", "wrongCount": "ข้อที่ผิด {0} ข้อ", "cat.count": "{0} ข้อ", "banner.mc": "【ปรนัย】  {0} / {1}", "banner.writing": "【เขียน】  {0} / {1}  ·  ไม่เกิน 200 ตัวอักษร", "banner.oral": "【พูด】  {0} / {1}  ·  พูดออกเสียง", "fb.correct": "ตอบถูก! ✅", "fb.wrong": "ตอบผิด ❌  คำตอบที่ถูก: {0}", "write.phWrite": "เขียนคำตอบของคุณที่นี่ (ไม่เกิน 200 ตัวอักษร)", "write.phOral": "ลองพูดตอบออกเสียงดู (จะจดประเด็นสำคัญไว้ก็ได้ — ไม่บังคับ)", "result.frac": "ตอบถูก {1} ข้อ จากปรนัย {0} ข้อ", "result.fracMore": " · เขียน·พูดให้ตรวจสอบเองด้านล่าง", "sg.head": "ประเมินตนเอง เขียน·พูด", "sg.note": "เขียน·พูดเป็นการตอบอิสระ จึงให้คะแนนอัตโนมัติได้ยาก ประเมินตนเองโดยเทียบกับคำตอบตัวอย่างแล้วจะรวมในคะแนนรวม", "sg.prompt": "↓ ประเมินเขียน·พูดเองเพื่อรวมในคะแนน", "sg.good": "ดี", "sg.mid": "พอใช้", "sg.poor": "ยังไม่ดี", "sg.ungraded": "ยังไม่ประเมิน", "bd.mc": "ปรนัย", "bd.writing": "เขียน", "bd.oral": "พูด", "bd.total": "รวม", "result.pass": "ผ่านเกณฑ์ (60 คะแนน) 🎉", "result.fail": "อีกนิดเดียวก็ถึงเกณฑ์ (60 คะแนน)!", "result.practice": "นี่คือผลในโหมดฝึก", "result.estLevel": "ระดับที่คาดว่าจะได้รับการจัด: {0}", "result.levelDisclaimer": "※ คะแนนนี้ไม่ใช่คะแนนจัดระดับจริง แต่เป็น <b>ค่าประมาณตามความสามารถปรนัย</b> การประเมินเบื้องต้นจริงคือ ปรนัย (75 คะแนน)+เขียน (2 ข้อ)+พูด (25 คะแนน)=100 คะแนน โดยเขียน·พูดตรวจโดยคน นอกจากนี้ <b>หากพูดได้ต่ำกว่า 3 คะแนนจะถูกจัดเป็นระดับ 0</b> ระดับที่แน่นอนจะกำหนดจากคะแนนในวันสอบ", "track.nat": "🇰🇷 การประเมินรวมแปลงสัญชาติ", "track.perm": "🏡 การประเมินรวมถิ่นที่อยู่ถาวร", "track.pre": "📊 การประเมินเบื้องต้นบูรณาการสังคม", "review.unanswered": "ไม่ได้เลือก", "review.emptyWrite": "ไม่มีคำตอบที่เขียนไว้", "review.emptyOral": "ไม่มีเนื้อหาที่จดไว้", "stats.total": "ข้อที่ทำทั้งหมด", "stats.acc": "อัตราถูกรวม", "stats.noHistory": "ยังไม่มีประวัติข้อสอบจำลอง", "wrong.empty": "ไม่มีข้อที่ผิด ทำได้ดีมาก! 👏", "writing.empty": "ไม่มีข้อสอบประเภทนี้", "guide.show": "💡 ดูคำแนะนำ", "guide.hide": "💡 ซ่อนคำแนะนำ", "writing.draftPh": "ลองเขียนคำตอบที่นี่ (ไม่เกิน 200 ตัวอักษร)", "model.show": "📝 ดูคำตอบตัวอย่าง", "model.hide": "📝 ซ่อนคำตอบตัวอย่าง", "review.model": "คำตอบตัวอย่าง", "resume.banner": "📌 ทำข้อสอบจำลองที่ค้างไว้ต่อ ({0}/{1})", "exam.resume": "ทำต่อ ({0}/{1})", "confirm.discardMock": "ประวัติข้อสอบจำลองที่ทำค้างไว้จะหายไป จะเริ่มใหม่หรือไม่?", "toast.resumed": "ทำต่อจากเดิม", "resume.practice": "📌 ทำต่อ — {0} ({1}/{2})", "practice.allLabel": "ทั้งหมด", "confirm.submit": "จะส่งและตรวจคะแนนหรือไม่?", "confirm.clearWrong": "จะล้างสมุดข้อผิดทั้งหมดหรือไม่?", "confirm.resetStats": "จะรีเซ็ตสถิติและประวัติการเรียนทั้งหมดหรือไม่?", "toast.clearedWrong": "ล้างสมุดข้อผิดแล้ว", "toast.resetStats": "รีเซ็ตแล้ว", "toast.noQ": "ไม่มีข้อสอบให้ทำ กรุณาซิงค์ก่อน", "toast.timeUp": "หมดเวลา! ตรวจคะแนนอัตโนมัติ", "count.char": "{0} ตัวอักษร"};
+I18N.vi = {"app.title": "Luyện thi nhập tịch", "app.sync": "Đồng bộ", "home.mock.t": "Thi thử", "home.mock.s": "Làm bài như thi thật", "home.practice.t": "Luyện theo lĩnh vực", "home.practice.s": "Luyện theo 8 lĩnh vực", "home.writing.t": "Luyện viết · vấn đáp", "home.writing.s": "Nói · viết theo chủ đề", "home.typing.t": "Luyện gõ phím", "home.typing.s": "Gõ theo bài văn mẫu", "home.wrong.t": "Sổ câu sai", "home.stats.t": "Thống kê học tập", "home.stats.s": "Xem tỷ lệ đúng · lịch sử", "practice.title": "Luyện theo lĩnh vực", "practice.desc": "Làm từng câu rồi xem ngay đáp án · lời giải.", "practice.all": "Ngẫu nhiên toàn bộ", "exam.org": "Chương trình Hội nhập xã hội (KIIP)", "exam.title": "Đánh giá tổng hợp dùng cho nhập tịch", "exam.subtitle": "Thi thử phần thi viết", "exam.name": "Họ tên", "exam.namePh": "Nhập họ tên", "exam.no": "Số báo danh", "exam.noticeTitle": "Lưu ý", "exam.n1": "Đánh giá tổng hợp dùng cho nhập tịch gồm <b>trắc nghiệm 36 câu (65 điểm) + tự luận viết (10 điểm) + vấn đáp (25 điểm) = 100 điểm</b>, <b>đạt 60 điểm trở lên là đậu</b>.", "exam.n2": "Bài thi thử này làm <b>phần viết (trắc nghiệm + tự luận) trong 60 phút</b>, sau đó luyện tiếp <b>phần vấn đáp</b>.", "exam.n3": "Trắc nghiệm chọn một trong ①②③④, phần tự luận viết <b>trong 200 chữ</b>.", "exam.n4": "Chỉ trắc nghiệm được chấm tự động; phần viết · vấn đáp tự kiểm tra bằng đáp án mẫu · gợi ý.", "exam.n5": "Phần vấn đáp ở kỳ thi thật là một phiên riêng 10 phút. Khi hoàn thành giai đoạn 5 của Chương trình Hội nhập xã hội + thi đậu thì <b>có thể được miễn phỏng vấn nhập tịch</b>.", "common.cancel": "Hủy", "common.home": "Về trang chủ", "exam.start": "Bắt đầu thi", "quiz.prev": "← Câu trước", "quiz.next": "Câu sau →", "quiz.result": "Xem kết quả", "quiz.submit": "Nộp bài và chấm điểm", "writing.title": "Luyện viết · vấn đáp", "seg.writing": "Viết", "seg.oral": "Vấn đáp", "result.title": "Kết quả chấm điểm", "result.unit": " điểm", "result.reviewHead": "Xem lại câu hỏi", "result.retryWrong": "Làm lại chỉ những câu sai", "wrong.title": "Sổ câu sai", "wrong.desc": "Những câu đã làm sai sẽ được gom lại đây. Làm đúng thì câu đó biến khỏi danh sách.", "wrong.start": "Làm câu sai", "wrong.clear": "Xóa sổ câu sai", "stats.title": "Thống kê học tập", "stats.recentHead": "Lịch sử thi thử gần đây", "stats.reset": "Đặt lại thống kê", "writeCount.suffix": " / 200 chữ", "sync.ready": "Đã sẵn sàng · tổng {0} câu (trắc nghiệm {1})", "sync.never": "Nhấn Đồng bộ để tải về câu hỏi mới nhất.", "sync.offline": "Ngoại tuyến — tiếp tục với {0} câu đã đồng bộ lần cuối", "sync.first": "Bạn chưa tải về câu hỏi nào. Hãy kết nối Internet rồi nhấn Đồng bộ.", "sync.synced": "Đã đồng bộ về câu hỏi mới nhất · tổng {0} câu", "toast.syncing": "Đang tải câu hỏi mới nhất…", "toast.syncDone": "Đồng bộ xong! Tổng {0} câu", "toast.offline": "Hãy kiểm tra kết nối Internet. Bạn có thể tiếp tục với câu hỏi đã lưu.", "toast.syncFail": "Không tải được câu hỏi.", "bankInfo": "Phiên bản bộ câu hỏi: {0} · trắc nghiệm {1} câu · đồng bộ lần cuối: {2}", "noSync": "Không có", "wrongCount": "{0} câu sai", "cat.count": "{0} câu", "banner.mc": "【Trắc nghiệm】  {0} / {1}", "banner.writing": "【Tự luận viết】  {0} / {1}  ·  trong 200 chữ", "banner.oral": "【Vấn đáp】  {0} / {1}  ·  nói thành tiếng", "fb.correct": "Chính xác! ✅", "fb.wrong": "Sai rồi ❌  Đáp án: {0}", "write.phWrite": "Viết câu trả lời của bạn ở đây (trong 200 chữ)", "write.phOral": "Hãy trả lời thành tiếng. (Bạn có thể ghi chú ý chính — tùy chọn)", "result.frac": "Đúng {1}/{0} câu trắc nghiệm", "result.fracMore": " · Phần viết · vấn đáp hãy tự kiểm tra ở bên dưới", "sg.head": "Tự chấm viết · vấn đáp", "sg.note": "Phần viết · vấn đáp là tự luận nên khó chấm tự động. Tự chấm khi đối chiếu bài mẫu sẽ được tính vào tổng điểm.", "sg.prompt": "↓ Tự chấm viết · vấn đáp để tính vào điểm", "sg.good": "Tốt", "sg.mid": "Trung bình", "sg.poor": "Chưa đạt", "sg.ungraded": "Chưa chấm", "bd.mc": "Trắc nghiệm", "bd.writing": "Viết", "bd.oral": "Vấn đáp", "bd.total": "Tổng", "result.pass": "Đã vượt mốc đậu (60 điểm) 🎉", "result.fail": "Cố thêm chút nữa để đạt mốc đậu (60 điểm)!", "result.practice": "Đây là kết quả ở chế độ luyện tập.", "result.estLevel": "Giai đoạn xếp lớp dự kiến: {0}", "result.levelDisclaimer": "※ Điểm này không phải điểm xếp lớp thực tế mà là <b>ước tính dựa trên năng lực trắc nghiệm</b>. Đánh giá đầu vào thực tế gồm trắc nghiệm (75 điểm) + viết (2 câu) + vấn đáp (25 điểm) = 100 điểm, phần viết · vấn đáp do người chấm. Ngoài ra, <b>nếu vấn đáp dưới 3 điểm thì xếp giai đoạn 0</b>. Giai đoạn chính xác được quyết định theo điểm trong ngày thi.", "track.nat": "Đánh giá tổng hợp nhập tịch", "track.perm": "Đánh giá tổng hợp định cư", "track.pre": "Đánh giá đầu vào Hội nhập xã hội", "review.unanswered": "Chưa chọn", "review.emptyWrite": "Không có câu trả lời nào được viết.", "review.emptyOral": "Không có nội dung ghi chú nào.", "stats.total": "Tổng số câu đã làm", "stats.acc": "Tỷ lệ đúng tổng thể", "stats.noHistory": "Chưa có lịch sử thi thử nào.", "wrong.empty": "Không có câu sai nào. Bạn đang làm rất tốt! 👏", "writing.empty": "Không có câu hỏi thuộc loại này.", "guide.show": "💡 Xem gợi ý", "guide.hide": "💡 Ẩn gợi ý", "writing.draftPh": "Thử viết câu trả lời ở đây (trong 200 chữ)", "model.show": "📝 Xem đáp án mẫu", "model.hide": "📝 Ẩn đáp án mẫu", "review.model": "Đáp án mẫu", "resume.banner": "📌 Tiếp tục bài thi thử đang dở ({0}/{1})", "exam.resume": "Làm tiếp ({0}/{1})", "confirm.discardMock": "Bản ghi bài thi thử đang dở sẽ bị mất. Bắt đầu lại từ đầu chứ?", "toast.resumed": "Làm tiếp.", "resume.practice": "📌 Làm tiếp — {0} ({1}/{2})", "practice.allLabel": "Toàn bộ", "confirm.submit": "Nộp bài và chấm điểm chứ?", "confirm.clearWrong": "Xóa toàn bộ sổ câu sai chứ?", "confirm.resetStats": "Đặt lại toàn bộ thống kê và lịch sử học tập chứ?", "toast.clearedWrong": "Đã xóa sổ câu sai.", "toast.resetStats": "Đã đặt lại.", "toast.noQ": "Không có câu hỏi nào để làm. Hãy đồng bộ trước.", "toast.timeUp": "Hết giờ! Tự động chấm điểm.", "count.char": "{0} chữ", "wrong.desc2": "Những câu làm sai sẽ gom lại đây. Làm đúng <b>hai lần liên tiếp</b> thì câu đó tốt nghiệp khỏi danh sách.", "wrong.miss": "Sai {0} lần", "wrong.almost": "Đúng thêm một lần nữa là tốt nghiệp", "examdate.title": "Đặt ngày thi", "examdate.set": "Đặt", "examdate.clear": "Xóa", "examdate.dday": "Còn {0} ngày", "examdate.today": "Đúng hôm nay", "examdate.pace": "Đề nghị mỗi ngày: {0} câu", "examdate.left": "Còn {0} câu", "examdate.past": "Ngày thi đã qua — hãy đặt ngày thi mới", "examdate.hint": "Đặt ngày thi để biết mỗi ngày nên làm bao nhiêu câu.", "result.mcScore": "Trắc nghiệm", "result.mcOf": "{0} / 65 điểm", "result.estTotal": "Tổng điểm ước tính (gồm tự chấm)", "result.estOf": "{0} / 100", "result.ungradedN": "Còn {0} câu chưa chấm — chấm xong mới ra tổng điểm", "result.mcOnly": "Chỉ trắc nghiệm {0} / 65", "stats.practiceCat": "Chỉ luyện lĩnh vực này", "practice.weak": "Ưu tiên điểm yếu", "practice.weakSub": "Lĩnh vực hay sai sẽ ra nhiều hơn", "oral.recite": "Hãy che đáp án mẫu và trả lời thành tiếng trước.", "oral.reveal": "Xem đáp án mẫu", "oral.hideModel": "Ẩn đáp án mẫu", "oral.selfHead": "Tự đánh giá", "oral.good": "Tốt", "oral.mid": "Trung bình", "oral.poor": "Chưa đạt", "oral.saved": "Đã ghi lại."};
+I18N.th = {"app.title": "ฝึกสอบแปลงสัญชาติ", "app.sync": "ซิงค์", "home.mock.t": "ทำข้อสอบจำลอง", "home.mock.s": "ทำเหมือนสอบจริง", "home.practice.t": "ฝึกแยกตามหมวด", "home.practice.s": "ฝึกตาม 8 หมวด", "home.writing.t": "ฝึกเขียน·พูด", "home.writing.s": "พูด·เขียนตามหัวข้อ", "home.typing.t": "ฝึกพิมพ์", "home.typing.s": "พิมพ์ตามเรียงความตัวอย่าง", "home.wrong.t": "สมุดข้อผิด", "home.stats.t": "สถิติการเรียน", "home.stats.s": "ดูอัตราถูก·ประวัติ", "practice.title": "ฝึกแยกตามหมวด", "practice.desc": "ทำทีละข้อแล้วดูเฉลย·คำอธิบายได้ทันที", "practice.all": "สุ่มทั้งหมด", "exam.org": "โครงการบูรณาการสังคม (KIIP)", "exam.title": "การประเมินรวมเพื่อแปลงสัญชาติ", "exam.subtitle": "ข้อสอบจำลองภาคข้อเขียน", "exam.name": "ชื่อ", "exam.namePh": "กรอกชื่อ", "exam.no": "เลขที่นั่งสอบ", "exam.noticeTitle": "ข้อควรทราบ", "exam.n1": "การประเมินรวมเพื่อแปลงสัญชาติคือ <b>ปรนัย 36 ข้อ (65 คะแนน) + เขียน (10 คะแนน) + พูด (25 คะแนน) = 100 คะแนน</b>, <b>ได้ 60 คะแนนขึ้นไปถือว่าผ่าน</b>", "exam.n2": "ข้อสอบจำลองนี้ให้ทำ <b>ภาคข้อเขียน (ปรนัย+เขียน) ภายใน 60 นาที</b> แล้วฝึก <b>ข้อสอบพูด</b> ต่อ", "exam.n3": "ปรนัยให้เลือกหนึ่งข้อจาก ①②③④ ส่วนการเขียนให้เขียน <b>ไม่เกิน 200 ตัวอักษร</b>", "exam.n4": "ตรวจคะแนนอัตโนมัติเฉพาะปรนัย ส่วนเขียน·พูดให้ตรวจสอบด้วยตนเองจากคำตอบตัวอย่าง·คำแนะนำ", "exam.n5": "การพูดในสอบจริงเป็นช่วงแยกต่างหาก 10 นาที เมื่อจบโครงการบูรณาการสังคมระดับ 5 + สอบผ่าน จะ <b>ได้รับการยกเว้นการสัมภาษณ์แปลงสัญชาติ</b>", "common.cancel": "ยกเลิก", "common.home": "กลับหน้าหลัก", "exam.start": "เริ่มสอบ", "quiz.prev": "← ก่อนหน้า", "quiz.next": "ถัดไป →", "quiz.result": "ดูผล", "quiz.submit": "ส่งและตรวจคะแนน", "writing.title": "ฝึกเขียน·พูด", "seg.writing": "เขียน", "seg.oral": "พูด", "result.title": "ผลการตรวจคะแนน", "result.unit": "คะแนน", "result.reviewHead": "ดูข้อสอบอีกครั้ง", "result.retryWrong": "ทำเฉพาะข้อที่ผิดอีกครั้ง", "wrong.title": "สมุดข้อผิด", "wrong.desc": "ข้อที่ตอบผิดจะถูกรวบรวมไว้ที่นี่ เมื่อตอบถูกจะหายไปจากรายการ", "wrong.start": "ทำข้อที่ผิด", "wrong.clear": "ล้างสมุดข้อผิด", "stats.title": "สถิติการเรียน", "stats.recentHead": "ประวัติข้อสอบจำลองล่าสุด", "stats.reset": "รีเซ็ตสถิติ", "writeCount.suffix": " / 200 ตัวอักษร", "sync.ready": "พร้อมแล้ว · ทั้งหมด {0} ข้อ (ปรนัย {1})", "sync.never": "กดซิงค์เพื่อรับข้อสอบล่าสุด", "sync.offline": "ออฟไลน์ — ดำเนินการด้วย {0} ข้อจากการซิงค์ครั้งล่าสุด", "sync.first": "ยังไม่ได้รับข้อสอบ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วกดซิงค์", "sync.synced": "ซิงค์เป็นข้อสอบล่าสุดแล้ว · ทั้งหมด {0} ข้อ", "toast.syncing": "กำลังรับข้อสอบล่าสุด…", "toast.syncDone": "ซิงค์เสร็จแล้ว! ทั้งหมด {0} ข้อ", "toast.offline": "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต คุณสามารถทำต่อด้วยข้อสอบที่บันทึกไว้ได้", "toast.syncFail": "ไม่สามารถรับข้อสอบได้", "bankInfo": "เวอร์ชันคลังข้อสอบ: {0} · ปรนัย {1} ข้อ · ซิงค์ล่าสุด: {2}", "noSync": "ไม่มี", "wrongCount": "ข้อที่ผิด {0} ข้อ", "cat.count": "{0} ข้อ", "banner.mc": "【ปรนัย】  {0} / {1}", "banner.writing": "【เขียน】  {0} / {1}  ·  ไม่เกิน 200 ตัวอักษร", "banner.oral": "【พูด】  {0} / {1}  ·  พูดออกเสียง", "fb.correct": "ตอบถูก! ✅", "fb.wrong": "ตอบผิด ❌  คำตอบที่ถูก: {0}", "write.phWrite": "เขียนคำตอบของคุณที่นี่ (ไม่เกิน 200 ตัวอักษร)", "write.phOral": "ลองพูดตอบออกเสียงดู (จะจดประเด็นสำคัญไว้ก็ได้ — ไม่บังคับ)", "result.frac": "ตอบถูก {1} ข้อ จากปรนัย {0} ข้อ", "result.fracMore": " · เขียน·พูดให้ตรวจสอบเองด้านล่าง", "sg.head": "ประเมินตนเอง เขียน·พูด", "sg.note": "เขียน·พูดเป็นการตอบอิสระ จึงให้คะแนนอัตโนมัติได้ยาก ประเมินตนเองโดยเทียบกับคำตอบตัวอย่างแล้วจะรวมในคะแนนรวม", "sg.prompt": "↓ ประเมินเขียน·พูดเองเพื่อรวมในคะแนน", "sg.good": "ดี", "sg.mid": "พอใช้", "sg.poor": "ยังไม่ดี", "sg.ungraded": "ยังไม่ประเมิน", "bd.mc": "ปรนัย", "bd.writing": "เขียน", "bd.oral": "พูด", "bd.total": "รวม", "result.pass": "ผ่านเกณฑ์ (60 คะแนน) 🎉", "result.fail": "อีกนิดเดียวก็ถึงเกณฑ์ (60 คะแนน)!", "result.practice": "นี่คือผลในโหมดฝึก", "result.estLevel": "ระดับที่คาดว่าจะได้รับการจัด: {0}", "result.levelDisclaimer": "※ คะแนนนี้ไม่ใช่คะแนนจัดระดับจริง แต่เป็น <b>ค่าประมาณตามความสามารถปรนัย</b> การประเมินเบื้องต้นจริงคือ ปรนัย (75 คะแนน)+เขียน (2 ข้อ)+พูด (25 คะแนน)=100 คะแนน โดยเขียน·พูดตรวจโดยคน นอกจากนี้ <b>หากพูดได้ต่ำกว่า 3 คะแนนจะถูกจัดเป็นระดับ 0</b> ระดับที่แน่นอนจะกำหนดจากคะแนนในวันสอบ", "track.nat": "การประเมินรวมแปลงสัญชาติ", "track.perm": "การประเมินรวมถิ่นที่อยู่ถาวร", "track.pre": "การประเมินเบื้องต้นบูรณาการสังคม", "review.unanswered": "ไม่ได้เลือก", "review.emptyWrite": "ไม่มีคำตอบที่เขียนไว้", "review.emptyOral": "ไม่มีเนื้อหาที่จดไว้", "stats.total": "ข้อที่ทำทั้งหมด", "stats.acc": "อัตราถูกรวม", "stats.noHistory": "ยังไม่มีประวัติข้อสอบจำลอง", "wrong.empty": "ไม่มีข้อที่ผิด ทำได้ดีมาก! 👏", "writing.empty": "ไม่มีข้อสอบประเภทนี้", "guide.show": "💡 ดูคำแนะนำ", "guide.hide": "💡 ซ่อนคำแนะนำ", "writing.draftPh": "ลองเขียนคำตอบที่นี่ (ไม่เกิน 200 ตัวอักษร)", "model.show": "📝 ดูคำตอบตัวอย่าง", "model.hide": "📝 ซ่อนคำตอบตัวอย่าง", "review.model": "คำตอบตัวอย่าง", "resume.banner": "📌 ทำข้อสอบจำลองที่ค้างไว้ต่อ ({0}/{1})", "exam.resume": "ทำต่อ ({0}/{1})", "confirm.discardMock": "ประวัติข้อสอบจำลองที่ทำค้างไว้จะหายไป จะเริ่มใหม่หรือไม่?", "toast.resumed": "ทำต่อจากเดิม", "resume.practice": "📌 ทำต่อ — {0} ({1}/{2})", "practice.allLabel": "ทั้งหมด", "confirm.submit": "จะส่งและตรวจคะแนนหรือไม่?", "confirm.clearWrong": "จะล้างสมุดข้อผิดทั้งหมดหรือไม่?", "confirm.resetStats": "จะรีเซ็ตสถิติและประวัติการเรียนทั้งหมดหรือไม่?", "toast.clearedWrong": "ล้างสมุดข้อผิดแล้ว", "toast.resetStats": "รีเซ็ตแล้ว", "toast.noQ": "ไม่มีข้อสอบให้ทำ กรุณาซิงค์ก่อน", "toast.timeUp": "หมดเวลา! ตรวจคะแนนอัตโนมัติ", "count.char": "{0} ตัวอักษร", "wrong.desc2": "ข้อที่ตอบผิดจะถูกรวบรวมไว้ที่นี่ ตอบถูก <b>สองครั้งติดต่อกัน</b> ก็จะจบการศึกษาออกจากรายการ", "wrong.miss": "ผิด {0} ครั้ง", "wrong.almost": "ตอบถูกอีกครั้งก็จบการศึกษา", "examdate.title": "ตั้งวันสอบ", "examdate.set": "ตั้งค่า", "examdate.clear": "ล้าง", "examdate.dday": "เหลือ {0} วัน", "examdate.today": "วันนี้เลย", "examdate.pace": "แนะนำต่อวัน: {0} ข้อ", "examdate.left": "เหลือ {0} ข้อ", "examdate.past": "เลยวันสอบแล้ว — กรุณาตั้งวันสอบใหม่", "examdate.hint": "ตั้งวันสอบแล้วจะบอกว่าแต่ละวันควรทำกี่ข้อ", "result.mcScore": "ปรนัย", "result.mcOf": "{0} / 65 คะแนน", "result.estTotal": "คะแนนรวมโดยประมาณ (รวมประเมินตนเอง)", "result.estOf": "{0} / 100", "result.ungradedN": "ยังไม่ประเมิน {0} ข้อ — ประเมินแล้วจึงจะได้คะแนนรวม", "result.mcOnly": "เฉพาะปรนัย {0} / 65", "stats.practiceCat": "ฝึกเฉพาะหมวดนี้", "practice.weak": "เน้นจุดอ่อน", "practice.weakSub": "หมวดที่ผิดบ่อยจะออกบ่อยขึ้น", "oral.recite": "กรุณาปิดคำตอบตัวอย่างแล้วลองพูดตอบออกเสียงก่อน", "oral.reveal": "ดูคำตอบตัวอย่าง", "oral.hideModel": "ซ่อนคำตอบตัวอย่าง", "oral.selfHead": "ประเมินตนเอง", "oral.good": "ดี", "oral.mid": "พอใช้", "oral.poor": "ยังไม่ดี", "oral.saved": "บันทึกแล้ว"};
 CAT_TR.vi = {"한국어": "Tiếng Hàn", "사회": "Xã hội", "문화": "Văn hóa", "정치": "Chính trị", "경제": "Kinh tế", "법": "Pháp luật", "역사": "Lịch sử", "지리": "Địa lý", "작문": "Viết văn", "구술": "Vấn đáp", "어휘": "Từ vựng", "문법": "Ngữ pháp", "읽기·이해": "Đọc · hiểu", "대화": "Hội thoại", "한국문화": "Văn hóa Hàn Quốc", "한국사회": "Xã hội Hàn Quốc"};
 CAT_TR.th = {"한국어": "ภาษาเกาหลี", "사회": "สังคม", "문화": "วัฒนธรรม", "정치": "การเมือง", "경제": "เศรษฐกิจ", "법": "กฎหมาย", "역사": "ประวัติศาสตร์", "지리": "ภูมิศาสตร์", "작문": "การเขียน", "구술": "การพูด", "어휘": "คำศัพท์", "문법": "ไวยากรณ์", "읽기·이해": "การอ่าน·ความเข้าใจ", "대화": "บทสนทนา", "한국문화": "วัฒนธรรมเกาหลี", "한국사회": "สังคมเกาหลี"};
 T2.vi = {"귀화 종합평가": "Đánh giá tổng hợp nhập tịch", "사회통합프로그램 (KIIP)": "Chương trình Hội nhập xã hội (KIIP)", "귀화용 종합평가": "Đánh giá tổng hợp dùng cho nhập tịch", "필기시험 모의고사": "Thi thử phần thi viết", "실제 시험처럼 풀기 (객관식+작문+구술)": "Làm bài như thi thật (trắc nghiệm + viết + vấn đáp)", "8개 영역별로 풀기": "Luyện theo 8 lĩnh vực", "귀화용 종합평가는 <b>객관식 36문항(65점) + 작문형(10점) + 구술(25점) = 100점</b>, <b>60점 이상이면 합격</b>입니다.": "Đánh giá tổng hợp dùng cho nhập tịch gồm <b>trắc nghiệm 36 câu (65 điểm) + tự luận viết (10 điểm) + vấn đáp (25 điểm) = 100 điểm</b>, <b>đạt 60 điểm trở lên là đậu</b>.", "이 모의고사는 <b>필기(객관식+작문)를 60분 안에</b> 풀고, 이어서 <b>구술 문항</b>까지 연습합니다.": "Bài thi thử này làm <b>phần viết (trắc nghiệm + tự luận) trong 60 phút</b>, sau đó luyện tiếp <b>phần vấn đáp</b>.", "객관식은 ①②③④ 중 하나를 고르고, 작문은 <b>200자 이내</b>로 작성합니다.": "Trắc nghiệm chọn một trong ①②③④, phần tự luận viết <b>trong 200 chữ</b>.", "객관식만 자동 채점되며, 작문·구술은 모범답안·도움말로 스스로 점검합니다.": "Chỉ trắc nghiệm được chấm tự động; phần viết · vấn đáp tự kiểm tra bằng đáp án mẫu · gợi ý.", "실제 시험의 구술은 별도 10분 세션입니다. 사회통합프로그램 5단계 수료 + 합격 시 <b>귀화 면접심사 면제</b>가 가능합니다.": "Phần vấn đáp ở kỳ thi thật là một phiên riêng 10 phút. Khi hoàn thành giai đoạn 5 của Chương trình Hội nhập xã hội + thi đậu thì <b>có thể được miễn phỏng vấn nhập tịch</b>.", "영주 종합평가": "Đánh giá tổng hợp định cư", "영주용 종합평가": "Đánh giá tổng hợp dùng cho định cư", "영주용 종합평가는 <b>객관식 36문항(65점) + 작문형(10점) + 구술(25점) = 100점</b>, <b>60점 이상이면 합격</b>입니다.": "Đánh giá tổng hợp dùng cho định cư gồm <b>trắc nghiệm 36 câu (65 điểm) + tự luận viết (10 điểm) + vấn đáp (25 điểm) = 100 điểm</b>, <b>đạt 60 điểm trở lên là đậu</b>.", "응시 자격: 사회통합프로그램 <b>5단계 기본과정 수료</b>(또는 사전평가로 5단계 배정). 영주용은 <b>지필(PBT)로만</b> 시행됩니다.": "Điều kiện dự thi: <b>hoàn thành khóa cơ bản giai đoạn 5</b> của Chương trình Hội nhập xã hội (hoặc được xếp giai đoạn 5 qua đánh giá đầu vào). Bài thi định cư <b>chỉ thi trên giấy (PBT)</b>.", "사회통합 사전평가": "Đánh giá đầu vào Hội nhập xã hội", "사회통합프로그램 사전평가": "Đánh giá đầu vào Chương trình Hội nhập xã hội", "단계 배정 모의평가": "Đánh giá thử để xếp giai đoạn", "어휘·문법·읽기·대화·문화·사회": "Từ vựng · ngữ pháp · đọc · hội thoại · văn hóa · xã hội", "사회통합프로그램 <b>사전평가</b>는 합격·불합격 시험이 아니라, 점수에 따라 <b>0~5단계</b>를 배정하는 레벨 평가입니다.": "<b>Đánh giá đầu vào</b> của Chương trình Hội nhập xã hội không phải kỳ thi đậu · rớt, mà là bài đánh giá phân cấp để xếp <b>giai đoạn 0~5</b> theo điểm số.", "실제 시험은 <b>필기 50문항(60분, 75점)</b> + <b>구술 5문항(10분, 25점)</b> = 100점입니다. 이 모의평가는 필기(객관식+작문)를 풀고 이어서 구술을 연습합니다.": "Kỳ thi thật gồm <b>phần viết 50 câu (60 phút, 75 điểm)</b> + <b>vấn đáp 5 câu (10 phút, 25 điểm)</b> = 100 điểm. Bài đánh giá thử này làm phần viết (trắc nghiệm + tự luận) rồi luyện tiếp phần vấn đáp.", "객관식은 ①②③④ 중 하나를 고르고, 작문은 빈칸에 알맞은 표현을 짧게 씁니다.": "Trắc nghiệm chọn một trong ①②③④, phần viết điền ngắn gọn cách diễn đạt thích hợp vào chỗ trống.", "객관식만 자동 채점되어 <b>예상 배정 단계</b>를 알려줍니다. 작문·구술은 모범답안으로 스스로 점검합니다.": "Chỉ trắc nghiệm được chấm tự động và cho biết <b>giai đoạn xếp lớp dự kiến</b>. Phần viết · vấn đáp tự kiểm tra bằng đáp án mẫu.", "실제로는 <b>구술 점수가 3점 미만이면 0단계</b>로 배정됩니다. 정확한 단계는 시험 당일 점수로 정해지며, 표시되는 단계는 <b>연습용 참고치</b>입니다.": "Trên thực tế, <b>nếu điểm vấn đáp dưới 3 điểm thì xếp giai đoạn 0</b>. Giai đoạn chính xác được quyết định theo điểm trong ngày thi, giai đoạn hiển thị chỉ là <b>giá trị tham khảo khi luyện tập</b>.", "5단계 · 한국사회이해": "Giai đoạn 5 · Hiểu biết xã hội Hàn Quốc", "81~100점": "81~100 điểm", "4단계 · 중급2": "Giai đoạn 4 · Trung cấp 2", "61~80점": "61~80 điểm", "3단계 · 중급1": "Giai đoạn 3 · Trung cấp 1", "41~60점": "41~60 điểm", "2단계 · 초급2": "Giai đoạn 2 · Sơ cấp 2", "21~40점": "21~40 điểm", "1단계 · 초급1": "Giai đoạn 1 · Sơ cấp 1", "3~20점": "3~20 điểm", "0단계 · 한국어기초": "Giai đoạn 0 · Tiếng Hàn cơ bản", "구술 3점 미만": "Vấn đáp dưới 3 điểm"};
@@ -328,7 +371,8 @@ function applyStaticI18n() {
   document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
   document.querySelectorAll('[data-i18n-ph]').forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
-  $('langBtn').textContent = t('lang.select');
+  // 언어 버튼: 현재 언어 표식(국기)만 — 영어 단어 하드코딩 제거
+  $('langBtn').textContent = LANG_LABEL[LANG] || '🌐';
 }
 function setLang(lang) {
   if (!LANG_LABEL[lang]) return;
@@ -417,12 +461,13 @@ function showView(name) {
    홈
    ===================================================================== */
 function renderHome() {
-  const wrong = ls(ekey(K.wrong), []);
-  $('wrongCount').textContent = t('wrongCount', wrong.length);
+  $('wrongCount').textContent = t('wrongCount', wrongCount());
   const mc = mcOnly().length;
   $('bankInfo').textContent = t('bankInfo', META.version, mc, fmtDate(META.syncedAt));
   if (META.syncedAt) setSyncStatus(t('sync.ready', examBank().length, mc), false);
   else setSyncStatus(t('sync.never'), false);
+
+  renderExamDate();
 
   // 진행 중인 모의고사 이어풀기 배너
   const s = getMockSave();
@@ -430,6 +475,43 @@ function renderHome() {
   if (s) { rb.textContent = t('resume.banner', s.i + 1, s.list.length); rb.classList.remove('hidden'); }
   else rb.classList.add('hidden');
 }
+
+/* =====================================================================
+   A3. 시험일 카운트다운·페이싱 (트랙별 저장키 nq_examdate + ekey)
+   ===================================================================== */
+function daysUntil(iso) {
+  if (!iso) return null;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const target = new Date(iso + 'T00:00:00'); target.setHours(0, 0, 0, 0);
+  return Math.round((target - today) / 86400000);
+}
+/* 하루 권장 문항수 = ceil((미풀이 MC + 오답노트 수) / 남은 일수), 최소 10 */
+function pacePerDay(daysLeft) {
+  const s = ls(ekey(K.stats), { total: 0, correct: 0, cat: {} });
+  const donePer = s.cat ? Object.values(s.cat).reduce((a, c) => a + (c.t || 0), 0) : 0;
+  const totalMc = mcOnly().length;
+  const remaining = Math.max(0, totalMc - donePer) + wrongCount();
+  const per = Math.ceil(remaining / Math.max(1, daysLeft));
+  return { per: Math.max(10, per), remaining };
+}
+function renderExamDate() {
+  const card = $('examDateCard'); if (!card) return;
+  const iso = ls(ekey(K.examdate), '') || '';
+  const input = $('examDateInput'); if (input) input.value = iso;
+  const info = $('examDateInfo');
+  const clearBtn = $('examDateClear');
+  if (clearBtn) clearBtn.classList.toggle('hidden', !iso);
+  if (!iso) { if (info) info.innerHTML = `<span class="examdate-hint">${t('examdate.hint')}</span>`; return; }
+  const d = daysUntil(iso);
+  if (d < 0) { if (info) info.innerHTML = `<span class="examdate-past">${t('examdate.past')}</span>`; return; }
+  const dLabel = d === 0 ? t('examdate.today') : t('examdate.dday', d);
+  const { per } = pacePerDay(Math.max(1, d));
+  if (info) info.innerHTML =
+    `<span class="examdate-dday">${dLabel}</span>` +
+    `<span class="examdate-pace">${t('examdate.pace', per)}</span>`;
+}
+function setExamDate(iso) { save(ekey(K.examdate), iso || ''); renderExamDate(); }
+function clearExamDate() { try { localStorage.removeItem(ekey(K.examdate)); } catch {} renderExamDate(); }
 
 /* =====================================================================
    영역별 연습
@@ -445,15 +527,42 @@ function renderCategories() {
   mcOnly().forEach((q) => { cats[q.category] = (cats[q.category] || 0) + 1; });
   const wrap = $('categoryList');
   wrap.innerHTML = '';
+  // A5: 약점 우선 모드 — 영역별 오답률 가중 무작위 출제
+  const weakCard = catItem(t('practice.weak'), mcOnly().length, () => startQuiz(weakPriorityOrder(mcOnly()), 'practice'), t('practice.weakSub'));
+  weakCard.classList.add('cat-item--weak');
+  wrap.appendChild(weakCard);
   wrap.appendChild(catItem(t('practice.all'), mcOnly().length, () => startQuiz(shuffle(mcOnly()), 'practice')));
   Object.keys(cats).forEach((c) => {
     wrap.appendChild(catItem(catName(c), cats[c], () => startQuiz(shuffle(mcOnly().filter((q) => q.category === c)), 'practice')));
   });
 }
-function catItem(name, count, onClick) {
+/* A5: 영역별 오답률(가중치 = 1 + 오답률×3, 기록 없으면 1)로 가중 무작위 정렬 */
+function weakPriorityOrder(list) {
+  const s = ls(ekey(K.stats), { total: 0, correct: 0, cat: {} });
+  const wrongRate = (cat) => {
+    const c = s.cat && s.cat[cat];
+    if (!c || !c.t) return 0;
+    return 1 - (c.c || 0) / c.t;
+  };
+  // 각 문항에 (가중치 × 난수) 키를 부여해 내림차순 정렬 → 가중 셔플
+  return list.map((q) => {
+    const w = 1 + wrongRate(q.category) * 3;
+    return { q, key: Math.pow(Math.random(), 1 / w) };
+  }).sort((a, b) => b.key - a.key).map((x) => x.q);
+}
+/* 통계 화면에서 "이 영역만 연습" 진입 */
+function practiceCategory(cat) {
+  const list = mcOnly().filter((q) => q.category === cat);
+  if (!list.length) { toast(t('toast.noQ')); return; }
+  startQuiz(shuffle(list), 'practice');
+}
+function catItem(name, count, onClick, sub) {
   const el = document.createElement('button');
   el.className = 'cat-item';
-  el.innerHTML = `<span>${name}</span><span class="cat-item__count">${t('cat.count', count)}</span>`;
+  const nameHtml = sub
+    ? `<span class="cat-item__name"><span class="cat-item__label">${name}</span><span class="cat-item__sub">${sub}</span></span>`
+    : `<span>${name}</span>`;
+  el.innerHTML = `${nameHtml}<span class="cat-item__count">${t('cat.count', count)}</span>`;
   el.addEventListener('click', onClick);
   return el;
 }
@@ -469,6 +578,7 @@ function startQuiz(questions, mode, resume) {
     answers: resume ? resume.answers : new Array(questions.length).fill(null),
     text: resume ? (resume.text || {}) : {},
     graded: mode === 'practice' || mode === 'wrong',
+    order: {}, // A1: 보기 표시 순서(표시위치→원본인덱스), 문항별 지연 생성
     timer: null,
     timeLeft: resume ? resume.timeLeft : exam().mock.time,
   };
@@ -575,6 +685,16 @@ function startTimer() {
 }
 function updateTimerLabel() { const m = Math.floor(quiz.timeLeft / 60), s = quiz.timeLeft % 60; $('quizTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`; }
 
+/* A1: 문항 i의 보기 표시 순서(표시위치→원본인덱스). 한 번 정하면 quiz 안에서 고정. */
+function orderFor(i, q) {
+  if (!quiz.order) quiz.order = {};
+  if (!quiz.order[i]) {
+    const n = (q && q.choices) ? q.choices.length : 0;
+    quiz.order[i] = shuffle(Array.from({ length: n }, (_, k) => k));
+  }
+  return quiz.order[i];
+}
+
 function renderQuestion() {
   const q = quiz.list[quiz.i];
   const total = quiz.list.length;
@@ -611,22 +731,26 @@ function renderQuestion() {
     meta.classList.toggle('over', ta.value.length > 200);
     $('feedback').classList.add('hidden');
   } else {
+    // A1: 보기 순서 셔플 — 화면 표시만 섞고, 저장·판정은 원본 인덱스 기준.
+    const order = orderFor(quiz.i, q);       // 표시위치 → 원본인덱스
     const cwrap = $('choices');
     cwrap.innerHTML = '';
-    q.choices.forEach((c, idx) => {
+    order.forEach((origIdx, pos) => {
+      const c = q.choices[origIdx];
       const b = document.createElement('button');
       b.className = 'choice';
-      const czh = glc(q, idx);
-      b.innerHTML = `<span class="choice__num">${NUM[idx]}</span><span>${bi(c, czh)}</span>`;
-      if (chosen === idx) b.classList.add('is-selected');
-      if (showAnswer) { b.disabled = true; if (idx === q.answer) b.classList.add('is-correct'); else if (idx === chosen) b.classList.add('is-wrong'); }
-      b.addEventListener('click', () => onChoose(idx));
+      const czh = glc(q, origIdx);
+      b.innerHTML = `<span class="choice__num">${NUM[pos]}</span><span>${bi(c, czh)}</span>`;
+      if (chosen === origIdx) b.classList.add('is-selected');
+      if (showAnswer) { b.disabled = true; if (origIdx === q.answer) b.classList.add('is-correct'); else if (origIdx === chosen) b.classList.add('is-wrong'); }
+      b.addEventListener('click', () => onChoose(origIdx));
       cwrap.appendChild(b);
     });
     const fb = $('feedback');
     if (showAnswer) {
       const ok = chosen === q.answer;
-      const head = ok ? t('fb.correct') : t('fb.wrong', NUM[q.answer] + ' ' + q.choices[q.answer]);
+      const ansPos = order.indexOf(q.answer);       // 정답의 표시 위치로 번호 라벨 재부여
+      const head = ok ? t('fb.correct') : t('fb.wrong', NUM[ansPos] + ' ' + q.choices[q.answer]);
       fb.className = 'feedback' + (ok ? '' : ' is-wrong');
       fb.innerHTML = `<strong>${head}</strong>${bi(q.explanation || '', gl(q, 'explanation'))}`;
       fb.classList.remove('hidden');
@@ -712,34 +836,58 @@ function renderResult(list, answers, correct, opts) {
   const levelBox = $('levelResult');
   const sb = $('scoreBreakdown');
 
+  // A4: 미채점 작문·구술을 총점에 0점 합산하지 않는다.
+  //  1층 = 객관식 X/65(자동채점, 크게).  2층 = 자가채점 포함 추정 총점(전부 채점 시에만).
+  const mc65 = Math.round(mcScore65);
   function recompute() {
-    let sw = 0, so = 0;
-    list.forEach((q) => { const g = mockSelfGrade[q.id]; if (g == null) return; if (q.type === 'writing') sw += g; else if (q.type === 'oral') so += g; });
+    let sw = 0, so = 0, gradedW = 0, gradedO = 0;
+    list.forEach((q) => {
+      const g = mockSelfGrade[q.id]; if (g == null) return;
+      if (q.type === 'writing') { sw += g; gradedW++; } else if (q.type === 'oral') { so += g; gradedO++; }
+    });
     const wScore = numW ? (sw / numW) * 10 : 0;
     const oScore = numO ? (so / numO) * 25 : 0;
     const total = Math.round(mcScore65 + wScore + oScore);
-    $('scorePct').textContent = total;
-    const ungraded = list.some((q) => (q.type === 'writing' || q.type === 'oral') && mockSelfGrade[q.id] == null);
+    const ungradedN = list.filter((q) => (q.type === 'writing' || q.type === 'oral') && mockSelfGrade[q.id] == null).length;
+    const allGraded = ungradedN === 0;
+
+    // 큰 숫자: 전부 채점되면 총점/100, 아니면 객관식 점수/65
+    $('scorePct').textContent = allGraded ? total : mc65;
+    $('scoreUnit').textContent = allGraded ? t('result.estOf', '').replace(/\s*\{0\}\s*/, '') : '';
+    $('scoreFrac').innerHTML = allGraded
+      ? `<span class="score-line">${t('result.estTotal')}: <b>${t('result.estOf', total)}</b></span>` +
+        `<span class="score-sub">${t('result.mcScore')} ${t('result.mcOf', mc65)}</span>`
+      : `<span class="score-line">${t('result.mcScore')}: <b>${t('result.mcOf', mc65)}</b></span>` +
+        `<span class="score-sub">${t('result.frac', denom, correct)}</span>`;
+
     sb.innerHTML =
       `<div class="bd-note">${t('sg.note')}</div>` +
-      `<div class="bd-row"><span>${t('bd.mc')}</span><span>${Math.round(mcScore65)} / 65</span></div>` +
-      `<div class="bd-row"><span>${t('bd.writing')}</span><span>${Math.round(wScore)} / 10</span></div>` +
-      `<div class="bd-row"><span>${t('bd.oral')}</span><span>${Math.round(oScore)} / 25</span></div>` +
-      `<div class="bd-row bd-total"><span>${t('bd.total')}</span><span>${total} / 100</span></div>` +
-      (ungraded ? `<div class="bd-prompt">${t('sg.prompt')}</div>` : '');
-    const pass = total >= 60;
-    passEl.textContent = pass ? t('result.pass') : t('result.fail');
-    passEl.className = 'score-card__pass ' + (pass ? 'pass' : 'fail');
+      `<div class="bd-row"><span>${t('bd.mc')}</span><span>${mc65} / 65</span></div>` +
+      `<div class="bd-row"><span>${t('bd.writing')}</span><span>${gradedW < numW ? '—' : Math.round(wScore)} / 10</span></div>` +
+      `<div class="bd-row"><span>${t('bd.oral')}</span><span>${gradedO < numO ? '—' : Math.round(oScore)} / 25</span></div>` +
+      (allGraded
+        ? `<div class="bd-row bd-total"><span>${t('bd.total')}</span><span>${total} / 100</span></div>`
+        : `<div class="bd-prompt">${t('result.ungradedN', ungradedN)}</div>`);
+
+    // 합격선(60) 판정은 자가채점 완료 시에만 총점 기준. 아니면 중립 표기.
+    if (allGraded) {
+      const pass = total >= 60;
+      passEl.textContent = pass ? t('result.pass') : t('result.fail');
+      passEl.className = 'score-card__pass ' + (pass ? 'pass' : 'fail');
+    } else {
+      passEl.textContent = t('result.mcOnly', mc65);
+      passEl.className = 'score-card__pass';
+    }
   }
 
   if (isComposite) {
     levelBox.classList.add('hidden');
     sb.classList.remove('hidden');
-    $('scoreFrac').textContent = t('result.frac', denom, correct);
     recompute();
   } else {
     sb.classList.add('hidden');
     $('scorePct').textContent = mcPct;
+    $('scoreUnit').textContent = t('result.unit');
     $('scoreFrac').textContent = t('result.frac', denom, correct) + (hasWriting ? t('result.fracMore') : '');
     if (isMock && activeExam === 'pre') {
       const lv = preLevelFor(mcPct);
@@ -824,17 +972,57 @@ function reviewItem(q, chosen, writeText, sgMode, sgVal) {
 }
 
 /* =====================================================================
-   오답노트
+   오답노트 — 숙련 원장 {id:{miss,streak,last}}
+   - 옛 배열형 [id,...]은 로드 시 각 id를 {miss:1,streak:0,last:0}로 자동 승격.
+   - 오답: miss+1, streak=0.  정답: streak+1 → 연속 2회면 제거.
    ===================================================================== */
-function addWrong(id) { const w = ls(ekey(K.wrong), []); if (!w.includes(id)) { w.push(id); save(ekey(K.wrong), w); } }
-function removeWrong(id) { let w = ls(ekey(K.wrong), []); if (w.includes(id)) { w = w.filter((x) => x !== id); save(ekey(K.wrong), w); } }
+/* 트랙별 오답 원장 로드(배열이면 맵으로 승격 후 저장) */
+function loadWrong() {
+  const raw = ls(ekey(K.wrong), {});
+  if (Array.isArray(raw)) {
+    const map = {};
+    raw.forEach((id) => { if (id != null) map[id] = { miss: 1, streak: 0, last: 0 }; });
+    save(ekey(K.wrong), map);
+    return map;
+  }
+  return (raw && typeof raw === 'object') ? raw : {};
+}
+function wrongIds() { return Object.keys(loadWrong()); }
+function wrongCount() { return wrongIds().length; }
+function addWrong(id) {
+  const w = loadWrong();
+  const cur = w[id] || { miss: 0, streak: 0, last: 0 };
+  cur.miss = (cur.miss || 0) + 1; cur.streak = 0; cur.last = Date.now();
+  w[id] = cur; save(ekey(K.wrong), w);
+}
+function removeWrong(id) {
+  // 정답 1회: streak 증가, 연속 2회면 졸업(제거).
+  const w = loadWrong();
+  const cur = w[id];
+  if (!cur) return;
+  cur.streak = (cur.streak || 0) + 1; cur.last = Date.now();
+  if (cur.streak >= 2) delete w[id]; else w[id] = cur;
+  save(ekey(K.wrong), w);
+}
 function renderWrong() {
-  const ids = ls(ekey(K.wrong), []);
+  const w = loadWrong();
+  const ids = Object.keys(w);
   const list = ids.map((id) => BANK.find((q) => q.id === id)).filter((q) => q && inExam(q));
   $('startWrongBtn').classList.toggle('hidden', list.length === 0);
   const rl = $('wrongList'); rl.innerHTML = '';
   if (!list.length) { rl.innerHTML = `<div class="empty">${t('wrong.empty')}</div>`; return; }
-  list.forEach((q) => rl.appendChild(reviewItem(q, null)));
+  list.forEach((q) => {
+    const item = reviewItem(q, null);
+    const meta = w[q.id] || {};
+    const miss = meta.miss || 0;
+    const almost = (meta.streak || 0) >= 1;
+    const badge = document.createElement('div');
+    badge.className = 'wrong-meta';
+    badge.innerHTML = `<span class="wrong-badge">${t('wrong.miss', miss)}</span>` +
+      (almost ? `<span class="wrong-almost">${t('wrong.almost')}</span>` : '');
+    item.insertBefore(badge, item.firstChild);
+    rl.appendChild(item);
+  });
 }
 
 /* =====================================================================
@@ -845,18 +1033,31 @@ function renderWriting() {
   const drafts = ls(ekey(K.drafts), {});
   const wrap = $('writingList'); wrap.innerHTML = '';
   if (!list.length) { wrap.innerHTML = `<div class="empty">${t('writing.empty')}</div>`; return; }
+  const isOralMode = writingType === 'oral';
   list.forEach((q) => {
     const card = document.createElement('div');
-    card.className = 'writing-card';
+    card.className = 'writing-card' + (isOralMode ? ' writing-card--oral' : '');
     const isWriting = q.type === 'writing';
+    // A6: 구술 = "가리고 말하기" — 질문 표시 → 낭독 안내 → 모범답안 보기 → 자가확인 3버튼
+    const oralSelf = isOralMode && q.model ? `
+      <div class="oral-self">
+        <span class="oral-self__label">${t('oral.selfHead')}</span>
+        <div class="oral-self__btns">
+          <button type="button" class="oral-btn" data-frac="1">${t('oral.good')}</button>
+          <button type="button" class="oral-btn" data-frac="0.5">${t('oral.mid')}</button>
+          <button type="button" class="oral-btn" data-frac="0">${t('oral.poor')}</button>
+        </div>
+      </div>` : '';
     card.innerHTML = `
       <div class="writing-card__q">${bi(q.q, gl(q, 'q'))}</div>
+      ${isOralMode ? `<div class="oral-recite">${t('oral.recite')}</div>` : ''}
       ${isWriting ? `<textarea data-id="${q.id}" placeholder="${t('writing.draftPh')}">${drafts[q.id] || ''}</textarea>
         <div class="writing-card__meta"><span class="writing-card__count">0${CHAR_UNIT[LANG] || '자'}</span></div>` : ''}
       <button class="writing-card__guide-toggle">${t('guide.show')}</button>
       <div class="writing-card__guide hidden">${bi(q.guide || '', gl(q, 'guide'))}</div>
-      ${q.model ? `<button class="writing-card__model-toggle">${t('model.show')}</button>
-      <div class="writing-card__model hidden">${bi(q.model, gl(q, 'model'))}</div>` : ''}`;
+      ${q.model ? `<button class="writing-card__model-toggle">${isOralMode ? t('oral.reveal') : t('model.show')}</button>
+      <div class="writing-card__model hidden">${bi(q.model, gl(q, 'model'))}</div>` : ''}
+      ${oralSelf}`;
     if (isWriting) {
       const ta = card.querySelector('textarea'); const cnt = card.querySelector('.writing-card__count');
       const upd = () => { const n = ta.value.length; cnt.textContent = t('count.char', n); cnt.classList.toggle('over', n > 200); };
@@ -868,10 +1069,30 @@ function renderWriting() {
     const mtg = card.querySelector('.writing-card__model-toggle');
     if (mtg) {
       const md = card.querySelector('.writing-card__model');
-      mtg.addEventListener('click', () => { md.classList.toggle('hidden'); mtg.textContent = md.classList.contains('hidden') ? t('model.show') : t('model.hide'); });
+      const showLbl = isOralMode ? t('oral.reveal') : t('model.show');
+      const hideLbl = isOralMode ? t('oral.hideModel') : t('model.hide');
+      mtg.addEventListener('click', () => { md.classList.toggle('hidden'); mtg.textContent = md.classList.contains('hidden') ? showLbl : hideLbl; });
     }
+    // A6: 자가확인 3버튼 → 통계에 기록
+    card.querySelectorAll('.oral-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        card.querySelectorAll('.oral-btn').forEach((b) => b.classList.toggle('is-on', b === btn));
+        recordOral(q, parseFloat(btn.dataset.frac));
+        toast(t('oral.saved'));
+      });
+    });
     wrap.appendChild(card);
   });
+}
+/* A6: 구술 자가확인 결과를 통계에 기록(잘함=정답, 보통=반영 부분정답, 부족=오답 취급) */
+function recordOral(q, frac) {
+  const s = ls(ekey(K.stats), { total: 0, correct: 0, cat: {} });
+  const ok = frac >= 1;
+  s.total++; if (ok) s.correct++;
+  const cat = q.category || '구술';
+  s.cat[cat] = s.cat[cat] || { t: 0, c: 0 };
+  s.cat[cat].t++; if (ok) s.cat[cat].c++;
+  save(ekey(K.stats), s);
 }
 
 /* =====================================================================
@@ -890,11 +1111,30 @@ function renderStats() {
   $('statsBox').innerHTML = `
     <div class="stat"><div class="stat__num">${s.total}</div><div class="stat__label">${t('stats.total')}</div></div>
     <div class="stat"><div class="stat__num">${acc}%</div><div class="stat__label">${t('stats.acc')}</div></div>`;
-  let cat = '';
-  Object.keys(s.cat).forEach((c) => { const { t: tt, c: cc } = s.cat[c]; const p = tt ? Math.round((cc / tt) * 100) : 0; cat += `<div class="cat-row"><span class="cat-row__name">${catName(c)}</span><span class="cat-row__bar"><span style="width:${p}%"></span></span><span class="cat-row__val">${p}%</span></div>`; });
-  const hist = ls(ekey(K.history), []);
+  // 영역별 정답률 막대 + "이 영역만 연습" 버튼(해당 영역에 MC 문항이 있을 때만)
+  const mcCats = new Set(mcOnly().map((q) => q.category));
   const hl = $('historyList');
-  hl.innerHTML = cat ? `<div class="cat-breakdown" style="margin-bottom:18px">${cat}</div>` : '';
+  hl.innerHTML = '';
+  const catKeys = Object.keys(s.cat);
+  if (catKeys.length) {
+    const cb = document.createElement('div');
+    cb.className = 'cat-breakdown cat-breakdown--stats';
+    catKeys.forEach((c) => {
+      const { t: tt, c: cc } = s.cat[c]; const p = tt ? Math.round((cc / tt) * 100) : 0;
+      const row = document.createElement('div'); row.className = 'cat-row';
+      const canPractice = mcCats.has(c);
+      row.innerHTML =
+        `<span class="cat-row__name">${catName(c)}</span>` +
+        `<span class="cat-row__bar"><span style="width:${p}%"></span></span>` +
+        `<span class="cat-row__val">${p}%</span>` +
+        (canPractice ? `<button class="cat-row__practice" type="button">${t('stats.practiceCat')}</button>` : '');
+      const btn = row.querySelector('.cat-row__practice');
+      if (btn) btn.addEventListener('click', () => practiceCategory(c));
+      cb.appendChild(row);
+    });
+    hl.appendChild(cb);
+  }
+  const hist = ls(ekey(K.history), []);
   if (!hist.length) { hl.insertAdjacentHTML('beforeend', `<div class="empty">${t('stats.noHistory')}</div>`); return; }
   hist.forEach((h) => { hl.insertAdjacentHTML('beforeend', `<div class="history-item"><span>${fmtDate(h.date)}</span><span class="history-item__score">${h.pct}${t('result.unit')} (${h.correct}/${h.total})</span></div>`); });
 }
@@ -921,6 +1161,12 @@ function wireEvents() {
     });
   });
 
+  // A3: 시험일 설정
+  const edi = $('examDateInput');
+  if (edi) edi.addEventListener('change', () => setExamDate(edi.value));
+  const edc = $('examDateClear');
+  if (edc) edc.addEventListener('click', clearExamDate);
+
   $('nextBtn').addEventListener('click', nextQuestion);
   $('prevBtn').addEventListener('click', prevQuestion);
   $('submitBtn').addEventListener('click', () => { if (confirm(t('confirm.submit'))) gradeMock(); });
@@ -932,8 +1178,8 @@ function wireEvents() {
 
   $('writingSeg').querySelectorAll('.seg__btn').forEach((b) => { b.addEventListener('click', () => { writingType = b.dataset.wt; syncSeg(); renderWriting(); }); });
 
-  $('startWrongBtn').addEventListener('click', () => { const ids = ls(ekey(K.wrong), []); const list = ids.map((id) => BANK.find((q) => q.id === id)).filter((q) => q && inExam(q)); startQuiz(shuffle(list), 'wrong'); });
-  $('clearWrongBtn').addEventListener('click', () => { if (confirm(t('confirm.clearWrong'))) { save(ekey(K.wrong), []); renderWrong(); toast(t('toast.clearedWrong')); } });
+  $('startWrongBtn').addEventListener('click', () => { const ids = wrongIds(); const list = ids.map((id) => BANK.find((q) => q.id === id)).filter((q) => q && inExam(q)); startQuiz(shuffle(list), 'wrong'); });
+  $('clearWrongBtn').addEventListener('click', () => { if (confirm(t('confirm.clearWrong'))) { save(ekey(K.wrong), {}); renderWrong(); renderHome(); toast(t('toast.clearedWrong')); } });
   $('resetStatsBtn').addEventListener('click', () => { if (confirm(t('confirm.resetStats'))) { save(ekey(K.stats), { total: 0, correct: 0, cat: {} }); save(ekey(K.history), []); renderStats(); toast(t('toast.resetStats')); } });
 }
 function syncSeg() { $('writingSeg').querySelectorAll('.seg__btn').forEach((b) => { b.classList.toggle('seg__btn--active', b.dataset.wt === writingType); }); }

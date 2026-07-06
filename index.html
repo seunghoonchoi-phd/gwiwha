@@ -10,7 +10,7 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#0D1B4C" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,9 +36,9 @@
   </div>
 
   <header class="appbar">
-    <button id="homeBtn" class="appbar__home" aria-label="홈">🏠</button>
+    <button id="homeBtn" class="appbar__home" aria-label="홈"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></button>
     <h1 class="appbar__title" data-i18n="app.title">귀화시험 연습</h1>
-    <button id="langBtn" class="appbar__lang" title="Select Language">Select Language</button>
+    <button id="langBtn" class="appbar__lang" title="Select Language" aria-label="Select Language">🇰🇷</button>
     <button id="syncBtn" class="appbar__sync" title="문제 동기화">
       <span class="appbar__sync-icon">⟳</span><span class="appbar__sync-text" data-i18n="app.sync">동기화</span>
     </button>
@@ -50,43 +50,56 @@
     <section id="view-home" class="view">
       <!-- 시험 트랙 전환: 귀화 종합평가 / 사회통합 사전평가 -->
       <div class="seg track-seg" id="trackSeg">
-        <button class="seg__btn seg__btn--active" data-exam="nat" data-i18n="track.nat">🇰🇷 귀화 종합평가</button>
-        <button class="seg__btn" data-exam="perm" data-i18n="track.perm">🏡 영주 종합평가</button>
-        <button class="seg__btn" data-exam="pre" data-i18n="track.pre">📊 사회통합 사전평가</button>
+        <button class="seg__btn seg__btn--active" data-exam="nat" data-i18n="track.nat">귀화 종합평가</button>
+        <button class="seg__btn" data-exam="perm" data-i18n="track.perm">영주 종합평가</button>
+        <button class="seg__btn" data-exam="pre" data-i18n="track.pre">사회통합 사전평가</button>
       </div>
 
       <div class="sync-status" id="syncStatus">문제를 불러오는 중…</div>
+
+      <!-- 시험일 카운트다운·페이싱 (트랙별 저장) -->
+      <div class="examdate-card" id="examDateCard">
+        <div class="examdate-card__top">
+          <span class="examdate-card__title" data-i18n="examdate.title">시험일 설정</span>
+          <span class="examdate-card__controls">
+            <input type="date" id="examDateInput" class="examdate-input" />
+            <button type="button" id="examDateClear" class="examdate-clear hidden" data-i18n="examdate.clear">지우기</button>
+          </span>
+        </div>
+        <div class="examdate-card__info" id="examDateInfo"></div>
+      </div>
 
       <button id="resumeBanner" class="resume-banner hidden"></button>
 
       <div class="card-grid">
         <button class="menu-card menu-card--primary" data-go="mock">
-          <span class="menu-card__icon">📝</span>
+          <span class="menu-card__eyebrow">MOCK EXAM</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H16l4 4v12.5A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z"/><path d="M15 3v4h4"/><path d="M8 12h6M8 16h4"/></svg></span>
           <span class="menu-card__title" data-i18n="home.mock.t">모의고사 보기</span>
           <span class="menu-card__sub" data-i18n="home.mock.s">실제 시험처럼 풀기</span>
         </button>
         <button class="menu-card" data-go="practice">
-          <span class="menu-card__icon">📚</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5C4.7 19 4 18.3 4 17.5z"/><path d="M20 5.5C20 4.7 19.3 4 18.5 4H13v15h5.5c.8 0 1.5-.7 1.5-1.5z"/></svg></span>
           <span class="menu-card__title" data-i18n="home.practice.t">영역별 연습</span>
           <span class="menu-card__sub" data-i18n="home.practice.s">8개 영역별로 풀기</span>
         </button>
         <button class="menu-card" data-go="writing">
-          <span class="menu-card__icon">✍️</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6"/><path d="M4 20l1.2-4.2L15.5 5.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M4 20l4-1"/></svg></span>
           <span class="menu-card__title" data-i18n="home.writing.t">작문·구술 연습</span>
           <span class="menu-card__sub" data-i18n="home.writing.s">주제별 말하기·쓰기</span>
         </button>
         <a class="menu-card" href="typing/">
-          <span class="menu-card__icon">⌨️</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="1.8"/><path d="M7 10h.01M11 10h.01M15 10h.01M8 14h8"/></svg></span>
           <span class="menu-card__title" data-i18n="home.typing.t">타자 연습</span>
           <span class="menu-card__sub" data-i18n="home.typing.s">작문 모범답안 따라 치기</span>
         </a>
         <button class="menu-card" data-go="wrong">
-          <span class="menu-card__icon">🔁</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-.9 4.5"/><path d="M20 5v5h-5"/></svg></span>
           <span class="menu-card__title" data-i18n="home.wrong.t">오답 노트</span>
           <span class="menu-card__sub" id="wrongCount">틀린 문제 0개</span>
         </button>
         <button class="menu-card" data-go="stats">
-          <span class="menu-card__icon">📊</span>
+          <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"/><path d="M4 20h16"/><rect x="7" y="12" width="3" height="5"/><rect x="12.5" y="8" width="3" height="9"/><rect x="18" y="5" width="3" height="12" transform="translate(-4 0)"/></svg></span>
           <span class="menu-card__title" data-i18n="home.stats.t">학습 통계</span>
           <span class="menu-card__sub" data-i18n="home.stats.s">정답률·기록 보기</span>
         </button>
@@ -157,8 +170,8 @@
     <section id="view-writing" class="view hidden">
       <h2 class="view-title" data-i18n="writing.title">작문·구술 연습</h2>
       <div class="seg" id="writingSeg">
-        <button class="seg__btn seg__btn--active" data-wt="writing" data-i18n="seg.writing">✍️ 작문</button>
-        <button class="seg__btn" data-wt="oral" data-i18n="seg.oral">🗣️ 구술</button>
+        <button class="seg__btn seg__btn--active" data-wt="writing"><span class="seg__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6"/><path d="M4 20l1.2-4.2L15.5 5.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M4 20l4-1"/></svg></span><span data-i18n="seg.writing">작문</span></button>
+        <button class="seg__btn" data-wt="oral"><span class="seg__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span><span data-i18n="seg.oral">구술</span></button>
       </div>
       <div id="writingList" class="writing-list"></div>
     </section>
@@ -167,7 +180,7 @@
     <section id="view-result" class="view hidden">
       <h2 class="view-title" data-i18n="result.title">채점 결과</h2>
       <div class="score-card">
-        <div class="score-card__num"><span id="scorePct">0</span><small data-i18n="result.unit">점</small></div>
+        <div class="score-card__num"><span id="scorePct">0</span><small id="scoreUnit" data-i18n="result.unit">점</small></div>
         <div class="score-card__detail">
           <div id="scoreFrac">0 / 0 정답</div>
           <div id="scorePass" class="score-card__pass"></div>
@@ -187,7 +200,7 @@
     <!-- 오답노트 -->
     <section id="view-wrong" class="view hidden">
       <h2 class="view-title" data-i18n="wrong.title">오답 노트</h2>
-      <p class="view-desc" data-i18n="wrong.desc">틀렸던 문제들이 모입니다. 맞히면 목록에서 사라집니다.</p>
+      <p class="view-desc" data-i18n-html="wrong.desc2">틀린 문제가 모입니다. <b>두 번 연속</b> 맞히면 목록에서 졸업합니다.</p>
       <div class="quiz-actions">
         <button class="btn btn--primary" id="startWrongBtn" data-i18n="wrong.start">오답 문제 풀기</button>
         <button class="btn btn--ghost" id="clearWrongBtn" data-i18n="wrong.clear">오답노트 비우기</button>
