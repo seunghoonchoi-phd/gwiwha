@@ -215,7 +215,7 @@ function trUI(s) { return (LANG !== 'ko' && LANG !== 'zh' && T2[LANG] && T2[LANG
    - nat = 귀화용 종합평가(기존). pre = 사회통합 사전평가(레벨 배정).
    - 문제는 q.exam === 'pre' 이면 사전평가, 아니면 종합평가로 간주.
    ===================================================================== */
-let activeExam = 'nat';
+let activeExam = 'pre';
 function examOf(q) { return q && q.exam === 'pre' ? 'pre' : 'nat'; }
 
 /* 사전평가 단계 배정 기준표 (공식: kiiptest.org·법무부 안내문, 검증 완료)
@@ -357,7 +357,7 @@ function init() {
   }
   const savedLang = ls(K.lang, null);
   LANG = savedLang || 'ko';
-  activeExam = ls(K.exam, 'nat');
+  activeExam = ls(K.exam, 'pre');
   loadBankFromStorageOrFallback();
   applyStaticI18n();
   applyExamUi();

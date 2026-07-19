@@ -40,10 +40,10 @@
 - `index.html` `styles.css` `app.js` — UI·로직 (Molecular Precision 브랜드 토큰 적용)
 - `hangul.js` — 두벌식 키맵 + 손가락 배열 + 한글 조합 오토마타(순수 함수, node 검증됨)
 - `data.js` — **자동 생성**. 원본은 상위 `../questions.json` (type=writing).
-  재생성: 리포지토리 밖 `scratchpad/gen_data.py` 참고(작문 46개: 귀화 16 + 사전평가 30).
+  재생성: 리포지토리 밖 `scratchpad/gen_typing_data.py` 참고(작문 60개: 귀화 22 + 사전평가 38).
 - `manifest.webmanifest` `sw.js` `icon*` — PWA (theme_color `#0D1B4C`)
 
 ## 검증
 - `hangul.js`는 전체 한글 음절 11,172자 + 모든 작문 모범답안에 대해
   `compose(textToKeystrokes(s)) === sanitize(s)` 라운드트립을 통과.
-- 배포 시 `sw.js`의 `CACHE` 숫자만 올리면 설치된 기기가 다음 접속 때 자동 갱신(현재 `typing-v14`).
+- 배포 시 `sw.js`의 `CACHE` 숫자만 올리면 설치된 기기가 다음 접속 때 자동 갱신(현재 `typing-v17`).
