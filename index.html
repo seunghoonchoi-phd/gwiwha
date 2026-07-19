@@ -160,6 +160,9 @@
         <div class="write-area__meta"><span id="writeCount">0자</span><span data-i18n="writeCount.suffix"> / 200자</span></div>
       </div>
 
+      <!-- E: 원고지 작성법 카드(종합평가 nat/perm 작문에서만, JS가 채움/토글) -->
+      <div id="wongojiCard" class="wongoji-card hidden"></div>
+
       <div id="feedback" class="feedback hidden"></div>
 
       <div class="quiz-actions">
@@ -176,6 +179,8 @@
         <button class="seg__btn seg__btn--active" data-wt="writing"><span class="seg__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6"/><path d="M4 20l1.2-4.2L15.5 5.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M4 20l4-1"/></svg></span><span data-i18n="seg.writing">작문</span></button>
         <button class="seg__btn" data-wt="oral"><span class="seg__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span><span data-i18n="seg.oral">구술</span></button>
       </div>
+      <!-- E: 원고지 작성법 카드(작문 탭 + 종합평가 nat/perm에서만, JS가 채움/토글) -->
+      <div id="wongojiPractice" class="wongoji-card hidden"></div>
       <div id="writingList" class="writing-list"></div>
     </section>
 
