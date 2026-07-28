@@ -308,6 +308,29 @@ a.menu-card, a.menu-card:link, a.menu-card:visited { color: var(--ink); text-dec
 .wrong-badge { font-family: var(--font-mono); font-size: .74rem; font-weight: 700; color: var(--bad); background: var(--bad-bg); border: 1px solid var(--copper-line); border-radius: var(--radius-sm); padding: 2px 8px; }
 .wrong-almost { font-size: .76rem; font-weight: 700; color: var(--copper); }
 
+/* ===== 듣고 말하기 재생기 ===== */
+.listen-card {
+  background: var(--navy-bg); border: 1px solid var(--copper-line); border-radius: var(--radius-md);
+  padding: 14px 16px; margin-bottom: 14px;
+}
+.listen-card__head { font-weight: 800; font-size: .92rem; color: var(--navy); margin-bottom: 10px; }
+.listen-card__btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.listen-play, .listen-script {
+  border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card);
+  padding: 9px 16px; font-size: .92rem; font-weight: 700; font-family: var(--font-ko);
+  color: var(--ink); cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.listen-play { background: var(--copper); border-color: var(--copper); color: #fff; }
+.listen-play:hover { opacity: .9; }
+.listen-script:hover { border-color: var(--copper-line); color: var(--copper); }
+.listen-card__hint { margin-top: 9px; font-size: .82rem; color: var(--ink-soft); }
+.listen-card__text {
+  margin-top: 10px; padding: 11px 13px; background: var(--card); border: 1px dashed var(--border);
+  border-radius: var(--radius-md); font-size: .94rem; line-height: 1.75;
+}
+.listen-card__text .zh { color: var(--muted); }
+
 /* ===== 오답노트 카드 — 답을 가리고 그 자리에서 다시 풀기 ===== */
 .wrong-card .wrong-meta { justify-content: space-between; }
 .wrong-meta__badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
