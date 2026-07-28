@@ -308,6 +308,24 @@ a.menu-card, a.menu-card:link, a.menu-card:visited { color: var(--ink); text-dec
 .wrong-badge { font-family: var(--font-mono); font-size: .74rem; font-weight: 700; color: var(--bad); background: var(--bad-bg); border: 1px solid var(--copper-line); border-radius: var(--radius-sm); padding: 2px 8px; }
 .wrong-almost { font-size: .76rem; font-weight: 700; color: var(--copper); }
 
+/* ===== 오답노트 카드 — 답을 가리고 그 자리에서 다시 풀기 ===== */
+.wrong-card .wrong-meta { justify-content: space-between; }
+.wrong-meta__badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wrong-del {
+  flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; line-height: 1;
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  font-size: .82rem; cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.wrong-del:hover { border-color: var(--bad); color: var(--bad); background: var(--bad-bg); }
+.wrong-card__choices { gap: 8px; margin-top: 4px; }
+.wrong-card__choices .choice { padding: 11px 14px; font-size: .98rem; }
+.wrong-card .feedback { margin-top: 12px; font-size: .92rem; }
+.wrong-card__actions { display: flex; margin-top: 12px; }
+.wrong-card__actions .btn { padding: 10px; font-size: .94rem; }
+.wrong-card__grad { margin-top: 6px; font-weight: 700; color: var(--ok); }
+.wrong-card.is-graduated { border-color: var(--ok); }
+
 /* ===== 작문/구술 ===== */
 .seg { display: flex; background: var(--cream-2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 4px; margin-bottom: 16px; }
 .seg__btn { flex: 1; border: 0; background: transparent; padding: 9px; border-radius: var(--radius-sm); font-family: var(--font-ko); font-weight: 700; cursor: pointer; color: var(--muted); transition: color var(--dur) var(--ease), background var(--dur) var(--ease); }
