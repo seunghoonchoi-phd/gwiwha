@@ -4,8 +4,8 @@
    ===================================================================== */
 (function () {
   var KEY = 'nq_gate';
-  var HASH = '8edb83bef69d1af9299aeee37e5f794a65d6e3cbfc70a05ad9056b631588f5d2';
-  var ALT = 'ODY5OTg2';
+  var HASH = '114c7254931234f33ea9796f12d2add601b4a235be570ff587826bad4915c935';
+  var ALT = 'Z3dpaHVh';
   var gate = function () { return document.getElementById('gate'); };
   function unlocked() { try { return localStorage.getItem(KEY) === HASH; } catch (e) { return false; } }
   function open() { var el = gate(); if (el) el.classList.add('hidden'); }

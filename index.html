@@ -30,7 +30,7 @@
       <h2 class="gate__title">비밀번호 · Password</h2>
       <p class="gate__desc">초대받은 사람만 들어올 수 있습니다. 받은 비밀번호를 넣어 주세요.<br>请输入收到的密码 · Nhập mật khẩu bạn nhận được · ใส่รหัสผ่านที่ได้รับ</p>
       <form id="gateForm" class="gate__form" autocomplete="off">
-        <input id="gateInput" class="gate__input" type="password" inputmode="numeric" aria-label="Password" placeholder="••••••" />
+        <input id="gateInput" class="gate__input" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" aria-label="Password" placeholder="••••••" />
         <button id="gateBtn" class="btn btn--primary gate__btn" type="submit">확인 · Enter</button>
       </form>
       <p id="gateErr" class="gate__err hidden">비밀번호가 맞지 않습니다 · 密码不正确 · Mật khẩu không đúng · รหัสผ่านไม่ถูกต้อง</p>
@@ -98,7 +98,7 @@
         <button class="menu-card" data-go="practice">
           <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5C4.7 19 4 18.3 4 17.5z"/><path d="M20 5.5C20 4.7 19.3 4 18.5 4H13v15h5.5c.8 0 1.5-.7 1.5-1.5z"/></svg></span>
           <span class="menu-card__title" data-i18n="home.practice.t">영역별 연습</span>
-          <span class="menu-card__sub" data-i18n="home.practice.s">8개 영역별로 풀기</span>
+          <span class="menu-card__sub" data-i18n="home.practice.s">9개 영역별로 풀기</span>
         </button>
         <button class="menu-card" data-go="writing">
           <span class="menu-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6"/><path d="M4 20l1.2-4.2L15.5 5.5a2 2 0 0 1 2.8 0l.2.2a2 2 0 0 1 0 2.8L8.2 18.8z"/><path d="M4 20l4-1"/></svg></span>

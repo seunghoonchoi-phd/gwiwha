@@ -372,8 +372,8 @@ const byType = (ty) => examBank().filter((q) => q.type === ty);
      문제 보호가 아니다.
    ===================================================================== */
 const GATE_KEY = 'nq_gate';
-const GATE_HASH = '8edb83bef69d1af9299aeee37e5f794a65d6e3cbfc70a05ad9056b631588f5d2';
-const GATE_ALT = 'ODY5OTg2'; // crypto.subtle 이 없는 환경(file:// 등) 대비
+const GATE_HASH = '114c7254931234f33ea9796f12d2add601b4a235be570ff587826bad4915c935';
+const GATE_ALT = 'Z3dpaHVh'; // crypto.subtle 이 없는 환경(file:// 등) 대비
 
 async function gateOk(v) {
   const s = (v || '').trim();
