@@ -38,6 +38,19 @@
     </div>
   </div>
 
+  <!-- 공지 팝업: 앱 소개와 한계 안내. 일주일 동안 접어둘 수 있다. -->
+  <div id="noticeModal" class="notice hidden" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
+    <div class="notice__card" lang="ko">
+      <div class="notice__langs" id="noticeLangs"></div>
+      <h2 class="notice__title" id="noticeTitle"></h2>
+      <div class="notice__body" id="noticeBody"></div>
+      <div class="notice__actions">
+        <button type="button" class="btn btn--ghost" id="noticeHideBtn"></button>
+        <button type="button" class="btn btn--primary" id="noticeCloseBtn"></button>
+      </div>
+    </div>
+  </div>
+
   <header class="appbar">
     <button id="homeBtn" class="appbar__home" aria-label="홈"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></button>
     <h1 class="appbar__title" data-i18n="app.title">귀화시험 연습</h1>

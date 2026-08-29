@@ -12,7 +12,7 @@ const K = {
   bank: 'nq_bank', meta: 'nq_meta', wrong: 'nq_wrong',
   stats: 'nq_stats', history: 'nq_history', drafts: 'nq_drafts', lang: 'nq_lang',
   mockSave: 'nq_mocksave', practiceSave: 'nq_practicesave', exam: 'nq_exam',
-  examdate: 'nq_examdate',
+  examdate: 'nq_examdate', notice: 'nq_notice',
 };
 
 /* ---------- 최소 내장 예비 문제 (네트워크/캐시 모두 없을 때만) ---------- */
@@ -381,6 +381,7 @@ function init() {
   showView('home');
   renderHome();
   if (savedLang === null) openLangPicker();   // 첫 실행: 국가/언어(주석) 선택
+  else maybeShowNotice();                     // 그다음부터는 공지부터 보여준다
   sync({ silent: true });
 }
 
@@ -409,7 +410,87 @@ function setLang(lang) {
 }
 /* 국가/언어 선택 화면(splash) — 첫 실행 시, 또는 상단 언어 버튼으로 다시 열기 */
 function openLangPicker() { const el = $('langSplash'); if (el) el.classList.remove('hidden'); }
-function chooseLang(lang) { const el = $('langSplash'); if (el) el.classList.add('hidden'); setLang(lang); }
+function chooseLang(lang) { const el = $('langSplash'); if (el) el.classList.add('hidden'); setLang(lang); maybeShowNotice(); }
+/* =====================================================================
+   공지 팝업 — 앱을 열면 한 번 뜨고, 일주일 동안 접어둘 수 있다.
+   새 공지를 올릴 때는 id 를 바꾼다. id 가 바뀌면 접어둔 사람에게도 다시 뜬다.
+   본문은 앱이 지원하는 네 개 언어를 모두 담고, 팝업 위쪽 버튼으로 바꿔 읽는다.
+   ===================================================================== */
+const LANG_NAME = { ko: '한국어', zh: '中文', vi: 'Tiếng Việt', th: 'ภาษาไทย' };
+const NOTICE = {
+  id: '2026-08-29-scope',
+  days: 7,
+  title: {
+    ko: '이 앱을 쓰기 전에 알아두세요',
+    zh: '使用本应用前请先了解',
+    vi: 'Hãy đọc trước khi dùng ứng dụng này',
+    th: 'โปรดอ่านก่อนใช้แอปนี้',
+  },
+  body: {
+    ko: [
+      '이 앱은 제 와이프가 귀화시험을 준비하는 것을 돕기 위해 만들었습니다. 누구나 무료로 쓸 수 있게 열어 두었고, 회원가입도 받지 않습니다.',
+      '와이프는 아직 귀화시험을 치르지 않았고, 저 또한 시험을 내는 기관의 관계자도 아닙니다. 그래서 실제 시험에 정확히 어떤 문제가 나올지는 저도 알지 못합니다.',
+      '대신 모의고사와 문제를 최대한 많이 모으는 방법을 택했습니다. 넓게 많이 풀어 두면 시험장에서 처음 보는 문제를 만나도 답을 찾을 수 있습니다. 문제풀은 지속적으로 늘려서 출제확률을 높일 예정입니다.',
+      '시험 날짜, 응시 자격, 합격 기준 같은 공식 정보는 사회통합정보망(kiiptest.org)과 법무부 안내를 함께 확인해 주세요.',
+    ],
+    zh: [
+      '这个应用是我为了帮助妻子准备归化考试而做的。我把它免费公开，任何人都可以使用，也不需要注册会员。',
+      '我妻子还没有参加过归化考试，我本人也不是出题机构的相关人员。所以实际考试究竟会出什么题，我同样无法知道。',
+      '因此我选择了另一种办法：尽可能多地收集模拟试题和题目。练得多、练得广，就算在考场上遇到没见过的题，也能找到答案。题库会持续扩充，以提高押中考题的概率。',
+      '考试日期、报考资格、合格标准等官方信息，请同时确认社会统合信息网(kiiptest.org)和法务部的公告。',
+    ],
+    vi: [
+      'Tôi làm ứng dụng này để giúp vợ tôi chuẩn bị cho kỳ thi nhập tịch. Tôi mở miễn phí cho mọi người dùng và không yêu cầu đăng ký thành viên.',
+      'Vợ tôi chưa dự kỳ thi nhập tịch, và tôi cũng không phải người của cơ quan ra đề. Vì vậy tôi cũng không biết chính xác đề thi thật sẽ hỏi những gì.',
+      'Thay vào đó, tôi chọn cách gom càng nhiều đề thi thử và câu hỏi càng tốt. Luyện nhiều và luyện rộng thì dù gặp câu hỏi lạ trong phòng thi, bạn vẫn tìm được đáp án. Tôi sẽ liên tục mở rộng kho câu hỏi để tăng khả năng trúng đề.',
+      'Với thông tin chính thức như ngày thi, điều kiện dự thi và tiêu chuẩn đậu, bạn hãy kiểm tra thêm tại Cổng thông tin Hội nhập xã hội (kiiptest.org) và thông báo của Bộ Tư pháp.',
+    ],
+    th: [
+      'ผมทำแอปนี้ขึ้นเพื่อช่วยภรรยาเตรียมสอบขอสัญชาติเกาหลี และเปิดให้ทุกคนใช้ฟรี โดยไม่ต้องสมัครสมาชิก',
+      'ภรรยาของผมยังไม่ได้เข้าสอบขอสัญชาติ และผมเองก็ไม่ใช่เจ้าหน้าที่ของหน่วยงานที่ออกข้อสอบ ดังนั้นผมจึงไม่ทราบว่าข้อสอบจริงจะออกอะไรบ้าง',
+      'ผมจึงเลือกวิธีรวบรวมข้อสอบจำลองและคำถามให้มากที่สุด ถ้าฝึกไว้มากและกว้าง ต่อให้เจอคำถามที่ไม่เคยเห็นในห้องสอบ ก็ยังหาคำตอบได้ ผมจะเพิ่มคลังคำถามอย่างต่อเนื่องเพื่อเพิ่มโอกาสที่จะตรงกับข้อสอบจริง',
+      'ข้อมูลทางการ เช่น วันสอบ คุณสมบัติผู้สมัคร และเกณฑ์ผ่าน โปรดตรวจสอบเพิ่มเติมที่เว็บไซต์ระบบข้อมูลการบูรณาการทางสังคม (kiiptest.org) และประกาศของกระทรวงยุติธรรมด้วย',
+    ],
+  },
+  hide: { ko: '일주일 동안 보지 않기', zh: '一周内不再显示', vi: 'Không hiện lại trong 1 tuần', th: 'ไม่แสดงอีกใน 1 สัปดาห์' },
+  close: { ko: '확인', zh: '知道了', vi: 'Đã hiểu', th: 'รับทราบ' },
+};
+let noticeLang = 'ko';
+
+/* 접어둔 기간이 남아 있고 같은 공지면 다시 띄우지 않는다. */
+function noticeHidden() {
+  const v = ls(K.notice, null);
+  return !!(v && v.id === NOTICE.id && typeof v.until === 'number' && Date.now() < v.until);
+}
+function maybeShowNotice() { if (!noticeHidden()) openNotice(); }
+function openNotice() {
+  noticeLang = LANG_NAME[LANG] ? LANG : 'ko';
+  renderNotice();
+  const el = $('noticeModal');
+  if (el) el.classList.remove('hidden');
+}
+function closeNotice(hideForWeek) {
+  if (hideForWeek) save(K.notice, { id: NOTICE.id, until: Date.now() + NOTICE.days * 86400000 });
+  const el = $('noticeModal');
+  if (el) el.classList.add('hidden');
+}
+function renderNotice() {
+  const l = NOTICE.title[noticeLang] ? noticeLang : 'ko';
+  const langs = $('noticeLangs');
+  if (langs) {
+    langs.innerHTML = Object.keys(LANG_NAME).map((k) => `<button type="button" class="notice__lang${k === l ? ' notice__lang--on' : ''}" data-notice-lang="${k}" lang="${k}" aria-pressed="${k === l}">${LANG_LABEL[k]} ${LANG_NAME[k]}</button>`).join('');
+  }
+  const card = document.querySelector('#noticeModal .notice__card');
+  if (card) card.lang = l;
+  const titleEl = $('noticeTitle');
+  if (titleEl) titleEl.textContent = NOTICE.title[l];
+  const bodyEl = $('noticeBody');
+  if (bodyEl) bodyEl.innerHTML = NOTICE.body[l].map((p) => `<p>${p}</p>`).join('');
+  const hideBtn = $('noticeHideBtn');
+  if (hideBtn) hideBtn.textContent = NOTICE.hide[l];
+  const closeBtn = $('noticeCloseBtn');
+  if (closeBtn) closeBtn.textContent = NOTICE.close[l];
+}
 
 /* ---------- 시험 트랙 UI 반영 / 전환 ---------- */
 function applyExamUi() {
@@ -1374,6 +1455,15 @@ function wireEvents() {
   $('syncBtn').addEventListener('click', () => sync({ silent: false }));
   $('langBtn').addEventListener('click', openLangPicker);
   document.querySelectorAll('#langSplash .lang-opt').forEach((b) => b.addEventListener('click', () => chooseLang(b.dataset.lang)));
+  $('noticeHideBtn').addEventListener('click', () => closeNotice(true));
+  $('noticeCloseBtn').addEventListener('click', () => closeNotice(false));
+  $('noticeLangs').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-notice-lang]');
+    if (!b) return;
+    noticeLang = b.dataset.noticeLang;
+    renderNotice();
+  });
+  $('noticeModal').addEventListener('click', (e) => { if (e.target.id === 'noticeModal') closeNotice(false); });
   document.querySelectorAll('#trackSeg .seg__btn').forEach((b) => b.addEventListener('click', () => setExam(b.dataset.exam)));
 
   document.querySelectorAll('[data-go]').forEach((el) => {

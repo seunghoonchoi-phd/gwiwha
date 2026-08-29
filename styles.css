@@ -509,6 +509,38 @@ body.exam-mode .question-box .zh { color: var(--muted); }
 .lang-opt__name { font-weight: 700; color: var(--navy); font-size: .98rem; }
 .lang-opt__sub { font-size: .68rem; color: var(--muted); }
 
+/* ===== 공지 팝업(언어 전환 + 일주일 동안 보지 않기) ===== */
+.notice {
+  position: fixed; inset: 0; z-index: 110;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: rgba(15, 17, 21, .5); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+.notice.hidden { display: none; }
+.notice__card {
+  width: 100%; max-width: 460px; max-height: 82vh; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lift); padding: 20px 20px 18px; text-align: left;
+}
+.notice__langs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.notice__lang {
+  padding: 6px 11px; font: inherit; font-size: .76rem; font-weight: 600;
+  color: var(--muted); background: var(--cream-2);
+  border: 1px solid var(--border); border-radius: 9999px; cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.notice__lang:hover, .notice__lang:focus-visible { border-color: var(--copper-line); outline: none; }
+.notice__lang--on { color: #fff; background: var(--copper); border-color: var(--copper); }
+.notice__title { margin: 0 0 10px; font-size: 1.06rem; font-weight: 700; color: var(--navy); line-height: 1.45; }
+.notice__body p { margin: 0 0 10px; font-size: .87rem; color: var(--ink-soft); line-height: 1.65; }
+.notice__body { overflow-y: auto; }
+.notice__body p:last-child { margin-bottom: 0; }
+.notice__actions { display: flex; flex-shrink: 0; gap: 8px; margin-top: 18px; }
+.notice__actions .btn { flex: 1; }
+@media (max-width: 380px) {
+  .notice__actions { flex-direction: column; }
+}
+
 /* ===== 홈 하단 제작자 크레딧 ===== */
 .app-credit {
   margin: 32px 8px max(env(safe-area-inset-bottom), 22px);
